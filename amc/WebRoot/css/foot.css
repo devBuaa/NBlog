@@ -1,0 +1,17 @@
+#footer {
+	height: 20px;
+	line-height: 20px;
+	background: #999999;
+	width: 100%;
+	position: fixed;
+	z-index: 9999;
+	bottom: 0;
+	text-align: center;
+}
+
+#footer a {	
+	line-height:inherit;
+	color: #ffffff;
+	text-transform:none;
+	text-decoration:none;
+}

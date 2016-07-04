@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!-- 启用注解 -->
+	<context:annotation-config />
+	<!-- 配置jdbc.properties文件 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:com/amc/cfg/jdbc.properties"/>
+	</bean>
+
+	<!-- 配置databaseSource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- 连接池启动时的初始值 -->
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<!-- 连接池的最大值 -->
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<!-- 最大空闲值.当经过一个高峰时间后，连接池可以慢慢将已经用不到的连接慢慢释放一部分，一直减少到maxIdle为止 -->
+		<property name="maxIdle" value="${jdbc.maxIdle}" />
+		<!-- 最小空闲值.当空闲的连接数少于阀值时，连接池就会预申请去一些连接，以免洪峰来时来不及申请 -->
+		<property name="minIdle" value="${jdbc.minIdle}" />
+	</bean>
+	<!-- 配置sessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingResources">
+			<list>
+				<value>com/amc/domain/AmcCustomer.hbm.xml</value>
+				<value>com/amc/domain/AmcCustomercompany.hbm.xml</value>
+				<value>com/amc/domain/AmcDepartment.hbm.xml</value>
+				<value>com/amc/domain/AmcDispatchorder.hbm.xml</value>
+				<value>com/amc/domain/AmcDodetail.hbm.xml</value>
+				<value>com/amc/domain/AmcPayable.hbm.xml</value>
+				<value>com/amc/domain/AmcPayabledetail.hbm.xml</value>
+				<value>com/amc/domain/AmcPodetail.hbm.xml</value>
+				<value>com/amc/domain/AmcProduct.hbm.xml</value>
+				<value>com/amc/domain/AmcPurchaseaccount.hbm.xml</value>
+				<value>com/amc/domain/AmcPurchaseorder.hbm.xml</value>
+				<value>com/amc/domain/AmcRole.hbm.xml</value>
+				<value>com/amc/domain/AmcReceivable.hbm.xml</value>
+				<value>com/amc/domain/AmcReceivabledetail.hbm.xml</value>
+				<value>com/amc/domain/AmcReplenishdetail.hbm.xml</value>
+				<value>com/amc/domain/AmcReplenishsheet.hbm.xml</value>
+				<value>com/amc/domain/AmcSaleaccount.hbm.xml</value>
+				<value>com/amc/domain/AmcSalesorder.hbm.xml</value>
+				<value>com/amc/domain/AmcSodetail.hbm.xml</value>
+				<value>com/amc/domain/AmcStockdetail.hbm.xml</value>
+				<value>com/amc/domain/AmcStockorder.hbm.xml</value>
+				<value>com/amc/domain/AmcSupplier.hbm.xml</value>
+				<value>com/amc/domain/AmcUser.hbm.xml</value>
+				<value>com/amc/domain/AmcWantslip.hbm.xml</value>
+				<value>com/amc/domain/AmcWsdetail.hbm.xml</value>
+				<value>com/amc/domain/AmcShortstock.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQLDialect
+				hibernate.hbm2ddl.auto=update
+				hibernate.show_sql=false
+				hibernate.format_sql=false
+				hibernate.cache.use_second_level_cache=true 
+    			hibernate.cache.use_query_cache=true 
+    			hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider 
+    			hibernate.generate_statistics=true	
+			</value>
+		</property>
+	</bean>
+	<!-- 配置 service对象 -->
+	<!--在com.amc.service.imp包里加入相关service  -->
+	<bean id="customerServiceImp" class="com.amc.service.imp.CustomerServiceImp">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="dispatchServiceImp" class="com.amc.service.imp.DispatchServiceImp">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="payableServiceImp" class="com.amc.service.imp.PayableServiceImp">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="productServiceImp" class="com.amc.service.imp.ProductServiceImp">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="purchaseOrderServiceImp" class="com.amc.service.imp.PurchaseOrderServiceImp">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="receivableServiceImp" class="com.amc.service.imp.ReceivableServiceImp">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="replenishServiceImp" class="com.amc.service.imp.ReplenishServiceImp">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="salesOrderServiceImp" class="com.amc.service.imp.SalesOrderServiceImp">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="stockServiceImp" class="com.amc.service.imp.StockServiceImp">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="supplierServiceImp" class="com.amc.service.imp.SupplierServiceImp">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="userServiceImp" class="com.amc.service.imp.UserServiceImp">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="wantSlipServiceImp" class="com.amc.service.imp.WantSlipServiceImp">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<!-- 配置action -->
+	<bean name="/customer" class="com.amc.web.action.CustomerAction">
+		<property name="customerService" ref="customerServiceImp"/>	
+	</bean>
+	<bean name="/login" class="com.amc.web.action.LoginAction">
+		<property name="userService" ref="userServiceImp"/>	
+	</bean>
+	<bean name="/myInfo" class="com.amc.web.action.MyInfoAction">
+		<property name="userService" ref="userServiceImp"/>	
+	</bean>
+	<bean name="/salesOrder" class="com.amc.web.action.SalesOrderAction">
+		<property name="salesOrderService" ref="salesOrderServiceImp"/>	
+		<property name="customerService" ref="customerServiceImp"/>
+		<property name="productService" ref="productServiceImp"/>
+		<property name="userService" ref="userServiceImp"/>	
+	</bean>
+	<bean name="/dispatchOrder" class="com.amc.web.action.DispatchOrderAction">
+	    <property name="dispatchService" ref="dispatchServiceImp"/>
+		<property name="salesOrderService" ref="salesOrderServiceImp"/>	
+		<property name="customerService" ref="customerServiceImp"/>
+		<property name="productService" ref="productServiceImp"/>
+		<property name="userService" ref="userServiceImp"/>	
+		<property name="receivableService" ref="receivableServiceImp"/>	
+	</bean>
+	<bean name="/stock" class="com.amc.web.action.StockAction"> 
+		<property name="salesOrderService" ref="salesOrderServiceImp"/>
+		<property name="stockService" ref="stockServiceImp"/>
+		<property name="dispatchService" ref="dispatchServiceImp"/>
+		<property name="wantSlipService" ref="wantSlipServiceImp"/>
+	</bean>
+	<bean name="/user" class="com.amc.web.action.UserAction">
+		<property name="userService" ref="userServiceImp"/>	
+	</bean>
+	<bean name="/product" class="com.amc.web.action.ProductAction">
+		<property name="productService" ref="productServiceImp"/>	
+	</bean>
+	<bean name="/supplier" class="com.amc.web.action.SupplierAction">
+		<property name="supplierService" ref="supplierServiceImp"/>	
+	</bean>
+	<bean name="/want" class="com.amc.web.action.WantAction"> 
+		<property name="salesOrderService" ref="salesOrderServiceImp"/>
+		<property name="wantSlipService" ref="wantSlipServiceImp"/>
+		<property name="productService" ref="productServiceImp"/>	
+	</bean>
+	<bean name="/receivable" class="com.amc.web.action.ReceivableAction">
+		<property name="receivableService" ref="receivableServiceImp"/>
+	</bean>
+	<bean name="/payable" class="com.amc.web.action.PayableAction">
+		<property name="payableService" ref="payableServiceImp"/>
+	</bean>
+	<bean name="/purchase" class="com.amc.web.action.PurchaseAction">
+		<property name="purchaseOrderService" ref="purchaseOrderServiceImp"/>
+		<property name="productService" ref="productServiceImp"/>
+		<property name="wantSlipService" ref="wantSlipServiceImp"/>
+		<property name="supplierService" ref="supplierServiceImp"/>	
+		<property name="userService" ref="userServiceImp"/>	
+		<property name="replenishService" ref="replenishServiceImp"/>
+	</bean>
+	<bean name="/replenish" class="com.amc.web.action.ReplenishAction">
+		<property name="replenishService" ref="replenishServiceImp"/>
+		<property name="payableService" ref="payableServiceImp"/>
+		<property name="wantSlipService" ref="wantSlipServiceImp"/>
+	</bean>
+	<!-- 定时任务task.do -->
+	<bean name="/task" class="com.amc.web.action.TaskAction">
+		<property name="purchaseOrderService" ref="purchaseOrderServiceImp"/>
+		<property name="productService" ref="productServiceImp"/>
+		<property name="wantSlipService" ref="wantSlipServiceImp"/>
+	</bean>
+	<bean name="/ba" class="com.amc.web.action.BaAction">
+		<property name="receivableService" ref="receivableServiceImp"/>
+		<property name="payableService" ref="payableServiceImp"/>
+	</bean>
+	<!-- 配置事务管理器 -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="txManager" />
+</beans>

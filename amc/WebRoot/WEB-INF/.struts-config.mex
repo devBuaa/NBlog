@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/login.do" location="645,270" dimension="151,136" />
+  <StrutsActivity path="/user.do" location="345,420" dimension="150,100" />
+  <StrutsActivity path="/myInfo.do" location="225,-30" dimension="150,100" />
+  <StrutsActivity path="/salesOrder.do" location="1035,30" dimension="150,100" />
+  <StrutsActivity path="/stock.do" location="1530,-75" dimension="196,130" />
+  <StrutsActivity path="/customer.do" location="1785,195" dimension="166,121" />
+  <StrutsActivity path="/product.do" location="1680,690" dimension="150,100" />
+  <StrutsActivity path="/supplier.do" location="1815,450" dimension="150,100" />
+  <StrutsActivity path="/want.do" location="1950,-285" dimension="150,100" />
+  <StrutsActivity path="/dispatchOrder.do" location="1875,975" dimension="166,106" />
+  <StrutsActivity path="/purchase.do" location="810,600" dimension="150,100" />
+  <StrutsActivity path="/receivable.do" location="990,540" dimension="151,136" />
+  <StrutsActivity path="/task.do" location="675,165" dimension="150,100" />
+  <StrutsActivity path="/replenish.do" location="1425,555" dimension="150,100" />
+  <StrutsActivity path="/payable.do" location="1245,885" dimension="150,100" />
+  <StrutsActivity path="/ba.do" location="187,160" dimension="150,100" />
+  <StrutsActivity path="/login.jsp" location="390,240" dimension="150,145" />
+  <StrutsActivity path="/main.jsp" location="915,240" dimension="753,240" />
+  <StrutsActivity path="/erp/common/addOk.jsp" location="2805,90" dimension="150,100" />
+  <StrutsActivity path="/human/addError.jsp" location="570,450" dimension="154,53" />
+  <StrutsActivity path="/human/user.jsp" location="90,390" dimension="150,100" />
+  <StrutsActivity path="/human/adduser.jsp" location="585,585" dimension="149,53" />
+  <StrutsActivity path="/human/protect.jsp" location="90,495" dimension="150,100" />
+  <StrutsActivity path="/human/updateuser.jsp" location="150,615" dimension="150,100" />
+  <StrutsActivity path="/human/updateMyPwd_error.jsp" location="165,-165" dimension="219,53" />
+  <StrutsActivity path="/human/updateMyPwd.jsp" location="465,0" dimension="150,100" />
+  <StrutsActivity path="/erp/sale/orderAdd.jsp" location="795,-120" dimension="150,100" />
+  <StrutsActivity path="/erp/sale/orderDetail.jsp" location="1005,-150" dimension="150,100" />
+  <StrutsActivity path="/erp/sale/orderList.jsp" location="1260,30" dimension="150,100" />
+  <StrutsActivity path="/erp/common/addError.jsp" location="2985,75" dimension="150,100" />
+  <StrutsActivity path="/erp/inventory/stockDetail.jsp" location="1740,-270" dimension="150,100" />
+  <StrutsActivity path="/erp/inventory/stockList.jsp" location="1515,-270" dimension="150,100" />
+  <StrutsActivity path="/erp/sale/customerList.jsp" location="1830,45" dimension="150,100" />
+  <StrutsActivity path="/erp/sale/customerUpdate.jsp" location="2175,240" dimension="150,100" />
+  <StrutsActivity path="/erp/sale/customerAdd.jsp" location="1950,345" dimension="150,100" />
+  <StrutsActivity path="/erp/inventory/productList.jsp" location="1665,840" dimension="150,100" />
+  <StrutsActivity path="/erp/inventory/productUpdate.jsp" location="1845,825" dimension="150,100" />
+  <StrutsActivity path="/erp/purchase/supplierList.jsp" location="2100,480" dimension="150,100" />
+  <StrutsActivity path="/erp/purchase/supplierUpdate.jsp" location="1830,600" dimension="150,100" />
+  <StrutsActivity path="/erp/inventory/wantDetailFromstock.jsp" location="2235,-210" dimension="211,91" />
+  <StrutsActivity path="/erp/purchase/wantDetail.jsp" location="2265,-360" dimension="150,100" />
+  <StrutsActivity path="/erp/purchase/wantList.jsp" location="1950,-435" dimension="150,100" />
+  <StrutsActivity path="/erp/inventory/dispatchOrderList.jsp" location="1485,990" dimension="150,100" />
+  <StrutsActivity path="/erp/inventory/dispatchDetail.jsp" location="1620,1290" dimension="150,100" />
+  <StrutsActivity path="/erp/inventory/dispatchAdd.jsp" location="1485,1260" dimension="150,100" />
+  <StrutsActivity path="/erp/purchase/purchaseDetail.jsp" location="540,660" dimension="150,100" />
+  <StrutsActivity path="/erp/purchase/purchaseList.jsp" location="780,885" dimension="150,100" />
+  <StrutsActivity path="/erp/purchase/purchaseAdd.jsp" location="705,765" dimension="150,100" />
+  <StrutsActivity path="/erp/finance/saleaccountList.jsp" location="1215,600" dimension="150,100" />
+  <StrutsActivity path="/erp/finance/saleaccountDetail.jsp" location="1065,735" dimension="150,100" />
+  <StrutsActivity path="/erp/finance/receivableDetail.jsp" location="900,705" dimension="150,100" />
+  <StrutsActivity path="/erp/finance/receivableList.jsp" location="1215,495" dimension="150,100" />
+  <StrutsActivity path="/erp/inventory/replenishList.jsp" location="1455,855" dimension="150,100" />
+  <StrutsActivity path="/erp/inventory/replenishDetail.jsp" location="1515,750" dimension="150,100" />
+  <StrutsActivity path="/erp/finance/purchaseaccountList.jsp" location="975,855" dimension="150,100" />
+  <StrutsActivity path="/erp/finance/payableList.jsp" location="1170,1065" dimension="150,100" />
+  <StrutsActivity path="/erp/finance/payableDetail.jsp" location="1350,1050" dimension="150,100" />
+  <StrutsActivity path="/erp/finance/purchaseaccountDetail.jsp" location="975,960" dimension="150,100" />
+  <StrutsActivity path="/erp/sale/orderStockHandle.jsp" location="1245,-120" dimension="150,100" />
+  <StrutsActivity path="/erp/purchase/supplierAdd.jsp" location="1650,555" dimension="150,100" />
+  <StrutsActivity path="/erp/common/idExisted.jsp" location="2055,660" dimension="150,100" />
+  <StrutsTransition id="/customer.do,updateForward,/erp/sale/customerUpdate.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1951,255" />
+      <AbsolutePoint location="2175,255" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/receivable.do,listaccount,/erp/finance/saleaccountList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1141,650" />
+      <AbsolutePoint location="1215,650" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/task.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="915,255" />
+      <AbsolutePoint location="825,255" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/stock.do,ok,/erp/common/addOk.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1726,-10" />
+      <AbsolutePoint location="2910,-10" />
+      <AbsolutePoint location="2910,90" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/dispatchOrder.do,addForward,/erp/inventory/dispatchAdd.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1958,1081" />
+      <AbsolutePoint location="1958,1275" />
+      <AbsolutePoint location="1635,1275" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/supplier.do,add_ok,/erp/common/addOk.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1965,465" />
+      <AbsolutePoint location="2400,465" />
+      <AbsolutePoint location="2400,100" />
+      <AbsolutePoint location="2805,100" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/salesOrder.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1110,240" />
+      <AbsolutePoint location="1110,130" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/salesOrder.do,showDetail,/erp/sale/orderDetail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1080,30" />
+      <AbsolutePoint location="1080,-50" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/want.do,showDetailBySo,/erp/inventory/wantDetailFromstock.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2100,-200" />
+      <AbsolutePoint location="2235,-200" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/user.do,list,/human/user.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="345,440" />
+      <AbsolutePoint location="240,440" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/replenish.do,list,/erp/inventory/replenishList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1500,655" />
+      <AbsolutePoint location="1500,855" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/payable.do,showDetail,/erp/finance/payableDetail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1380,985" />
+      <AbsolutePoint location="1380,1050" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/stock.do,list,/erp/inventory/stockList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1590,-75" />
+      <AbsolutePoint location="1590,-170" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/inventory/productList.jsp,null,/product.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1740,840" />
+      <AbsolutePoint location="1740,790" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/stock.do,add_error,/erp/common/addError.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1726,-40" />
+      <AbsolutePoint location="3060,-40" />
+      <AbsolutePoint location="3060,75" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/purchase.do,addForward,/erp/purchase/purchaseAdd.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="825,700" />
+      <AbsolutePoint location="825,765" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/login.do,fail_code,/login.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="645,312" />
+      <AbsolutePoint location="540,312" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/sale/customerAdd.jsp,null,/customer.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2025,345" />
+      <AbsolutePoint location="2025,290" />
+      <AbsolutePoint location="1951,290" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/user.do,add_ok,/erp/common/addOk.jsp,1" routingType="1">
+    <Bendpoints>
+      <Point rDim1="-60,-305" rDim2="-2520,-20" />
+    </Bendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/purchase.do,list,/erp/purchase/purchaseList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="885,700" />
+      <AbsolutePoint location="885,885" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/supplier.do,updateForward,/erp/purchase/supplierUpdate.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1905,550" />
+      <AbsolutePoint location="1905,600" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/inventory/replenishList.jsp,null,/replenish.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1470,855" />
+      <AbsolutePoint location="1470,655" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/supplier.do,list,/erp/purchase/supplierList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1815,510" />
+      <AbsolutePoint location="1683,510" />
+      <AbsolutePoint location="1683,180" />
+      <AbsolutePoint location="2130,180" />
+      <AbsolutePoint location="2130,480" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/receivable.do,showDetail,/erp/finance/receivableDetail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1005,676" />
+      <AbsolutePoint location="1005,705" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/salesOrder.do,addForword,/erp/sale/orderAdd.jsp,1" routingType="1">
+    <Bendpoints>
+      <Point rDim1="-120,-50" rDim2="105,85" />
+    </Bendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/login.do,ok,/main.jsp,1" routingType="1">
+    <Bendpoints>
+      <Point rDim1="135,-5" rDim2="-436,-30" />
+    </Bendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/dispatchOrder.do,showDetail,/erp/inventory/dispatchDetail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1875,1040" />
+      <AbsolutePoint location="1695,1040" />
+      <AbsolutePoint location="1695,1290" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/salesOrder.do,list,/erp/sale/orderList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1185,80" />
+      <AbsolutePoint location="1260,80" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/product.do,add_error,/erp/common/idExisted.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1830,740" />
+      <AbsolutePoint location="2055,740" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/purchase.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="930,480" />
+      <AbsolutePoint location="930,600" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/human/adduser.jsp,null,/user.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="585,596" />
+      <AbsolutePoint location="450,596" />
+      <AbsolutePoint location="450,520" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/product.do,updateForward,/erp/inventory/productUpdate.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1830,770" />
+      <AbsolutePoint location="1920,770" />
+      <AbsolutePoint location="1920,825" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/want.do,showDetail,/erp/purchase/wantDetail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2100,-270" />
+      <AbsolutePoint location="2265,-270" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/customer.do,list,/erp/sale/customerList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1868,195" />
+      <AbsolutePoint location="1868,145" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/replenish.do,showDetail,/erp/inventory/replenishDetail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1560,655" />
+      <AbsolutePoint location="1560,750" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/user.do,addForward,/human/adduser.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="495,518" />
+      <AbsolutePoint location="659,518" />
+      <AbsolutePoint location="659,585" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/dispatchOrder.do,list,/erp/inventory/dispatchOrderList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1875,1010" />
+      <AbsolutePoint location="1635,1010" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/receivable.do,showAccountDetail,/erp/finance/saleaccountDetail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1126,676" />
+      <AbsolutePoint location="1126,735" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/payable.do,list,/erp/finance/payableList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1260,985" />
+      <AbsolutePoint location="1260,1065" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/user.do,protect,/human/protect.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="345,505" />
+      <AbsolutePoint location="240,505" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/payable.do,listaccount,/erp/finance/purchaseaccountList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1245,905" />
+      <AbsolutePoint location="1125,905" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/stock.do,showDetail,/erp/inventory/stockDetail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1680,-75" />
+      <AbsolutePoint location="1680,-220" />
+      <AbsolutePoint location="1740,-220" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/user.do,updateForward,/human/updateuser.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="360,520" />
+      <AbsolutePoint location="360,665" />
+      <AbsolutePoint location="300,665" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/human/updateMyPwd.jsp,null,/myInfo.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="465,20" />
+      <AbsolutePoint location="375,20" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/receivable.do,list,/erp/finance/receivableList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1141,555" />
+      <AbsolutePoint location="1215,555" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/myInfo.do,ok,/human/updateMyPwd.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="375,50" />
+      <AbsolutePoint location="465,50" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/inventory/stockDetail.jsp,null,/want.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1890,-265" />
+      <AbsolutePoint location="1950,-265" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/product.do,list,/erp/inventory/productList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1710,790" />
+      <AbsolutePoint location="1710,840" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/user.do,add_error,/human/addError.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="495,476" />
+      <AbsolutePoint location="570,476" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/finance/purchaseaccountList.jsp,null,/payable.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1125,935" />
+      <AbsolutePoint location="1245,935" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/finance/saleaccountList.jsp,null,/receivable.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1215,615" />
+      <AbsolutePoint location="1141,615" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/product.do,add_ok,/erp/common/addOk.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1770,790" />
+      <AbsolutePoint location="1770,805" />
+      <AbsolutePoint location="2850,805" />
+      <AbsolutePoint location="2850,190" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/purchase/supplierList.jsp,null,/supplier.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2160,480" />
+      <AbsolutePoint location="2160,20" />
+      <AbsolutePoint location="1755,20" />
+      <AbsolutePoint location="1755,425" />
+      <AbsolutePoint location="1890,425" />
+      <AbsolutePoint location="1890,450" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/user.do,null,/login.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="465,420" />
+      <AbsolutePoint location="465,385" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/inventory/stockDetail.jsp,null,/dispatchOrder.do,2" routingType="1">
+    <Bendpoints>
+      <Point rDim1="30,160" rDim2="487,-1163" />
+      <Point rDim1="1155,160" rDim2="1612,-1163" />
+      <Point rDim1="1155,1330" rDim2="1612,7" />
+    </Bendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/payable.do,showAccountDetail,/erp/finance/purchaseaccountDetail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1245,970" />
+      <AbsolutePoint location="1125,970" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/purchase.do,showDetail,/erp/purchase/purchaseDetail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="810,685" />
+      <AbsolutePoint location="690,685" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/customer.do,add_ok,/erp/common/addOk.jsp,1" routingType="1">
+    <Bendpoints>
+      <Point rDim1="-15,-110" rDim2="-225,70" />
+    </Bendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/inventory/stockList.jsp,null,/stock.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1628,-170" />
+      <AbsolutePoint location="1628,-75" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/login.jsp,null,/login.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="540,372" />
+      <AbsolutePoint location="645,372" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/myInfo.do,error,/human/updateMyPwd_error.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="274,-30" />
+      <AbsolutePoint location="274,-112" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/want.do,list,/erp/purchase/wantList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2055,-285" />
+      <AbsolutePoint location="2055,-335" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/login.do,fail_pwd,/login.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="645,342" />
+      <AbsolutePoint location="540,342" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/supplier.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1668,465" />
+      <AbsolutePoint location="1815,465" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/salesOrder.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1140,240" />
+      <AbsolutePoint location="1140,130" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/erp/purchase/supplierAdd.jsp,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1653,480" />
+      <AbsolutePoint location="1653,555" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/customer.do,0" routingType="1">
+    <Bendpoints>
+      <Point rDim1="434,-120" rDim2="-173,75" />
+    </Bendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/product.do,0" routingType="1">
+    <Bendpoints>
+      <Point rDim1="314,375" rDim2="-150,-5" />
+    </Bendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/sale/customerList.jsp,null,/customer.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1838,145" />
+      <AbsolutePoint location="1838,195" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/sale/orderDetail.jsp,null,/erp/sale/orderStockHandle.jsp,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1155,-70" />
+      <AbsolutePoint location="1245,-70" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/human/updateMyPwd.jsp,0" routingType="1">
+    <Bendpoints>
+      <Point rDim1="-360,-390" rDim2="480,40" />
+    </Bendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/human/updateuser.jsp,null,/user.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="300,695" />
+      <AbsolutePoint location="390,695" />
+      <AbsolutePoint location="390,520" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/purchase/supplierAdd.jsp,null,/supplier.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1800,565" />
+      <AbsolutePoint location="1875,565" />
+      <AbsolutePoint location="1875,550" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/human/user.jsp,null,/user.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="240,470" />
+      <AbsolutePoint location="345,470" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/replenish.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1500,480" />
+      <AbsolutePoint location="1500,555" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/finance/receivableList.jsp,null,/receivable.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1215,580" />
+      <AbsolutePoint location="1141,580" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/stock.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1628,240" />
+      <AbsolutePoint location="1628,55" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/payable.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1380,480" />
+      <AbsolutePoint location="1380,885" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/erp/sale/customerAdd.jsp,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1668,395" />
+      <AbsolutePoint location="1950,395" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/sale/customerUpdate.jsp,null,/customer.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2250,240" />
+      <AbsolutePoint location="2250,225" />
+      <AbsolutePoint location="1951,225" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/dispatchOrder.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1425,240" />
+      <AbsolutePoint location="1425,-510" />
+      <AbsolutePoint location="2701,-510" />
+      <AbsolutePoint location="2701,1058" />
+      <AbsolutePoint location="2041,1058" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/receivable.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1065,480" />
+      <AbsolutePoint location="1065,540" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/main.jsp,null,/user.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="915,475" />
+      <AbsolutePoint location="779,475" />
+      <AbsolutePoint location="779,435" />
+      <AbsolutePoint location="495,435" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/finance/payableList.jsp,null,/payable.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1305,1065" />
+      <AbsolutePoint location="1305,985" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/erp/sale/orderStockHandle.jsp,null,/stock.do,0" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1320,-20" />
+      <AbsolutePoint location="1320,0" />
+      <AbsolutePoint location="1530,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

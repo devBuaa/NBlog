@@ -1,0 +1,1029 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ERDiagram version="1.1">
+  <Connection session="rmrf22dq308mlxbu" database="rmrf22dq308mlxbu" />
+  <Drawing gridVisible="false" snapOn="false" fastRouting="false" labelsVisible="true" />
+  <Tables>
+    <Table name="amc_customer">
+      <Drawing expanded="true" location="192,1163" dimensions="192,151" />
+      <Columns>
+        <Column name="cid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="cname" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="cphone" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="20" />
+        </Column>
+        <Column name="caddress" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="ctype" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="ccredit" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_customercompany">
+      <Drawing expanded="true" location="0,812" dimensions="208,111" />
+      <Columns>
+        <Column name="cpid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="customerId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="cpname" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="128" />
+        </Column>
+        <Column name="cpfr" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="64" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_department">
+      <Drawing expanded="true" location="1258,1414" dimensions="204,91" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="name" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="description" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_dispatchorder">
+      <Drawing expanded="true" location="254,451" dimensions="173,191" />
+      <Columns>
+        <Column name="dsid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="dscid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="dsdate" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="dstsize" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+        <Column name="dstweight" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+        <Column name="dsoid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="dsuid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="dstate" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_dodetail">
+      <Drawing expanded="true" location="295,20" dimensions="182,151" />
+      <Columns>
+        <Column name="dsdid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="dsddsid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="dsdpid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="dsdsize" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+        <Column name="dsdweight" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+        <Column name="dsdamount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_payable">
+      <Drawing expanded="true" location="2769,451" dimensions="211,191" />
+      <Columns>
+        <Column name="payid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="paypoid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="paytotalaccount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="11" />
+        </Column>
+        <Column name="payctime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="paydate" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="payuid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="paystate" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="payamount" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_payabledetail">
+      <Drawing expanded="true" location="2560,20" dimensions="190,151" />
+      <Columns>
+        <Column name="paydid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="paydpayid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="paydpid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="paydprice" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+        <Column name="paydamount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="paydsum" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_podetail">
+      <Drawing expanded="true" location="3154,20" dimensions="197,151" />
+      <Columns>
+        <Column name="podid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="podpoid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="podpid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="podamount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="podorderamount" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="podsafeamount" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_product">
+      <Drawing expanded="true" location="1977,431" dimensions="254,231" />
+      <Columns>
+        <Column name="pid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="pname" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="128" />
+        </Column>
+        <Column name="psize" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+        <Column name="pweight" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+        <Column name="psaleprice" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+        <Column name="ppurchaseprice" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+        <Column name="pinventoryamount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="psafeamount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="pinventorystate" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="pshortamount" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_purchaseaccount">
+      <Drawing expanded="true" location="2850,40" dimensions="204,111" />
+      <Columns>
+        <Column name="paid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="papayid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="pactime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="patotalaccount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_purchaseorder">
+      <Drawing expanded="true" location="2985,792" dimensions="176,151" />
+      <Columns>
+        <Column name="poid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="posid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="poctime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="pouid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="postate" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="poamount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_receivable">
+      <Drawing expanded="true" location="644,451" dimensions="176,191" />
+      <Columns>
+        <Column name="rcid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="rcsoid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="rctaccount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="11" />
+        </Column>
+        <Column name="rcdeadline" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="rcctime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="rcrtime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="rcuid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="rcstate" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_receivabledetail">
+      <Drawing expanded="true" location="879,20" dimensions="185,151" />
+      <Columns>
+        <Column name="rcdid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="rcdrcid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="rcdpid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="rcdsaleprice" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+        <Column name="rcdamount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="rcdsum" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_replenishdetail">
+      <Drawing expanded="true" location="2303,40" dimensions="157,111" />
+      <Columns>
+        <Column name="rdid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="rdrid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="rdpid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="rdamount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_replenishsheet">
+      <Drawing expanded="true" location="2407,481" dimensions="178,131" />
+      <Columns>
+        <Column name="rid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="rpoid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="ruid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="rarrivaltime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="rstate" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_role">
+      <Drawing expanded="true" location="1562,1414" dimensions="204,91" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="name" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="description" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_saleaccount">
+      <Drawing expanded="true" location="577,40" dimensions="202,111" />
+      <Columns>
+        <Column name="said" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="sarcid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="sactime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="satotalaccount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_salesorder">
+      <Drawing expanded="true" location="966,782" dimensions="237,171" />
+      <Columns>
+        <Column name="soid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="socid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="soctime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="soaddress" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="souid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="sostate" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="1" />
+        </Column>
+        <Column name="soReceivePerson" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="64" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_shortstock">
+      <Drawing expanded="true" location="1969,0" dimensions="197,191" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="pid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="purchaseprice" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+        <Column name="inventory" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="safeamount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="stockamount" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="totalamount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="totalprice" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="FLOAT" size="12" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_sodetail">
+      <Drawing expanded="true" location="1164,40" dimensions="166,111" />
+      <Columns>
+        <Column name="sodid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="sodsoid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="sodpid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="sodamount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_stockdetail">
+      <Drawing expanded="true" location="1698,40" dimensions="171,111" />
+      <Columns>
+        <Column name="stodid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="stodstoid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="stodpid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="stodamount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_stockorder">
+      <Drawing expanded="true" location="1540,481" dimensions="159,131" />
+      <Columns>
+        <Column name="stoid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="stosoid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="stouid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="stoctime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="stostate" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_supplier">
+      <Drawing expanded="true" location="3001,1163" dimensions="232,151" />
+      <Columns>
+        <Column name="sid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="sname" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="128" />
+        </Column>
+        <Column name="scontactPerson" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="16" />
+        </Column>
+        <Column name="saddress" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="128" />
+        </Column>
+        <Column name="sphone" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="20" />
+        </Column>
+        <Column name="semail" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="64" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_user">
+      <Drawing expanded="true" location="1404,1173" dimensions="216,131" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="name" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="32" />
+        </Column>
+        <Column name="password" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="32" />
+        </Column>
+        <Column name="departmentId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="roleId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_wantslip">
+      <Drawing expanded="true" location="1272,471" dimensions="157,151" />
+      <Columns>
+        <Column name="wsid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="wssoid" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="wsuid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="wsctime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="wsetime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="wsstate" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="amc_wsdetail">
+      <Drawing expanded="true" location="1430,40" dimensions="168,111" />
+      <Columns>
+        <Column name="wsdid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="wsdwsid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="wsdpid" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="wsdamount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+  </Tables>
+  <Relationships>
+    <Relationship name="FKAE6C4857D52C8E88">
+      <Details primary_table="amc_customer" foreign_table="amc_customercompany">
+        <PrimaryKeys>
+          <ColumnName name="cid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="customerId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="amc_dispatchorder_ibfk_1">
+      <Details primary_table="amc_user" foreign_table="amc_dispatchorder">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="dsuid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FKAF527E8C392276DE">
+      <Details primary_table="amc_customer" foreign_table="amc_dispatchorder">
+        <PrimaryKeys>
+          <ColumnName name="cid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="dscid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FKAF527E8C618266DD">
+      <Details primary_table="amc_user" foreign_table="amc_dispatchorder">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="dsuid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FKAF527E8CD1D4A18E">
+      <Details primary_table="amc_salesorder" foreign_table="amc_dispatchorder">
+        <PrimaryKeys>
+          <ColumnName name="soid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="dsoid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK1AF0624C87EB554">
+      <Details primary_table="amc_product" foreign_table="amc_dodetail">
+        <PrimaryKeys>
+          <ColumnName name="pid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="dsdpid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK1AF0624EDFAE9A2">
+      <Details primary_table="amc_dispatchorder" foreign_table="amc_dodetail">
+        <PrimaryKeys>
+          <ColumnName name="dsid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="dsddsid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK220A2B7A7A82445E">
+      <Details primary_table="amc_purchaseorder" foreign_table="amc_payable">
+        <PrimaryKeys>
+          <ColumnName name="poid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="paypoid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK220A2B7A2079A024">
+      <Details primary_table="amc_user" foreign_table="amc_payable">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="payuid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK84A0404BE6F0AB38">
+      <Details primary_table="amc_payable" foreign_table="amc_payabledetail">
+        <PrimaryKeys>
+          <ColumnName name="payid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="paydpayid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK84A0404BE86EA4ED">
+      <Details primary_table="amc_product" foreign_table="amc_payabledetail">
+        <PrimaryKeys>
+          <ColumnName name="pid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="paydpid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FKE03D2098DCC07EC4">
+      <Details primary_table="amc_product" foreign_table="amc_podetail">
+        <PrimaryKeys>
+          <ColumnName name="pid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="podpid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FKE03D2098913E2F7B">
+      <Details primary_table="amc_purchaseorder" foreign_table="amc_podetail">
+        <PrimaryKeys>
+          <ColumnName name="poid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="podpoid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK9E0A9384CB777B23">
+      <Details primary_table="amc_payable" foreign_table="amc_purchaseaccount">
+        <PrimaryKeys>
+          <ColumnName name="payid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="papayid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FKDE98FA656229AF6D">
+      <Details primary_table="amc_user" foreign_table="amc_purchaseorder">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="pouid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FKDE98FA65B284756C">
+      <Details primary_table="amc_supplier" foreign_table="amc_purchaseorder">
+        <PrimaryKeys>
+          <ColumnName name="sid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="posid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK69DB9DA4944F00DB">
+      <Details primary_table="amc_salesorder" foreign_table="amc_receivable">
+        <PrimaryKeys>
+          <ColumnName name="soid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="rcsoid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK69DB9DA4624069FB">
+      <Details primary_table="amc_user" foreign_table="amc_receivable">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="rcuid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK1FD9EAF5DF8115F6">
+      <Details primary_table="amc_product" foreign_table="amc_receivabledetail">
+        <PrimaryKeys>
+          <ColumnName name="pid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="rcdpid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK1FD9EAF5AE724CEC">
+      <Details primary_table="amc_receivable" foreign_table="amc_receivabledetail">
+        <PrimaryKeys>
+          <ColumnName name="rcid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="rcdrcid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK9CECF66F65C1205">
+      <Details primary_table="amc_replenishsheet" foreign_table="amc_replenishdetail">
+        <PrimaryKeys>
+          <ColumnName name="rid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="rdrid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK9CECF66F1DCBFFB7">
+      <Details primary_table="amc_product" foreign_table="amc_replenishdetail">
+        <PrimaryKeys>
+          <ColumnName name="pid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="rdpid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK713F4381AFDF9F28">
+      <Details primary_table="amc_purchaseorder" foreign_table="amc_replenishsheet">
+        <PrimaryKeys>
+          <ColumnName name="poid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="rpoid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK713F43815C00C41A">
+      <Details primary_table="amc_user" foreign_table="amc_replenishsheet">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="ruid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK443397E3B0F2D67">
+      <Details primary_table="amc_receivable" foreign_table="amc_saleaccount">
+        <PrimaryKeys>
+          <ColumnName name="rcid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="sarcid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FKC4B3794A39F405F1">
+      <Details primary_table="amc_customer" foreign_table="amc_salesorder">
+        <PrimaryKeys>
+          <ColumnName name="cid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="socid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FKC4B3794A6253F5F0">
+      <Details primary_table="amc_user" foreign_table="amc_salesorder">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="souid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="amc_shortstock_ibfk_1">
+      <Details primary_table="amc_product" foreign_table="amc_shortstock">
+        <PrimaryKeys>
+          <ColumnName name="pid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="pid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FKBBD553A217581329">
+      <Details primary_table="amc_product" foreign_table="amc_shortstock">
+        <PrimaryKeys>
+          <ColumnName name="pid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="pid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK17E0A73552AB2CB2">
+      <Details primary_table="amc_salesorder" foreign_table="amc_sodetail">
+        <PrimaryKeys>
+          <ColumnName name="soid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="sodsoid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK17E0A735E1DF08A1">
+      <Details primary_table="amc_product" foreign_table="amc_sodetail">
+        <PrimaryKeys>
+          <ColumnName name="pid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="sodpid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK2592E45FDB2B807C">
+      <Details primary_table="amc_stockorder" foreign_table="amc_stockdetail">
+        <PrimaryKeys>
+          <ColumnName name="stoid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="stodstoid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK2592E45FA7007F73">
+      <Details primary_table="amc_product" foreign_table="amc_stockdetail">
+        <PrimaryKeys>
+          <ColumnName name="pid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="stodpid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK85F801805BCE6A58">
+      <Details primary_table="amc_salesorder" foreign_table="amc_stockorder">
+        <PrimaryKeys>
+          <ColumnName name="soid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="stosoid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK85F80180269F5CDE">
+      <Details primary_table="amc_user" foreign_table="amc_stockorder">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="stouid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK90BAA55324A10A38">
+      <Details primary_table="amc_role" foreign_table="amc_user">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="roleId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK90BAA5535F678030">
+      <Details primary_table="amc_department" foreign_table="amc_user">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="departmentId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FKE4B1A8D89DB8B406">
+      <Details primary_table="amc_salesorder" foreign_table="amc_wantslip">
+        <PrimaryKeys>
+          <ColumnName name="soid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="wssoid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FKE4B1A8D8628E2570">
+      <Details primary_table="amc_user" foreign_table="amc_wantslip">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="wsuid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK8AFE47B5877BD280">
+      <Details primary_table="amc_wantslip" foreign_table="amc_wsdetail">
+        <PrimaryKeys>
+          <ColumnName name="wsid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="wsdwsid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK8AFE47B5E8EAC921">
+      <Details primary_table="amc_product" foreign_table="amc_wsdetail">
+        <PrimaryKeys>
+          <ColumnName name="pid" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="wsdpid" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+  </Relationships>
+</ERDiagram>
+

@@ -1,0 +1,28 @@
+.section_pager {
+	float: right;
+	width:0 auto;
+	position:relative;
+	margin-right: 45%;
+}
+.pager li {
+	display: inline-block;
+	line-height: 25px;
+}
+.pager a {
+	display: block;
+    color: #636775;
+    padding: 0px 20px;
+    font-size: 17px;
+    border-radius: 2px;
+}
+.pager a:hover {
+	text-decoration: none;
+	color:#f7fcfe;
+	font-size: 17px;
+	background: #2a4073;
+}
+.pager li:target a {
+	box-shadow: 1px 0 5px #1a1a1b inset,1px 0 0 #2d2d2d,0 1px 0 #2d2d2d;
+	font-size: 17px;
+	background: -*-linear-gradient(top,#252627,#1c1c1e);
+}

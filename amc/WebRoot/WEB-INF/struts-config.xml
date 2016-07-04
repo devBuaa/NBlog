@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<form-beans>
+	<form-bean name="loginUserForm" type="com.amc.web.form.LoginUserForm" />
+    <form-bean name="userManagerForm" type="com.amc.web.form.UserManagerForm" />
+    <form-bean name="updatePwdForm" type="com.amc.web.form.UpdatePwdForm" />
+	<form-bean name="customerManagerForm" type="com.amc.web.form.CustomerManagerForm" />
+    <form-bean name="productForm" type="com.amc.web.form.ProductForm" />
+    <form-bean name="supplierForm" type="com.amc.web.form.SupplierForm" />
+	</form-beans>
+
+	<global-exceptions />
+	<global-forwards />
+	<action-mappings>
+		<action attribute="loginUserForm" input="/login.jsp" name="loginUserForm"
+			parameter="method" path="/login" scope="request"
+			type="com.amc.web.action.LoginAction" validate="false" cancellable="true">
+			<forward name="ok" path="/main.jsp" redirect="true" />
+			<forward name="fail_code" path="/login.jsp?error=code"
+				redirect="true" />
+			<forward name="fail_pwd" path="/login.jsp?error=pwd"
+				redirect="true" />
+      
+		</action>
+    	<action
+      attribute="userManagerForm"
+      input="/human/adduser.jsp"
+      name="userManagerForm"
+      parameter="method"
+      path="/user"
+      scope="request"
+      type="com.amc.web.action.UserAction"
+      validate="false"
+      cancellable="true">
+      <forward name="list" path="/human/user.jsp" />
+      <forward name="addForward" path="/human/adduser.jsp" />
+      <forward name="add_error" path="/human/addError.jsp" />
+      
+      <forward name="protect" path="/human/protect.jsp" />
+      <forward name="updateForward" path="/human/updateuser.jsp" />
+      <forward name="null" path="/login.jsp" />
+      <forward name="add_ok" path="/erp/common/addOk.jsp?id=adduser" />
+      
+    </action>
+    <action
+      attribute="updatePwdForm"
+      input="/human/updateMyPwd.jsp"
+      name="updatePwdForm"
+      parameter="method"
+      path="/myInfo"
+      scope="request"
+      type="com.amc.web.action.MyInfoAction"
+      cancellable="true">
+      <forward name="error" path="/human/updateMyPwd_error.jsp" />
+      <forward name="ok" path="/human/updateMyPwd.jsp" />
+    </action>
+    <action
+      input="/main.jsp"
+      parameter="method"
+      path="/salesOrder"
+      type="com.amc.web.action.SalesOrderAction"
+      validate="false"
+      cancellable="true" >
+      <forward name="list" path="/erp/sale/orderList.jsp" />
+      <forward name="showDetail" path="/erp/sale/orderDetail.jsp" />
+      <forward name="addForword" path="/erp/sale/orderAdd.jsp" />
+    </action>
+    <action
+      input="/erp/inventory/stockList.jsp"
+      parameter="method"
+      path="/stock"
+      type="com.amc.web.action.StockAction"
+      cancellable="true">
+      <forward name="list" path="/erp/inventory/stockList.jsp" />
+      <forward name="ok" path="/erp/common/addOk.jsp?id=addStockOK" />
+      <forward name="showDetail" path="/erp/inventory/stockDetail.jsp" />
+      <forward name="add_error" path="/erp/common/addError.jsp?id=addStockError" />
+    </action>
+     <action
+      attribute="customerManagerForm"
+      input="/erp/sale/customerAdd.jsp"
+      name="customerManagerForm"
+      parameter="method"
+      path="/customer"
+      scope="request"
+      type="com.amc.web.action.CustomerAction"
+      validate="false"
+      cancellable="true">
+      <forward name="list" path="/erp/sale/customerList.jsp" />
+      <forward name="updateForward" path="/erp/sale/customerUpdate.jsp" />
+      <forward name="add_ok" path="/erp/common/addOk.jsp?id=addCustomerOK" />
+    </action>
+    <action
+      attribute="productForm"
+      input="/erp/inventory/productList.jsp"
+      name="productForm"
+      parameter="method"
+      path="/product"
+      scope="request"
+      type="com.amc.web.action.ProductAction"
+      validate="false"
+      cancellable="true">
+      <forward name="list" path="/erp/inventory/productList.jsp" />
+      <forward name="updateForward" path="/erp/inventory/productUpdate.jsp" />
+      <forward name="add_ok" path="/erp/common/addOk.jsp?id=addProductOK" />
+      <forward name="add_error" path="/erp/common/idExisted.jsp" />
+    </action>
+    <action
+      attribute="supplierForm"
+      input="/erp/purchase/supplierList.jsp"
+      name="supplierForm"
+      parameter="method"
+      path="/supplier"
+      scope="request"
+      type="com.amc.web.action.SupplierAction"
+      validate="false"
+      cancellable="true">
+      <forward name="add_ok" path="/erp/common/addOk.jsp?id=addSupplierOK" />
+      <forward name="list" path="/erp/purchase/supplierList.jsp" />
+      <forward name="updateForward" path="/erp/purchase/supplierUpdate.jsp" />
+    </action>
+    <action
+      input="/erp/inventory/stockDetail.jsp"
+      parameter="method"
+      path="/want"
+      type="com.amc.web.action.WantAction"
+      validate="false"
+      cancellable="true" >
+      <forward name="showDetailBySo" path="/erp/inventory/wantDetailFromstock.jsp" />
+      <forward name="list" path="/erp/purchase/wantList.jsp" />
+      <forward name="showDetail" path="/erp/purchase/wantDetail.jsp" />
+    </action>
+    <action
+      input="/erp/inventory/stockDetail.jsp"
+      parameter="method"
+      path="/dispatchOrder"
+      type="com.amc.web.action.DispatchOrderAction"
+      cancellable="true">
+      <forward name="showDetail" path="/erp/inventory/dispatchDetail.jsp" />
+      <forward name="list" path="/erp/inventory/dispatchOrderList.jsp" />
+      <forward name="addForward" path="/erp/inventory/dispatchAdd.jsp" />
+      
+    </action>
+    <action
+      input="/main.jsp"
+      parameter="method"
+      path="/purchase"
+      type="com.amc.web.action.PurchaseAction"
+      validate="false"
+      cancellable="true" >
+      <forward name="list" path="/erp/purchase/purchaseList.jsp" />
+      <forward name="addForward" path="/erp/purchase/purchaseAdd.jsp" />
+      <forward name="showDetail" path="/erp/purchase/purchaseDetail.jsp" />
+    </action>
+
+    <action
+      input="/erp/finance/saleaccountList.jsp"
+      parameter="method"
+      path="/receivable"
+      type="com.amc.web.action.ReceivableAction"
+      validate="false"
+      cancellable="true">
+      <forward name="listaccount" path="/erp/finance/saleaccountList.jsp" />
+      <forward name="list" path="/erp/finance/receivableList.jsp" />
+      <forward name="showDetail" path="/erp/finance/receivableDetail.jsp" />
+      <forward name="showAccountDetail" path="/erp/finance/saleaccountDetail.jsp" />
+    </action>
+    <action
+      input="/main.jsp"
+      path="/task"
+      type="com.amc.web.action.TaskAction"
+      validate="false"
+      cancellable="true" />
+    <action
+      input="/erp/inventory/replenishList.jsp"
+      parameter="method"
+      path="/replenish"
+      type="com.amc.web.action.ReplenishAction"
+      validate="false"
+      cancellable="true">
+      <forward name="showDetail" path="/erp/inventory/replenishDetail.jsp" />
+      <forward name="list" path="/erp/inventory/replenishList.jsp" />
+    </action>
+    <action
+      input="/erp/finance/purchaseaccountList.jsp"
+      parameter="method"
+      path="/payable"
+      type="com.amc.web.action.PayableAction"
+      validate="false"
+      cancellable="true">
+      <forward name="listaccount" path="/erp/finance/purchaseaccountList.jsp" />
+      <forward name="showAccountDetail" path="/erp/finance/purchaseaccountDetail.jsp" />
+      <forward name="showDetail" path="/erp/finance/payableDetail.jsp" />
+      <forward name="list" path="/erp/finance/payableList.jsp" />
+    </action>
+    <action
+      parameter="method"
+      path="/ba"
+      type="com.amc.web.action.BaAction"
+      validate="false"
+      cancellable="true" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</action-mappings>
+	<!-- 配置请求处理器,就是把action的创建交给spring容器处理,要在message-resources之前配置 -->
+	<controller>
+		<set-property property="processorClass"
+			value="org.springframework.web.struts.DelegatingRequestProcessor" />
+	</controller>
+	<message-resources parameter="com.amc.cfg.ApplicationResources" />
+</struts-config>
+
