@@ -4,6 +4,7 @@ public class User {
 	private int id;
 	private String name;
 	private int age;
+	private String password;
 	public int getId() {
 		return id;
 	}
@@ -21,8 +22,14 @@ public class User {
 	}
 	public void setAge(int age) {
 		this.age = age;
+	}	
+	 public String getPassword() {
+		return password;
 	}
-	 @Override
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "User[id = "+id+", name = "+name+ ", age = "+age+" ]";
