@@ -1,3 +1,5 @@
+CREATE Database mybatis;
+
 CREATE TABLE `user` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(20) default NULL,
