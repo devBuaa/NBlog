@@ -1,12 +1,12 @@
 CREATE Database mybatis;
-----------²âÊÔ±í£¨´ıÉ¾³ı£©----------
+----------æµ‹è¯•è¡¨ï¼ˆå¾…åˆ é™¤ï¼‰----------
 CREATE TABLE `user` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(20) default NULL,
   `age` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
--------------ÕıÊ½±í------------------
+-------------æ­£å¼è¡¨------------------
 Drop Table If Exists UserInformation;
 Create Table UserInformation
 	(SystemNo varchar(32) PRIMARY KEY,
