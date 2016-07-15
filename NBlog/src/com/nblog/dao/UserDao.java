@@ -8,4 +8,5 @@ public interface UserDao {
 	 public void updateUser(User user);
 	 public void deleteUser(int UserId);
 	 public User getUserById(int id);
+	 
 }

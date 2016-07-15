@@ -1,38 +1,77 @@
 package com.nblog.bean;
 
 public class User {
-	private int id;
-	private String name;
-	private int age;
-	private String password;
-	public int getId() {
-		return id;
+	private String SystemNo;
+	private String Name;
+	private String Password;
+	private String Email;
+	private String MobilePhone;
+	private String Address;
+	private String Career;
+	private String Industry;
+	private String Type;
+	private String SignTime;
+	
+	public String getSystemNo() {
+		return SystemNo;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setSystemNo(String systemNo) {
+		SystemNo = systemNo;
 	}
 	public String getName() {
-		return name;
+		return Name;
 	}
 	public void setName(String name) {
-		this.name = name;
+		Name = name;
 	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}	
-	 public String getPassword() {
-		return password;
+	public String getPassword() {
+		return Password;
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		Password = password;
 	}
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return "User[id = "+id+", name = "+name+ ", age = "+age+" ]";
+	public String getEmail() {
+		return Email;
 	}
+	public void setEmail(String email) {
+		Email = email;
+	}
+	public String getMobilePhone() {
+		return MobilePhone;
+	}
+	public void setMobilePhone(String mobilePhone) {
+		MobilePhone = mobilePhone;
+	}
+	public String getAddress() {
+		return Address;
+	}
+	public void setAddress(String address) {
+		Address = address;
+	}
+	public String getCareer() {
+		return Career;
+	}
+	public void setCareer(String career) {
+		Career = career;
+	}
+	public String getIndustry() {
+		return Industry;
+	}
+	public void setIndustry(String industry) {
+		Industry = industry;
+	}
+	public String getType() {
+		return Type;
+	}
+	public void setType(String type) {
+		Type = type;
+	}
+	public String getSignTime() {
+		return SignTime;
+	}
+	public void setSignTime(String signTime) {
+		SignTime = signTime;
+	}
+	
 	
 }

@@ -8,7 +8,7 @@
 	</select>
 	<insert id="addUser" parameterType="com.nblog.bean.User"
 		flushCache="true">
-		INSERT INTO user (id,name,age) VALUES (#{id},#{name},#{age})
+		INSERT INTO userinformation (systemNo,name,email,password,signTime) VALUES (#{systemNo},#{name},#{email},#{password},#{signTime})
 	</insert>
 	<update id="updateUser" parameterType="com.nblog.bean.User">
 		UPDATE user SET name=#{name},age=#{age} WHERE id=#{id}
