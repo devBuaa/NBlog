@@ -551,7 +551,7 @@ public class EhcacheUtils {
 		EhcacheUtils.initCache("cache");
 		EhcacheUtils.put("A", "AAAAA");
 		EhcacheUtils.put("B", "BBBBB");
-		EhcacheUtils.put("F", "FFFFF");
+		EhcacheUtils.put("resources", "FFFFF");
 		System.out.println(EhcacheUtils.get("F"));
 		List keys = EhcacheUtils.getKeys();
 		for (int i = 0; i < keys.size(); i++) {

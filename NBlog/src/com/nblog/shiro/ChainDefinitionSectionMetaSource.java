@@ -13,6 +13,7 @@ import com.nblog.bean.Resources;
 import com.nblog.dao.ResourcesDao;
 import com.nblog.util.ConfigUtils;
 import com.nblog.util.FormMap;
+import com.nblog.util.SqlUtil;
 
 /**
  * 产生责任链，确定每个url的访问权限
@@ -34,10 +35,8 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 		Ini.Section section = ini.getSection(Ini.DEFAULT_SECTION_NAME);
 		// 循环Resource的url,逐个添加到section中。section就是filterChainDefinitionMap,
 		// 里面的键就是链接URL,值就是存在什么条件才能访问该链接
-		TableSeg tableSeg=Resources.class.getAnnotation(TableSeg.class);
-		FormMap<String, Object> map=new Resources();
-		map.put("tableName", tableSeg.tableName());
-		List<Resources> lists = resourcesDao.findByAll(map);
+		
+		List<Resources> lists = resourcesDao.findByAll(SqlUtil.getTableNameMap(Resources.class));
 		for (Resources resources : lists) {
 			// 构成permission字符串
 			if (StringUtils.isNotEmpty(resources.get("Url") + "") && StringUtils.isNotEmpty(resources.get("ResKey") + "")) {

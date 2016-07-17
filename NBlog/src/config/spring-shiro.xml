@@ -53,9 +53,9 @@
 	<!-- 配置shiro的过滤器工厂类，id- shiroFilter要和我们在web.xml中配置的过滤器一致 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/user/loginForward" />
+		<property name="loginUrl" value="/lgin" />
 		<property name="successUrl" value="/index" />
-		<property name="unauthorizedUrl" value="/denied.jsp" />
+		<property name="unauthorizedUrl" value="/denied" />
 		<!-- 自定义权限配置 -->
 		<property name="filterChainDefinitionMap" ref="chainDefinitionSectionMetaSource" />
 		<property name="filters">
@@ -70,8 +70,8 @@
 		<property name="filterChainDefinitions">
 			<value>
 			/home* = anon
-			/user/login = anon
-			/user/register = anon
+			/login = authc
+			/register = anon
 			/favicon.ico = anon
     		/admin_files/** = anon
     		/fonts/** = anon
@@ -80,7 +80,7 @@
     		/js/** = anon
     		/layer-v1.9.2/** = anon
     		/notebook/** = anon
-    		/login = anon
+    		/logout = logout
 			/denied.jsp = anon	
 		
 			</value>
@@ -103,7 +103,7 @@
     </bean>
 	
 	 <!-- 会话管理器 -->
-	  <!-- 全局的会话信息设置成30分钟,sessionValidationSchedulerEnabled参数就是是否开启扫描  -->
+	 <!-- 全局的会话信息设置成30分钟,sessionValidationSchedulerEnabled参数就是是否开启扫描  -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         <property name="globalSessionTimeout" value="1800000"/>
         <property name="deleteInvalidSessions" value="true"/>

@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import com.nblog.annotation.TableSeg;
 import com.nblog.dao.BaseDao;
+import com.nblog.variable.Constant;
 
 /**
  * 初始化数据库表字段到缓存
@@ -28,9 +29,8 @@ public class ConfigUtils {
 				db=db.substring(0, db.indexOf("?"));
 			}
 			
-			String packageName = "com.nblog.bean";
-			// List<String> classNames = getClassName(packageName);
-			List<String> classNames = ClassUtil.getClassName(packageName, true);//true包含子目录
+			
+			List<String> classNames = ClassUtil.getClassName(Constant.BASE_BEAN_PACKAGE, true);//true包含子目录
 			String tabs = "";
 			if (classNames != null) {
 				for (String className : classNames) {
@@ -48,8 +48,8 @@ public class ConfigUtils {
 			HashMap<String, Object> tm = new HashMap<String, Object>();
 			tm.put("table_name", tabs);
 			tm.put("database_name","'"+db+"'");
-			 List<HashMap<String, Object>> lh = baseMapper.initTableField(tm);
-			 for (HashMap<String, Object> hashMap : lh) {
+			List<HashMap<String, Object>> lh = baseMapper.initTableField(tm);
+			for (HashMap<String, Object> hashMap : lh) {
 				 Map<String, Object> m = new HashMap<String, Object>();
 					m.put("field", hashMap.get("COLUMN_NAME"));
 					String ble =hashMap.get("TABLE_NAME").toString();//表名
