@@ -71,6 +71,7 @@
 			<value>
 			/home* = anon
 			/login = authc
+			/regist = anon
 			/register = anon
 			/favicon.ico = anon
     		/admin_files/** = anon
@@ -78,6 +79,8 @@
     		/404/** = anon
     		/error.jsp = anon
     		/js/** = anon
+    		/css/** = anon
+    		/images/** = anon
     		/layer-v1.9.2/** = anon
     		/notebook/** = anon
     		/logout = logout
