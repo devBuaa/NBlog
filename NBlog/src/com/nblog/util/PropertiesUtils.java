@@ -14,7 +14,7 @@ import org.apache.ibatis.io.Resources;
  *　InputStream in = PropertiesUtils.class.getResourceAsStream("/config.properties");
  *　解决办法：
  *　String savePath = PropertiesUtils.class.getResource("/config.properties").getPath();
- * @author lanyuan
+ * @author nblog
  * 2014-11-19
  * @Email: mmm333zzz520@163.com
  * @version 3.0v
@@ -40,7 +40,7 @@ public class PropertiesUtils {
 	public static void main(String[] args) {
 		Properties prop = new Properties();
 		InputStream in = PropertiesUtils.class
-				.getResourceAsStream("/config.properties");
+				.getResourceAsStream("config/config.properties");
 		try {
 			prop.load(in);
 			Iterator<Entry<Object, Object>> itr = prop.entrySet().iterator();
@@ -64,7 +64,7 @@ public class PropertiesUtils {
 	public static Properties getProperties(){
 		Properties prop = new Properties();
 		try {
-			Reader reader = Resources.getResourceAsReader("/config.properties");
+			Reader reader = Resources.getResourceAsReader("config/config.properties");
 			prop.load(reader);
 			reader.close();
 		} catch (Exception e) {
@@ -76,7 +76,7 @@ public class PropertiesUtils {
 	public static Properties getjdbcProperties(){
 		Properties prop = new Properties();
 		try {
-			Reader reader = Resources.getResourceAsReader("/jdbc.properties");
+			Reader reader = Resources.getResourceAsReader("config/jdbc.properties");
 			prop.load(reader);
 			reader.close();
 		} catch (Exception e) {
@@ -97,7 +97,7 @@ public class PropertiesUtils {
 			// 从输入流中读取属性列表（键和元素对）
 			Properties prop = getProperties();
 			prop.setProperty(key, value);
-			String path = PropertiesUtils.class.getResource("/config.properties").getPath();
+			String path = PropertiesUtils.class.getResource("config/config.properties").getPath();
 			FileOutputStream outputFile = new FileOutputStream(path);
 			prop.store(outputFile, "modify");
 			outputFile.close();

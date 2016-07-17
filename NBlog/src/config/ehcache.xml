@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+         xsi:noNamespaceSchemaLocation="ehcache.xsd"  
+         updateCheck="true" monitoring="autodetect"  
+         dynamicConfig="true">  
+    <diskStore path="java.io.tmpdir"/>
+    <defaultCache    
+		maxElementsInMemory="1000"    
+		eternal="false"    
+		timeToIdleSeconds="120"    
+		timeToLiveSeconds="120"    
+		overflowToDisk="true"    
+	/>  
+
+    <cache name="cache"  
+            
+           maxElementsInMemory="1000"    
+           eternal="true"  
+           diskSpoolBufferSizeMB="20"  
+           timeToIdleSeconds="0"  
+           timeToLiveSeconds="0"  
+           memoryStoreEvictionPolicy="LFU"  
+          >  
+    </cache>  
+    
+    
+    
+    <cache name="passwordRetryCache"
+           maxElementsInMemory="1000"    
+           eternal="false"
+           timeToIdleSeconds="600"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"
+           >
+    </cache>
+<!-- 
+    <cache name="authorizationCache"
+           maxEntriesLocalHeap="2000"
+           eternal="false"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"
+           statistics="true">
+    </cache>
+
+    <cache name="authenticationCache"
+           maxEntriesLocalHeap="2000"
+           eternal="false"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"
+           statistics="true">
+    </cache>
+-->
+    <cache name="shiro-activeSessionCache"
+           maxElementsInMemory="1000"    
+           eternal="false"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"
+           >
+    </cache> 
+	<cache name="shiro-kickout-session"
+           maxElementsInMemory="1000"    
+           eternal="false"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"
+          >
+    </cache>
+</ehcache>

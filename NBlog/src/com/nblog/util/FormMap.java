@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * SpringMvc 
  * 把请求的所有参数封装到Map中,提供最常用的方法
- * @author lanyuan
+ * @author nblog
  * Email：mmm333zzz520@163.com
  * date：2015-03-21
  * @version 3.0

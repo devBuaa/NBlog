@@ -91,7 +91,8 @@ public class ExcelUtil {
 
                 for(int j=0;j<listMap.size();j++){
                     Cell cell = row1.createCell(j);
-                    Map<String, Object> map =(Map<String, Object>) list.get(i);
+                    @SuppressWarnings("unchecked")
+					Map<String, Object> map =(Map<String, Object>) list.get(i);
                     cell.setCellValue(map.get(listMap.get(j).get("colkey")) == null?" ": map.get(listMap.get(j).get("colkey")).toString());
                     cell.setCellStyle(cs2);
                 }

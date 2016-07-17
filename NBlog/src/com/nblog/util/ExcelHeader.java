@@ -1,7 +1,7 @@
 package com.nblog.util;
 /**
  * 用来存储Excel标题的对象，通过该对象可以获取标题和方法的对应关系
- * @author lanyuan
+ * @author nblog
  * Email：mmm333zzz520@163.com
  * date：2014-4-18
  */

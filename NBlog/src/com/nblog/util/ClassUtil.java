@@ -14,7 +14,7 @@ public class ClassUtil {
 	public static void main(String[] args) throws Exception {
 		String packageName = "com.nblog.bean";
 		// List<String> classNames = getClassName(packageName);
-		List<String> classNames = getClassName(packageName, false);
+		List<String> classNames = getClassName(packageName, true);
 		if (classNames != null) {
 			for (String className : classNames) {
 				System.out.println(className);
@@ -45,9 +45,9 @@ public class ClassUtil {
 		if (url != null) {
 			String type = url.getProtocol();
 			if (type.equals("file")) {
-				fileNames = getClassNameByFile(url.getPath(), null, childPackage);
+				fileNames = getClassNameByFile(url.getPath().replaceAll("%20", " "), null, childPackage);
 			} else if (type.equals("jar")) {
-				fileNames = getClassNameByJar(url.getPath(), childPackage);
+				fileNames = getClassNameByJar(url.getPath().replaceAll("%20", " "), childPackage);
 			}
 		} else {
 			fileNames = getClassNameByJars(((URLClassLoader) loader).getURLs(), packagePath, childPackage);
@@ -66,13 +66,14 @@ public class ClassUtil {
 		List<String> myClassName = new ArrayList<String>();
 		File file = new File(filePath);
 		File[] childFiles = file.listFiles();
+		System.out.println(childFiles.length);
 		for (File childFile : childFiles) {
 			if (childFile.isDirectory()) {
 				if (childPackage) {
-					myClassName.addAll(getClassNameByFile(childFile.getPath(), myClassName, childPackage));
+					myClassName.addAll(getClassNameByFile(childFile.getPath().replaceAll("%20", " "), myClassName, childPackage));
 				}
 			} else {
-				String childFilePath = childFile.getPath();
+				String childFilePath = childFile.getPath().replaceAll("%20", " ");
 				if (childFilePath.endsWith(".class")) {
 					childFilePath=childFilePath.replaceAll("/","\\\\");
 					childFilePath = childFilePath.substring(childFilePath.indexOf("\\classes") + 9, childFilePath.lastIndexOf("."));
@@ -141,7 +142,7 @@ public class ClassUtil {
 		if (urls != null) {
 			for (int i = 0; i < urls.length; i++) {
 				URL url = urls[i];
-				String urlPath = url.getPath();
+				String urlPath = url.getPath().replaceAll("%20", " ");
 				// 不必搜索classes文件夹
 				if (urlPath.endsWith("classes/")) {
 					continue;

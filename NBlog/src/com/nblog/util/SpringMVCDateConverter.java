@@ -13,7 +13,7 @@ import org.springframework.web.context.request.WebRequest;
  * org.springframework.validation.BindException 
  * 的解决方式.包括xml的配置 
  *  new SimpleDateFormat("yyyy-MM-dd");  这里的日期格式必须与提交的日期格式一致
- * @author lanyuan
+ * @author nblog
  * Email：mmm333zzz520@163.com
  * date：2014-11-20
  */

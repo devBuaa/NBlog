@@ -267,7 +267,8 @@ public class JsonUtils {
     public static List<Map<String, Object>> parseJSONList(String jsonStr){  
         JSONArray jsonArr = JSONArray.fromObject(jsonStr);  
         List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();  
-        Iterator<JSONObject> it = jsonArr.iterator();  
+        @SuppressWarnings("unchecked")
+		Iterator<JSONObject> it = jsonArr.iterator();  
         while(it.hasNext()){  
             JSONObject JSON = it.next();  
             list.add(parseJSONMap(JSON.toString()));  
@@ -294,6 +295,7 @@ public class JsonUtils {
 				//如果内层还是数组的话，继续解析  
 				if (v instanceof JSONArray) {
 					List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+					@SuppressWarnings("unchecked")
 					Iterator<JSONObject> it = ((JSONArray) v).iterator();
 					while (it.hasNext()) {
 						JSONObject JSON = it.next();
