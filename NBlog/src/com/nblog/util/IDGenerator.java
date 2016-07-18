@@ -11,8 +11,9 @@ import java.util.Random;
 public class IDGenerator {
 	private static IDGenerator instance;
 	
+	
 	private IDGenerator(){}
-	private Random random=new Random();
+	
 	
 	public static IDGenerator getInstance(){
 		if(instance == null){
@@ -26,7 +27,7 @@ public class IDGenerator {
 	}
 	
 	public String getID(){	
-	    String id=DateUtil.getTimestamp()+new DecimalFormat("0000").format(random.nextInt(10000));
+	    String id=DateUtil.getTimestamp()+new DecimalFormat("0000").format(new Random().nextInt(10000));
 		return id;
 	}
 	public static void main(String[] args) {

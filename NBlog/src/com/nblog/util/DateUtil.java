@@ -691,7 +691,6 @@ public class DateUtil {
      * @date Mar 11, 2012 
      * @return 
      */  
-    @SuppressWarnings("deprecation")  
     public static String getTimestamp() {  
         Date date = cale.getTime();  
         String timestamp = sdf_timestamp_format.format(date);
@@ -703,11 +702,9 @@ public class DateUtil {
      *  
      * @return 
      */  
-    @SuppressWarnings("deprecation")  
     public static String getTimestamp(Date date) {  
-    	   String timestamp = "" + (date.getYear() + 1900) + (date.getMonth()+1)  
-                   + date.getDate() + date.getHours() + date.getMinutes() + date.getSeconds();  
-           return timestamp;  
+    	String timestamp = sdf_timestamp_format.format(date);
+        return timestamp;  
     }  
   
     public static void main(String[] args) {  
