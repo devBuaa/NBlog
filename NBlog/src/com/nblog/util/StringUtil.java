@@ -1,6 +1,7 @@
 package com.nblog.util;
 
 import org.apache.commons.lang.StringUtils;
+
 public class StringUtil {
 	/**
 	 * String转换double
@@ -14,6 +15,7 @@ public class StringUtil {
 		}
 		throw new NumberFormatException("convert error!");
 	}
+
 	/**
 	 * 判断变量是否为空
 	 * 
@@ -21,12 +23,14 @@ public class StringUtil {
 	 * @return
 	 */
 	public static boolean isEmpty(String s) {
-		if (null == s || "".equals(s) || "".equals(s.trim()) || "null".equalsIgnoreCase(s)) {
+		if (null == s || "".equals(s) || "".equals(s.trim())
+				|| "null".equalsIgnoreCase(s)) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+
 	/**
 	 * 判断变量是否为空
 	 * 
@@ -34,12 +38,14 @@ public class StringUtil {
 	 * @return
 	 */
 	public static boolean isNotEmpty(String s) {
-		if (null == s || "".equals(s) || "".equals(s.trim()) || "null".equalsIgnoreCase(s)) {
+		if (null == s || "".equals(s) || "".equals(s.trim())
+				|| "null".equalsIgnoreCase(s)) {
 			return false;
 		} else {
 			return true;
 		}
 	}
+
 	/**
 	 * 去除字符串最后一个逗号,若传入为空则返回空字符串
 	 * 
@@ -61,7 +67,7 @@ public class StringUtil {
 			return "";
 		}
 	}
-	
+
 	/**
 	 * html转议
 	 * 
@@ -85,6 +91,20 @@ public class StringUtil {
 		html = html.replaceAll("&gt;", ">");
 
 		return html;
+	}
+
+	/**
+	 * 首字母大写
+	 * @param str
+	 * @return String
+	 */
+	public static String initCap(String str) {
+
+		char[] ch = str.toCharArray();
+		if (ch[0] >= 'a' && ch[0] <= 'z') {
+			ch[0] = (char) (ch[0] - 32);
+		}
+		return new String(ch);
 	}
 
 }

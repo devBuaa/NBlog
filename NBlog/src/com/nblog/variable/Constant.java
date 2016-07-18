@@ -2,6 +2,9 @@ package com.nblog.variable;
 
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
+import com.nblog.util.ClassUtil;
 import com.nblog.util.Common;
 import com.nblog.util.PropertiesUtils;
 
@@ -18,6 +21,7 @@ public class Constant {
 		public static final String ZB_NAME = "zb_name";
 		public static final String BASE_BEAN_PACKAGE = "com.nblog.bean";
 		
+		public final static Logger logger = Logger.getLogger("system");
 		// 默认除法运算精度
 		public static final int DEF_DIV_SCALE = 10;
 		

@@ -1,16 +1,25 @@
 package com.nblog.util;
 
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.io.File;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-public class ClassUtil {
+import org.apache.log4j.Logger;
 
+import com.nblog.variable.Constant;
+
+public class ClassUtil {
 	public static void main(String[] args) throws Exception {
 		String packageName = "com.nblog.bean";
 		// List<String> classNames = getClassName(packageName);
@@ -98,6 +107,7 @@ public class ClassUtil {
 		String jarFilePath = jarInfo[0].substring(jarInfo[0].indexOf("/"));
 		String packagePath = jarInfo[1].substring(1);
 		try {
+			@SuppressWarnings("resource")
 			JarFile jarFile = new JarFile(jarFilePath);
 			Enumeration<JarEntry> entrys = jarFile.entries();
 			while (entrys.hasMoreElements()) {
@@ -125,7 +135,7 @@ public class ClassUtil {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			 Constant.logger.error("Error :" + e);  
 		}
 		return myClassName;
 	}
@@ -153,4 +163,29 @@ public class ClassUtil {
 		}
 		return myClassName;
 	}
+	
+	 public static Map<String, Object> convertBeanToMap(Object object) 
+	 {  
+	  
+	        if(object == null){  
+	            return null;  
+	        }          
+	        Map<String, Object> map = new HashMap<String, Object>();  
+	        try {  
+	            BeanInfo beanInfo = Introspector.getBeanInfo(object.getClass());  
+	            PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();  
+	            for (PropertyDescriptor property : propertyDescriptors) {  
+	            	//表字段首字母统一大写
+	                String key = StringUtil.initCap(property.getName());  
+	                if (!key.equals("Class")) {  
+	                    Method getter = property.getReadMethod();  
+	                    Object value = getter.invoke(object);  
+	                    map.put(key, value);  
+	                }  
+	            }  
+	        } catch (Exception e) {  
+	            Constant.logger.error("convert BeanToMap Error :" + e);  
+	        }  
+	        return map;  
+	}  
 }
