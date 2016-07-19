@@ -1,6 +1,7 @@
 package com.nblog.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.nblog.util.FormMap;
 
@@ -35,6 +36,14 @@ public interface BaseDao {
 	 * @return
 	 */
 	public <T> List<T> findByAll(FormMap<String, Object> map);
+	
+	/**
+	 * 根据表名，字段名的Map进行插入
+	 * @param map
+	 * @return int
+	 */
+	public int insertByMap(Map<String,Object> map);
+	
 	/**
 	 * 根据多个
 	 * @param formMap

@@ -8,7 +8,7 @@ import com.nblog.bean.User;
 import com.nblog.dao.UserDao;
 import com.nblog.service.UserService;
 @Service("userService")
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceImpl implements UserService {
 	
 	@Resource
 	private UserDao userDao;

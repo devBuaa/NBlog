@@ -166,7 +166,12 @@ public class ClassUtil {
 		return myClassName;
 	}
 	
-	 public static Map<String, Object> convertBeanToMap(Object object) 
+	 /**
+	  * 将对象转成键值对Map
+	 * @param object
+	 * @return
+	 */
+	public static Map<String, Object> convertBeanToMap(Object object) 
 	 {  
 	  
 	        if(object == null){  
@@ -193,7 +198,15 @@ public class ClassUtil {
 	}  
 	 
 	 
-	 public static Map<String, String> convertBeanToKVMap(Object object){
+	 /**
+	  * 将对象转成可以传入xml的Map对象
+	  * 格式：
+	  * 	K =  字段名，字段名，字段名...
+	  * 	V =  '值'，'值'，'值'...
+	 * @param object
+	 * @return
+	 */
+	public static Map<String, String> convertBeanToKVMap(Object object){
 		 if(object == null){  
 	            return null;  
 	     }
@@ -211,7 +224,8 @@ public class ClassUtil {
 	                    String value = (String) getter.invoke(object);
 	                    if(StringUtil.isNotEmpty(value)){
 	                    	keys.append(key).append(",");
-	                    	values.append(value).append(",");
+	                    	//一定需要加引号表示字符串
+	                    	values.append("'"+value+"'").append(",");
 	                    } 	                  
 	                }  
 	            }
