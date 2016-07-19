@@ -75,7 +75,9 @@ public class ClassUtil {
 		List<String> myClassName = new ArrayList<String>();
 		File file = new File(filePath);
 		File[] childFiles = file.listFiles();
-		System.out.println(childFiles.length);
+		//打印日志
+		LoggerManager.getLogger(ClassUtil.class).info(Constant.BASE_BEAN_PACKAGE+"下共找到"+childFiles.length+"个类");
+		
 		for (File childFile : childFiles) {
 			if (childFile.isDirectory()) {
 				if (childPackage) {
@@ -134,8 +136,8 @@ public class ClassUtil {
 					}
 				}
 			}
-		} catch (Exception e) {
-			 Constant.logger.error("Error :" + e);  
+		} catch (Exception e) {			
+			LoggerManager.getLogger(ClassUtil.class).error("Error :" + e);  
 		}
 		return myClassName;
 	}
@@ -184,7 +186,8 @@ public class ClassUtil {
 	                }  
 	            }  
 	        } catch (Exception e) {  
-	            Constant.logger.error("convert BeanToMap Error :" + e);  
+	        	LoggerManager.getLogger(ClassUtil.class).error("convert BeanToMap Error : "+ e);  
+	            
 	        }  
 	        return map;  
 	}  

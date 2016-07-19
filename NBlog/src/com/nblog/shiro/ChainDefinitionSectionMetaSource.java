@@ -12,7 +12,9 @@ import org.springframework.beans.factory.FactoryBean;
 import com.nblog.bean.Resources;
 import com.nblog.dao.ResourcesDao;
 import com.nblog.util.ConfigUtils;
+import com.nblog.util.LoggerManager;
 import com.nblog.util.SqlUtil;
+import com.nblog.variable.Constant;
 
 /**
  * 产生责任链，确定每个url的访问权限
@@ -41,10 +43,10 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 			// 构成permission字符串
 			if (StringUtils.isNotEmpty(resources.get("Url") + "") && StringUtils.isNotEmpty(resources.get("ResKey") + "")) {
 				String permission = "perms[" + resources.get("ResKey") + "]";
-				System.out.println(permission);
 				// 不对角色进行权限验证
 				// 如需要则 permission = "roles[" + resources.getResKey() + "]";
 				section.put(resources.get("Url") + "", permission);
+				LoggerManager.getLogger(this.getClass()).info("找到角色权限关系：[ Url："+resources.get("Url") + "] => [ permission："+permission+"]");
 			}
 
 		}
