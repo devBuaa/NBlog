@@ -187,7 +187,7 @@ public class ClassUtil {
 	            }  
 	        } catch (Exception e) {  
 	        	LoggerManager.getLogger(ClassUtil.class).error("convert BeanToMap Error : "+ e);  
-	            
+	        	 return null;
 	        }  
 	        return map;  
 	}  
