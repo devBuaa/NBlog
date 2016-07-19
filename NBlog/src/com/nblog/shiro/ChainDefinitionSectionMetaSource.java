@@ -1,5 +1,6 @@
 package com.nblog.shiro;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -8,11 +9,9 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.config.Ini;
 import org.springframework.beans.factory.FactoryBean;
 
-import com.nblog.annotation.TableSeg;
 import com.nblog.bean.Resources;
 import com.nblog.dao.ResourcesDao;
 import com.nblog.util.ConfigUtils;
-import com.nblog.util.FormMap;
 import com.nblog.util.SqlUtil;
 
 /**
@@ -27,6 +26,7 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 	// 静态资源访问权限
 	private String filterChainDefinitions = null;
 
+	@SuppressWarnings("rawtypes")
 	public Ini.Section getObject() throws Exception {
 		new ConfigUtils().initTableField(resourcesDao); 
 		Ini ini = new Ini();
@@ -37,7 +37,7 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 		// 里面的键就是链接URL,值就是存在什么条件才能访问该链接
 		
 		List<Resources> lists = resourcesDao.findByAll(SqlUtil.getTableNameMap(Resources.class));
-		for (Resources resources : lists) {
+		for (HashMap resources : lists) {
 			// 构成permission字符串
 			if (StringUtils.isNotEmpty(resources.get("Url") + "") && StringUtils.isNotEmpty(resources.get("ResKey") + "")) {
 				String permission = "perms[" + resources.get("ResKey") + "]";
