@@ -20,7 +20,7 @@ public class SysUserFilter extends PathMatchingFilter {
 
         String username = (String)SecurityUtils.getSubject().getPrincipal();
         User user = new User();
-		user.put("userName", "" + username + "");
+		user.put("UserName", "" + username + "");
         request.setAttribute("user", userDao.findByNames(user));
         return true;
     }

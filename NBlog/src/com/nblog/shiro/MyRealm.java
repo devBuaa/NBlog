@@ -81,7 +81,7 @@ public class MyRealm extends AuthorizingRealm {
 		user.put("UserName", "" + username + "");
 		List<User> users = userDao.findByNames(user);
 		if (users.size() != 0) {
-			if ("2".equals(users.get(0).get("locked"))) {
+			if ("2".equals(users.get(0).get("Locked"))) {
 				throw new LockedAccountException(); // 帐号锁定
 			}
 			// 从数据库查询出来的账号名和密码,与用户输入的账号和密码对比
