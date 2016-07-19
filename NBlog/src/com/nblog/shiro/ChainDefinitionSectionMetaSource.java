@@ -14,7 +14,6 @@ import com.nblog.dao.ResourcesDao;
 import com.nblog.util.ConfigUtils;
 import com.nblog.util.LoggerManager;
 import com.nblog.util.SqlUtil;
-import com.nblog.variable.Constant;
 
 /**
  * 产生责任链，确定每个url的访问权限

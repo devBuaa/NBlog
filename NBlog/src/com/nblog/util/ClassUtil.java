@@ -179,7 +179,7 @@ public class ClassUtil {
 	            for (PropertyDescriptor property : propertyDescriptors) {  
 	            	//表字段首字母统一大写
 	                String key = StringUtil.initCap(property.getName());  
-	                if (!key.equals("Class")) {  
+	                if (!key.equals("Class") && !key.equals("Empty")) {  
 	                    Method getter = property.getReadMethod();  
 	                    Object value = getter.invoke(object);  
 	                    map.put(key, value);  
@@ -191,4 +191,38 @@ public class ClassUtil {
 	        }  
 	        return map;  
 	}  
+	 
+	 
+	 public static Map<String, String> convertBeanToKVMap(Object object){
+		 if(object == null){  
+	            return null;  
+	     }
+		 Map<String, String> map = new HashMap<String, String>();  
+		 StringBuffer keys=new StringBuffer();
+		 StringBuffer values=new StringBuffer();
+		 try {  
+	            BeanInfo beanInfo = Introspector.getBeanInfo(object.getClass());  
+	            PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();  
+	            for (PropertyDescriptor property : propertyDescriptors) {  
+	            	//表字段首字母统一大写
+	                String key = StringUtil.initCap(property.getName());  
+	                if (!key.equals("Class") && !key.equals("Empty")) {  
+	                    Method getter = property.getReadMethod();  
+	                    String value = (String) getter.invoke(object);
+	                    if(StringUtil.isNotEmpty(value)){
+	                    	keys.append(key).append(",");
+	                    	values.append(value).append(",");
+	                    } 	                  
+	                }  
+	            }
+	            keys.deleteCharAt(keys.length()-1);
+	            values.deleteCharAt(values.length()-1);
+	            map.put("K",keys.toString());
+            	map.put("V",values.toString() );
+            	return map;
+	        } catch (Exception e) {  
+	        	LoggerManager.getLogger(ClassUtil.class).error("convert BeanToKVMap Error : "+ e.getMessage() +"---"+e);  
+	        	return null;
+	        }  
+	 }
 }
