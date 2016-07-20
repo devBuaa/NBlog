@@ -14,7 +14,6 @@ import com.nblog.bean.User;
 import com.nblog.service.BaseService;
 import com.nblog.util.DateUtil;
 import com.nblog.util.IDGenerator;
-import com.nblog.util.LoggerManager;
 
 /**
  * @author hsu
@@ -69,9 +68,8 @@ public class LoginController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping("/lgin")  
+	@RequestMapping(value="/lgin", method = RequestMethod.GET)  
 	public ModelAndView loginForward(HttpServletRequest request,HttpServletResponse response){
-		
 		return new ModelAndView("common/login");
 	}
 	
