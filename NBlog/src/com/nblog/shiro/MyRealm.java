@@ -78,10 +78,10 @@ public class MyRealm extends AuthorizingRealm {
 		String username = (String) token.getPrincipal();
 
 		User user = new User();
-		user.put("UserName", "" + username + "");
-		List<User> users = userDao.findByNames(user);
-		if (users.size() != 0) {
-			if ("2".equals(users.get(0).get("Locked"))) {
+		user.setUserName(username);
+		User getUser= userDao.findUserByName(user);
+		if (getUser!=null) {
+			if ("2".equals(getUser.getLocked())) {
 				throw new LockedAccountException(); // 帐号锁定
 			}
 			// 从数据库查询出来的账号名和密码,与用户输入的账号和密码对比
@@ -89,14 +89,14 @@ public class MyRealm extends AuthorizingRealm {
 			// 然后会自动进入这个类进行认证
 			// 交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
 			SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(username, // 用户名
-					users.get(0).get("Password"), // 密码
-					ByteSource.Util.bytes(username + "" + users.get(0).get("CredentialsSalt")),// salt=username+salt
+					getUser.getPassword(), // 密码
+					ByteSource.Util.bytes(username + "" + getUser.getCredentialsSalt()),// salt=username+salt
 					getName() // realm name
 			);
 			// 当验证都通过后，把用户信息放在session里
 			Session session = SecurityUtils.getSubject().getSession();
-			session.setAttribute("userSession", users.get(0));
-			session.setAttribute("userSessionId", users.get(0).get("UserNo"));
+			session.setAttribute("userSession", getUser);
+			session.setAttribute("userSessionId", getUser.getUserNo());
 			return authenticationInfo;
 		} else {
 			throw new UnknownAccountException();// 没找到帐号

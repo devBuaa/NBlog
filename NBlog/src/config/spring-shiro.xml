@@ -69,11 +69,8 @@
 	<bean id="chainDefinitionSectionMetaSource" class="com.nblog.shiro.ChainDefinitionSectionMetaSource">
 		<property name="filterChainDefinitions">
 			<value>
-			/home* = anon
-			/login = authc
-			/regist = anon
 			/register = anon
-			/lgin = anon
+			/login = anon
 			/favicon.ico = anon
     		/admin_files/** = anon
     		/fonts/** = anon
@@ -82,7 +79,6 @@
     		/js/** = anon
     		/css/** = anon
     		/images/** = anon
-    		/layer-v1.9.2/** = anon
     		/notebook/** = anon
     		/logout = logout
 			/denied.jsp = anon	
