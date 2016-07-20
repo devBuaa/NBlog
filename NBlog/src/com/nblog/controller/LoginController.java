@@ -14,6 +14,7 @@ import com.nblog.bean.User;
 import com.nblog.service.BaseService;
 import com.nblog.util.DateUtil;
 import com.nblog.util.IDGenerator;
+import com.nblog.util.PasswordHelper;
 
 /**
  * @author hsu
@@ -52,6 +53,8 @@ public class LoginController {
 		
 		user.setUserNo(IDGenerator.getInstance().getID());
 		user.setSignTime(DateUtil.getTimestamp());
+		PasswordHelper passwordHelper = new PasswordHelper();
+		passwordHelper.encryptPassword(user);
 		try {
 			baseService.insertBean(user);
 			return new ModelAndView("common/login");

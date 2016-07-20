@@ -8,21 +8,22 @@ import com.nblog.bean.User;
 
 public class PasswordHelper {
 	private RandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
-	private String algorithmName = "md5";
+	private String algorithmName = "md5";//采用md5加密
 	private int hashIterations = 2;
 
-	public void encryptPassword(User userFormMap) {
+	public void encryptPassword(User user) {
 		String salt=randomNumberGenerator.nextBytes().toHex();
-		userFormMap.put("CredentialsSalt", salt);
-		String newPassword = new SimpleHash(algorithmName, userFormMap.get("Password"), ByteSource.Util.bytes(userFormMap.get("UserName")+salt), hashIterations).toHex();
-		userFormMap.put("Password", newPassword); 
+		user.setCredentialsSalt(salt);	
+		String newPassword = new SimpleHash(algorithmName, user.getPassword(), ByteSource.Util.bytes(user.getUserName()+salt), hashIterations).toHex();
+		user.setPassword(newPassword);
 	}
+	
 	public static void main(String[] args) {
 		PasswordHelper passwordHelper = new PasswordHelper();
 		User userFormMap = new User();
-		userFormMap.put("Password","123456");
-		userFormMap.put("UserName","admin");
+		userFormMap.setUserName("xsx");
+		userFormMap.setPassword("123456");
 		passwordHelper.encryptPassword(userFormMap);
-		System.out.println(userFormMap);
+		System.out.println(ClassUtil.convertBeanToMap(userFormMap));
 	}
 }
