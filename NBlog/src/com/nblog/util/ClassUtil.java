@@ -206,11 +206,11 @@ public class ClassUtil {
 	 * @param object
 	 * @return
 	 */
-	public static Map<String, String> convertBeanToKVMap(Object object){
+	public static Map<String, Object> convertBeanToKVMap(Object object){
 		 if(object == null){  
 	            return null;  
 	     }
-		 Map<String, String> map = new HashMap<String, String>();  
+		 Map<String, Object> map = new HashMap<String, Object>();  
 		 StringBuffer keys=new StringBuffer();
 		 StringBuffer values=new StringBuffer();
 		 try {  
@@ -221,12 +221,24 @@ public class ClassUtil {
 	                String key = StringUtil.initCap(property.getName());  
 	                if (!key.equals("Class") && !key.equals("Empty")) {  
 	                    Method getter = property.getReadMethod();  
-	                    String value = (String) getter.invoke(object);
-	                    if(StringUtil.isNotEmpty(value)){
-	                    	keys.append(key).append(",");
-	                    	//一定需要加引号表示字符串
-	                    	values.append("'"+value+"'").append(",");
-	                    } 	                  
+	                    Object value = getter.invoke(object);
+	                    if(value instanceof String){
+	                    	if(StringUtil.isNotEmpty((String)value)){
+		                    	keys.append(key).append(",");
+		                    	//一定需要加引号表示字符串
+		                    	values.append("'"+value+"'").append(",");
+		                    } 	   
+	                    }else if((value instanceof Integer)|| 
+	                    		  (value instanceof Double) || 
+	                    		  (value instanceof Float)  ||
+	                    		  (value instanceof Long)){
+	                    	if(StringUtil.isNotEmpty(value+"")){
+		                    	keys.append(key).append(",");
+		                    	//非字符串不能加引号
+		                    	values.append(value).append(",");
+		                    } 	   
+	                    }
+	                                   
 	                }  
 	            }
 	            keys.deleteCharAt(keys.length()-1);
