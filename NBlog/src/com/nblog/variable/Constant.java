@@ -19,9 +19,9 @@ public class Constant {
 		public static final String ZH_NAME = "zh_name";
 		
 		public static final String ZB_NAME = "zb_name";
-		public static final String BASE_BEAN_PACKAGE = "com.nblog.bean";
 		
-		public final static Logger logger = Logger.getLogger("system");
+		public static final String BASE_BEAN_PACKAGE = "com.nblog.bean";
+	
 		// 默认除法运算精度
 		public static final int DEF_DIV_SCALE = 10;
 		

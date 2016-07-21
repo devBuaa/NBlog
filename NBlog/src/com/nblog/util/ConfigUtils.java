@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
-
 import com.nblog.annotation.TableSeg;
 import com.nblog.dao.BaseDao;
 import com.nblog.variable.Constant;
@@ -15,7 +13,6 @@ import com.nblog.variable.Constant;
  * 初始化数据库表字段到缓存
  */
 public class ConfigUtils {
-	private final Logger logger = Logger.getLogger(ConfigUtils.class);
 	
 	public void initTableField(BaseDao baseMapper) {
 		// 记录总记录数
@@ -56,8 +53,9 @@ public class ConfigUtils {
 					m.put("column_key", map.get(ble));//获取表的主键
 					EhcacheUtils.put(ble, m);//表对应的主键和字段放到缓存
 			}
+			LoggerManager.getLogger(this.getClass()).info(" 初始化数据加载表字段到缓存成功 -->> "+lh+"");
 		} catch (Exception e) {
-			logger.error(" 初始化数据失败,没法加载表字段到缓存 -->> "+e.fillInStackTrace());
+			LoggerManager.getLogger(this.getClass()).error(" 初始化数据失败,没法加载表字段到缓存 -->> "+e.fillInStackTrace());
 			e.printStackTrace();
 		} 
 	}

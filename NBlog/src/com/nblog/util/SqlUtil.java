@@ -1,5 +1,8 @@
 package com.nblog.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.nblog.annotation.TableSeg;
 
 /**
@@ -8,6 +11,24 @@ import com.nblog.annotation.TableSeg;
  *
  */
 public class SqlUtil {
+	
+	
+	/**
+	 * 生成插入xml动态sql所需的map
+	 * 包含：tableName-->表名
+	 * 		 K       --> 插入的字段
+	 * 		 V       --> 插入的值
+	 * @param map
+	 * @return Map<String,Object>
+	 */
+	public static Map<String,Object> buildInsertMap(Object map){
+		Map<String,Object> insertMap = new HashMap<String, Object>();
+		Class<?> mapClass = map.getClass();
+		insertMap.putAll(getTableNameMap(mapClass));
+		insertMap.putAll(ClassUtil.convertBeanToKVMap(map));
+		return insertMap;
+	}
+	
 	
 	/**
 	 * 得到表名对应的Map("tableName",tableName)
@@ -53,4 +74,7 @@ public class SqlUtil {
 		return map;
 		
 	}
+	
+	
+	
 }

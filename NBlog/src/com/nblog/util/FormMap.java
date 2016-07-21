@@ -1,9 +1,7 @@
 package com.nblog.util;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Set;
 
 /**
  * SpringMvc 
@@ -115,21 +113,4 @@ public class FormMap<K, V> extends HashMap<K, V> implements Serializable  {
 		return (Number) this.get(attr);
 	}
 	
-	/**
-	 * Return attribute names of this model.
-	 */
-	public String[] getAttrNames() {
-		Set<K> attrNameSet =this.keySet();
-		return attrNameSet.toArray(new String[attrNameSet.size()]);
-	}
-
-	/**
-	 * Return attribute values of this model.
-	 */
-	public Object[] getAttrValues() {
-		Collection<V> attrValueCollection = values();
-		return attrValueCollection.toArray(new Object[attrValueCollection
-				.size()]);
-	}
-
 }

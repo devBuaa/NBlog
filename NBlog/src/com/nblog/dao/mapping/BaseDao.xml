@@ -14,9 +14,12 @@
 		where table_name in(${table_name}) and table_schema in(${database_name})  GROUP BY TABLE_NAME
 	</select>
 	<select id="findByAll" resultType="java.util.HashMap">
-		select * from ${tableName}
-		
+		select * from ${tableName}		
 	</select>
+	
+	<insert id="insertByMap" useGeneratedKeys="true">
+		insert into ${tableName} (${K}) values (${V})
+	</insert>
 	
 	<select id="findByPage" resultType="java.util.HashMap">
 		select * from table

@@ -75,7 +75,9 @@ public class ClassUtil {
 		List<String> myClassName = new ArrayList<String>();
 		File file = new File(filePath);
 		File[] childFiles = file.listFiles();
-		System.out.println(childFiles.length);
+		//打印日志
+		LoggerManager.getLogger(ClassUtil.class).info(Constant.BASE_BEAN_PACKAGE+"下共找到"+childFiles.length+"个类");
+		
 		for (File childFile : childFiles) {
 			if (childFile.isDirectory()) {
 				if (childPackage) {
@@ -134,8 +136,8 @@ public class ClassUtil {
 					}
 				}
 			}
-		} catch (Exception e) {
-			 Constant.logger.error("Error :" + e);  
+		} catch (Exception e) {			
+			LoggerManager.getLogger(ClassUtil.class).error("Error :" + e);  
 		}
 		return myClassName;
 	}
@@ -164,7 +166,12 @@ public class ClassUtil {
 		return myClassName;
 	}
 	
-	 public static Map<String, Object> convertBeanToMap(Object object) 
+	 /**
+	  * 将对象转成键值对Map
+	 * @param object
+	 * @return
+	 */
+	public static Map<String, Object> convertBeanToMap(Object object) 
 	 {  
 	  
 	        if(object == null){  
@@ -177,15 +184,71 @@ public class ClassUtil {
 	            for (PropertyDescriptor property : propertyDescriptors) {  
 	            	//表字段首字母统一大写
 	                String key = StringUtil.initCap(property.getName());  
-	                if (!key.equals("Class")) {  
+	                if (!key.equals("Class") && !key.equals("Empty")) {  
 	                    Method getter = property.getReadMethod();  
 	                    Object value = getter.invoke(object);  
 	                    map.put(key, value);  
 	                }  
 	            }  
 	        } catch (Exception e) {  
-	            Constant.logger.error("convert BeanToMap Error :" + e);  
+	        	LoggerManager.getLogger(ClassUtil.class).error("convert BeanToMap Error : "+ e);  
+	        	 return null;
 	        }  
 	        return map;  
 	}  
+	 
+	 
+	 /**
+	  * 将对象转成可以传入xml的Map对象
+	  * 格式：
+	  * 	K =  字段名，字段名，字段名...
+	  * 	V =  '值'，'值'，'值'...
+	 * @param object
+	 * @return
+	 */
+	public static Map<String, Object> convertBeanToKVMap(Object object){
+		 if(object == null){  
+	            return null;  
+	     }
+		 Map<String, Object> map = new HashMap<String, Object>();  
+		 StringBuffer keys=new StringBuffer();
+		 StringBuffer values=new StringBuffer();
+		 try {  
+	            BeanInfo beanInfo = Introspector.getBeanInfo(object.getClass());  
+	            PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();  
+	            for (PropertyDescriptor property : propertyDescriptors) {  
+	            	//表字段首字母统一大写
+	                String key = StringUtil.initCap(property.getName());  
+	                if (!key.equals("Class") && !key.equals("Empty")) {  
+	                    Method getter = property.getReadMethod();  
+	                    Object value = getter.invoke(object);
+	                    if(value instanceof String){
+	                    	if(StringUtil.isNotEmpty((String)value)){
+		                    	keys.append(key).append(",");
+		                    	//一定需要加引号表示字符串
+		                    	values.append("'"+value+"'").append(",");
+		                    } 	   
+	                    }else if((value instanceof Integer)|| 
+	                    		  (value instanceof Double) || 
+	                    		  (value instanceof Float)  ||
+	                    		  (value instanceof Long)){
+	                    	if(StringUtil.isNotEmpty(value+"")){
+		                    	keys.append(key).append(",");
+		                    	//非字符串不能加引号
+		                    	values.append(value).append(",");
+		                    } 	   
+	                    }
+	                                   
+	                }  
+	            }
+	            keys.deleteCharAt(keys.length()-1);
+	            values.deleteCharAt(values.length()-1);
+	            map.put("K",keys.toString());
+            	map.put("V",values.toString() );
+            	return map;
+	        } catch (Exception e) {  
+	        	LoggerManager.getLogger(ClassUtil.class).error("convert BeanToKVMap Error : "+ e.getMessage() +"---"+e);  
+	        	return null;
+	        }  
+	 }
 }

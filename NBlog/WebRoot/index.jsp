@@ -21,6 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    This is my JSP page. <br>
+    <a href="register">注册</a><br>
+    <a href="login">登录</a><br>
   </body>
 </html>
