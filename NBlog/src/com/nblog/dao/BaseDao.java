@@ -29,7 +29,7 @@ public interface BaseDao {
 	 * @param map（包含：表名，where语句）
 	 * @return List<T>
 	 */
-	public <T> List<T> findByWhere(FormMap<String, Object> map);
+	public <T> List<T> findByWhere(Map<String, Object> map);
 	/**
 	 * 根据表名查询所有的数据项
 	 * @param map（包含：表名）

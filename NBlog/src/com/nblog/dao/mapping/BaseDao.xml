@@ -8,12 +8,12 @@
 		
 	<!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache"/> -->
 	<!-- 以下与实体类的中字段一致 -->
-	<select id="initTableField" resultType="java.util.HashMap">
+	<select id="initTableField" resultType="com.nblog.util.FormMap">
 		select TABLE_NAME,group_concat(COLUMN_NAME) COLUMN_NAME 
 		from information_schema.columns 
 		where table_name in(${table_name}) and table_schema in(${database_name})  GROUP BY TABLE_NAME
 	</select>
-	<select id="findByAll" resultType="java.util.HashMap">
+	<select id="findByAll" resultType="com.nblog.util.FormMap">
 		select * from ${tableName}		
 	</select>
 	
@@ -21,8 +21,8 @@
 		insert into ${tableName} (${K}) values (${V})
 	</insert>
 	
-	<select id="findByPage" resultType="java.util.HashMap">
-		select * from table
+	<select id="findByWhere" resultType="com.nblog.util.FormMap">
+		select * from ${tableName} where ${Condition}
 	</select>
 
 	<insert id="addEntity" useGeneratedKeys="true" keyProperty="id">
@@ -41,12 +41,12 @@
 		delete from table where id in (${ids})
 	</delete>
 
-	<select id="findByNames" resultType="java.util.HashMap">
+	<select id="findByNames" resultType="com.nblog.util.FormMap">
 		select * from table where id
 		in ()
 	</select>
 
-	<select id="findByAttribute" resultType="java.util.HashMap">
+	<select id="findByAttribute" resultType="com.nblog.util.FormMap">
 		select * from table
 		where id in ()
 	</select>
@@ -55,7 +55,7 @@
 		delete from table where id in ()
 	</delete>
 	
-	<select id="findbyFrist" resultType="java.util.HashMap">
+	<select id="findbyFrist" resultType="com.nblog.util.FormMap">
 		select * from table where id=()
 	</select>
 </mapper>

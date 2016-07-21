@@ -17,10 +17,13 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+
 import com.nblog.bean.Resources;
 import com.nblog.bean.User;
 import com.nblog.dao.ResourcesDao;
 import com.nblog.dao.UserDao;
+import com.nblog.util.FormMap;
+import com.nblog.util.SqlUtil;
 
 
 
@@ -79,8 +82,10 @@ public class MyRealm extends AuthorizingRealm {
 
 		User user = new User();
 		user.setUserName(username);
-		User getUser= userDao.findUserByName(user);
-		if (getUser!=null) {
+		List<FormMap<String, Object>> lists = userDao.findByWhere(SqlUtil.buildSelectAllMap(user));
+		if (lists.size()>0) {
+			User getUser = new User();
+			lists.get(0).transMap2Bean(getUser);
 			if ("2".equals(getUser.getLocked())) {
 				throw new LockedAccountException(); // 帐号锁定
 			}

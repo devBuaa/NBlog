@@ -1,6 +1,10 @@
 package com.nblog.util;
 
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.io.Serializable;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 
 /**
@@ -112,5 +116,32 @@ public class FormMap<K, V> extends HashMap<K, V> implements Serializable  {
 	public Number getNumber(String attr) {
 		return (Number) this.get(attr);
 	}
+	
+	// Map --> Bean 1: 利用Introspector,PropertyDescriptor实现 Map --> Bean  
+    public void transMap2Bean(Object obj) {  
+  
+        try {  
+            BeanInfo beanInfo = Introspector.getBeanInfo(obj.getClass());  
+            PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();  
+  
+            for (PropertyDescriptor property : propertyDescriptors) {  
+                String key =  StringUtil.initCap(property.getName());  
+  
+                if (this.containsKey(key)) {  
+                    Object value = this.get(key);  
+                    // 得到property对应的setter方法  
+                    Method setter = property.getWriteMethod();  
+                    setter.invoke(obj, value);  
+                }  
+  
+            }  
+  
+        } catch (Exception e) {  
+        	LoggerManager.getLogger(FormMap.class).error("convert Map2Bean Error : "+ e);  
+        }  
+  
+        return;  
+  
+    }  
 	
 }
