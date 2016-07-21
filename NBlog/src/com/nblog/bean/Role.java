@@ -9,4 +9,10 @@ import com.nblog.util.FormMap;
 @TableSeg(tableName = "role",id = "Id")
 public class Role extends FormMap<String, Object> {
 	private static final long serialVersionUID = 1L;
+	
+	private int Id;
+	private String State;
+	private String Name;
+	private String Flag;
+	private String Description;
 }
