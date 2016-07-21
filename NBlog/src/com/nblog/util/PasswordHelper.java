@@ -24,6 +24,6 @@ public class PasswordHelper {
 		userFormMap.setUserName("xsx");
 		userFormMap.setPassword("123456");
 		passwordHelper.encryptPassword(userFormMap);
-		System.out.println(ClassUtil.convertBeanToMap(userFormMap));
+		System.out.println(SqlUtil.convertBeanToMap(userFormMap));
 	}
 }
