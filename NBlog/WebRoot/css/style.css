@@ -40,6 +40,11 @@ body {
 	height:300px;
 }
 
+#wrappermiddle_login {
+	background:url(../images/wrapper_middle.png) repeat-y;
+	height:240px;
+}
+
 #wrapperbottom {
 	background:url(../images/wrapper_bottom.png) no-repeat;
 	height:22px;
@@ -152,6 +157,14 @@ body {
 	margin-top:160px;
 }
 
+#password_input_login {
+	margin-left:25px;
+	position:absolute;
+	width:300;
+	height:50px;
+	margin-top:100px;
+}
+
 #password_inputleft {
 	float:left;
 	background:url(../images/input_left.png) no-repeat;
@@ -186,6 +199,17 @@ body {
 	position:relative;
 	padding:0;
 	margin-top:220px;
+	margin-left:25px;
+	width:300px;
+	height:40px;
+	border:0;
+}
+
+#submit_login{
+	float:left;
+	position:relative;
+	padding:0;
+	margin-top:160px;
 	margin-left:25px;
 	width:300px;
 	height:40px;

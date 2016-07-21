@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="wrapper">
 		<div id="wrappertop"></div>
 
-		<div id="wrappermiddle">
+		<div id="wrappermiddle_login">
 
 			<h2>&nbsp;登陆</h2>
 
@@ -70,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			</div>
 				
-			<div id="password_input">
+			<div id="password_input_login">
 
 				<div id="password_inputleft"></div>
 
@@ -86,17 +86,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			
 
-			<div id="submit">
+			<div id="submit_login">
 				
 				<input type="image" src="<%=basePath %>images/submit_hover.png" id="submit1" value="Sign In">
 				<input type="image" src="<%=basePath %>images/submit.png" id="submit2" value="Sign In">
 				
 			</div>
+			
+			<div id="links_left">
+
+			<a href="#">忘记密码?</a>
+
+			</div>
 
 
 			<div id="links_right">
 
-			<a href="#">手机注册</a>
+			<a href="#">新用户注册</a>
 
 			</div>
 			
