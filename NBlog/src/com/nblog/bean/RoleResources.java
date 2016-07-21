@@ -12,4 +12,19 @@ public class RoleResources extends FormMap<String, Object>{
 	
 	private int RoleId;
 	private int ResId;
+	
+	public int getRoleId() {
+		return RoleId;
+	}
+	public void setRoleId(int roleId) {
+		RoleId = roleId;
+	}
+	public int getResId() {
+		return ResId;
+	}
+	public void setResId(int resId) {
+		ResId = resId;
+	}
+	
+	
 }

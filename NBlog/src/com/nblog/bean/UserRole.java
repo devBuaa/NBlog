@@ -12,4 +12,19 @@ public class UserRole extends FormMap<String, Object>{
 	
 	private String UserNo;
 	private int RoleId;
+	
+	public String getUserNo() {
+		return UserNo;
+	}
+	public void setUserNo(String userNo) {
+		UserNo = userNo;
+	}
+	public int getRoleId() {
+		return RoleId;
+	}
+	public void setRoleId(int roleId) {
+		RoleId = roleId;
+	}
+	
+	
 }
