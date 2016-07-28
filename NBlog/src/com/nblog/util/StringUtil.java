@@ -2,8 +2,12 @@ package com.nblog.util;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.XPath.Step;
+
 public class StringUtil {
-	/**
+	public static final String DEFAULT_CHARSET = "UTF-8";
+
+    /**
 	 * String转换double
 	 * 
 	 * @param string
@@ -106,5 +110,14 @@ public class StringUtil {
 		}
 		return new String(ch);
 	}
+
+    public static String trim(String str) {
+        // TODO Auto-generated method stub
+        if(isEmpty(str)){
+            return "";
+        }else{
+            return str.trim();
+        }
+    }
 
 }
