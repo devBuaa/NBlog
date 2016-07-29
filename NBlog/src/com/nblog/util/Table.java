@@ -1,7 +1,7 @@
 package com.nblog.util;
 import java.util.List;
 
-public class MysqlTable {
+public class Table {
     
     String tableName="";
     

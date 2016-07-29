@@ -22,11 +22,12 @@ public class GenSqlFromExcel {
 
     public static void main(String [] args){
         String filePath = "C:\\Users\\hsu\\Desktop\\DB.xls";
-        genarate(filePath);
+        genarate(filePath,"Mysql");
+        genarate(filePath,"Oracle");
     }
 
     @SuppressWarnings({ "resource", "deprecation" })
-    public static void genarate(String filePath){
+    public static void genarate(String filePath, String dbType){
         try {
             HSSFWorkbook workbook = null;
             HSSFSheet sheet=null;
@@ -40,19 +41,17 @@ public class GenSqlFromExcel {
                 workbook = new HSSFWorkbook(excelFileStream);  
             } else {
                 throw new Exception("只能支持扩展名为.xls格式的Excel文件");
-            }
-            String sqlFileName=excelFile.getName().split("\\.")[0]+".sql";
-            
+            } 
             excelFileStream.close();
             
-            List<MysqlTable> mysqlTableList = new ArrayList<MysqlTable>();
+            List<Table> mysqlTableList = new ArrayList<Table>();
             
             for(int sheetIndex=0;sheetIndex<workbook.getNumberOfSheets();sheetIndex++){
                 
                 sheet=workbook.getSheetAt(sheetIndex);
                 int columnNameIndex=9999999;
                 
-                MysqlTable mysqlTable=new MysqlTable();
+                Table mysqlTable=new Table();
                 String tableName="";
                 String tableDescription="";
                 List<String> primaryKeyList =new ArrayList<String>();
@@ -170,11 +169,23 @@ public class GenSqlFromExcel {
                     mysqlTableList.add(mysqlTable);
                 }
             }
-            
+            String sqlFileName=excelFile.getName().split("\\.")[0]+".sql";
             String sqlPath=excelFile.getParent()+"\\"+sqlFileName;
             File sqlFile=new File(sqlPath);
-            sqlFile.delete();
-            String createTableSql = genCreateSql(mysqlTableList);
+            int i=0;
+            while(sqlFile.exists()){
+                i++;
+                sqlFileName=excelFile.getName().split("\\.")[0]+"_"+i+".sql";
+                sqlPath=excelFile.getParent()+"\\"+sqlFileName;
+                sqlFile=new File(sqlPath);
+            }
+            String createTableSql;
+            if("Oracle".equals(dbType)){
+                createTableSql = genCreateOracleSql(mysqlTableList);
+            }else{
+                createTableSql = genCreateSql(mysqlTableList);
+            }
+            
             FileOutputStream out =new FileOutputStream(sqlPath);
             byte [] outBytes=createTableSql.toString().getBytes(StringUtil.DEFAULT_CHARSET);
             IoUtil.write(out,outBytes,1024);
@@ -187,12 +198,12 @@ public class GenSqlFromExcel {
 
     }
     
-    public static String genCreateSql(List<MysqlTable> mysqlTableList){
+    public static String genCreateSql(List<Table> mysqlTableList){
         StringBuffer createSql= new StringBuffer();
         
         for (int tableIndex = 0; tableIndex < mysqlTableList.size(); tableIndex++) {
             StringBuffer createTable= new StringBuffer();
-            MysqlTable mysqlTable = mysqlTableList.get(tableIndex);
+            Table mysqlTable = mysqlTableList.get(tableIndex);
             if (StringUtil.isNotEmpty(mysqlTable.getTableName())) {
                 
                 createTable.append("\r\n");
@@ -213,7 +224,7 @@ public class GenSqlFromExcel {
                         sqlLine.append(genBlankSpace(4));
                         sqlLine.append(columns[0]);
                         
-                        sqlLine.append(genBlankSpace((16-sqlLine.length())<=0?1:(16-sqlLine.length())));
+                        sqlLine.append(genBlankSpace((24-sqlLine.length())<=0?1:(24-sqlLine.length())));
                         sqlLine.append(columns[1]);
                         
                         if (StringUtil.isNotEmpty(columns[3])) {
@@ -227,7 +238,7 @@ public class GenSqlFromExcel {
                         }
                         
                         if (StringUtil.isNotEmpty(columns[2])) {
-                            sqlLine.append(genBlankSpace((32-sqlLine.length())<=0?1:(32-sqlLine.length())));
+                            sqlLine.append(genBlankSpace((48-sqlLine.length())<=0?1:(48-sqlLine.length())));
                             sqlLine.append(columns[2]);
                         }
                     }
@@ -289,7 +300,101 @@ public class GenSqlFromExcel {
         }
         
         return createSql.toString();
+    }  
+    
+    public static String genCreateOracleSql(List<Table> oracleTableList){
+        StringBuffer createSql= new StringBuffer();
+        
+        for (int tableIndex = 0; tableIndex < oracleTableList.size(); tableIndex++) {
+            StringBuffer createTable= new StringBuffer();
+            Table oracleTable = oracleTableList.get(tableIndex);
+            if (StringUtil.isNotEmpty(oracleTable.getTableName())) {
+                
+                createTable.append("\r\n");
+                createTable.append("-- ");
+                createTable.append(oracleTable.getTableDescription());
+                createTable.append("\r\n");
+                createTable.append("CREATE TABLE ");
+                createTable.append(oracleTable.getTableName());
+                createTable.append("(");
+                createTable.append("\r\n");
+                
+                for (int columnIndex=0; columnIndex< oracleTable.getColumnList().size(); columnIndex++) {
+                    
+                    StringBuffer sqlLine= new StringBuffer();
+                    String [] columns = oracleTable.getColumnList().get(columnIndex);
+                    
+                    if (StringUtil.isNotEmpty(columns[0]) && StringUtil.isNotEmpty(columns[1])) {
+                        sqlLine.append(genBlankSpace(4));
+                        sqlLine.append(columns[0]);
+                        
+                        sqlLine.append(genBlankSpace((24-sqlLine.length())<=0?1:(24-sqlLine.length())));
+                        sqlLine.append(columns[1]);
+                        
+                        if (StringUtil.isNotEmpty(columns[3])) {
+                            sqlLine.append(genBlankSpace((48-sqlLine.length())<=0?1:(48-sqlLine.length())));
+                            
+                            if (columns[1].toUpperCase().contains("NUMBER") || columns[1].toUpperCase().contains("NUMERIC") || columns[1].toUpperCase().contains("TIMESTAMP")) {
+                                sqlLine.append("DEFAULT " + columns[3]);
+                            } else {
+                                sqlLine.append("DEFAULT '" + columns[3] + "'");
+                            }
+                        }
+                        
+                        if (StringUtil.isNotEmpty(columns[2])) {
+                            sqlLine.append(genBlankSpace((48-sqlLine.length())<=0?1:(48-sqlLine.length())));
+                            sqlLine.append(columns[2]);
+                        }
+                    }
+                    
+                    if (columnIndex < oracleTable.getColumnList().size()-1) {
+                        sqlLine.append(genBlankSpace((48-sqlLine.length())<=0?0:(48-sqlLine.length())));
+                        sqlLine.append(",");
+                    }
+                    
+                    createTable.append(sqlLine);
+                    createTable.append("\r\n");
+                }
+                createTable.append(");");
+                createTable.append("\r\n");
+                
+                if (oracleTable.getPrimaryKeyList().size()>0) {
+                    for (int primaryIndex = 0; primaryIndex < oracleTable.getPrimaryKeyList().size(); primaryIndex++) {
+                        String primary = oracleTable.getPrimaryKeyList().get(primaryIndex);
+                        if (StringUtil.isNotEmpty(primary)) {
+                            createTable.append("ALTER TABLE " + oracleTable.getTableName() + " ADD CONSTRAINT PK_" + oracleTable.getTableName()+ (primaryIndex==0?"":String.valueOf(primaryIndex+1)) + " PRIMARY KEY" + primary + ";");
+                            createTable.append("\r\n");
+                        }
+                    }
+                }
+                
+                if (oracleTable.getUniqueIndexList().size()>0) {
+                    for (int uniqueIndex = 0; uniqueIndex < oracleTable.getUniqueIndexList().size(); uniqueIndex++) {
+                        String unique = oracleTable.getUniqueIndexList().get(uniqueIndex);
+                        if (StringUtil.isNotEmpty(unique)) {
+                            createTable.append("CREATE UNIQUE INDEX U_" + oracleTable.getTableName() + (uniqueIndex==0?"":String.valueOf(uniqueIndex+1)) + " ON "  + oracleTable.getTableName() +  unique + ";");
+                            createTable.append("\r\n");
+                        }
+                    }
+                }
+                
+                if (oracleTable.getNormalIndexList().size()>0) {
+                    for (int normalIndex = 0; normalIndex < oracleTable.getNormalIndexList().size(); normalIndex++) {
+                        String normal = oracleTable.getNormalIndexList().get(normalIndex);
+                        if (StringUtil.isNotEmpty(normal)) {
+                            createTable.append("CREATE INDEX I_" + oracleTable.getTableName() + (normalIndex==0?"":String.valueOf(normalIndex+1)) + " ON "  + oracleTable.getTableName() +  normal + ";");
+                            createTable.append("\r\n");
+                        }
+                    }
+                }    
+            }
+            
+            createSql.append(createTable);
+        }
+        
+        return createSql.toString();
     }
+    
     
     public static String genBlankSpace(int num){
         StringBuffer blankSpace=new StringBuffer();

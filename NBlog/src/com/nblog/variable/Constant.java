@@ -2,9 +2,6 @@ package com.nblog.variable;
 
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
-
-import com.nblog.util.ClassUtil;
 import com.nblog.util.Common;
 import com.nblog.util.PropertiesUtils;
 

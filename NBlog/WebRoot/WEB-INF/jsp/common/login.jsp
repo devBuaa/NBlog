@@ -113,7 +113,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="wrapperbottom"></div>
 		
 		<div id="powered">
-		<p>Powered by NBlog</a></p>
+		<p>Powered by NBlog</p>
 		</div>
 	</div>
 	</form>
