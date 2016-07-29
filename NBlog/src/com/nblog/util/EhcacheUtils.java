@@ -167,7 +167,8 @@ public class EhcacheUtils {
 	 * @return 缓存
 	 * @throws Exception
 	 */
-	public static Cache initCache(String cacheName, int maxElementsInMemory, boolean overflowToDisk, boolean eternal,
+	@SuppressWarnings("deprecation")
+    public static Cache initCache(String cacheName, int maxElementsInMemory, boolean overflowToDisk, boolean eternal,
 			long timeToLiveSeconds, long timeToIdleSeconds) throws Exception {
 		try {
 			CacheManager singletonManager = CacheManager.create();
@@ -231,7 +232,8 @@ public class EhcacheUtils {
 	 * @throws Exception
 	 */
 
-	public static boolean modifyCache(String cacheName, long timeToLiveSeconds, int maxElementsInMemory)
+	@SuppressWarnings("deprecation")
+    public static boolean modifyCache(String cacheName, long timeToLiveSeconds, int maxElementsInMemory)
 			throws Exception {
 		try {
 			if (StringUtils.isNotBlank(cacheName) && timeToLiveSeconds != 0L && maxElementsInMemory != 0) {

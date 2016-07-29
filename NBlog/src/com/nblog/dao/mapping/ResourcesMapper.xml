@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nblog.dao.ResourcesMapper">
+  <resultMap id="BaseResultMap" type="com.nblog.bean.Resources">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="ParentId" jdbcType="INTEGER" property="parentid" />
+    <result column="ResKey" jdbcType="VARCHAR" property="reskey" />
+    <result column="Type" jdbcType="VARCHAR" property="type" />
+    <result column="Url" jdbcType="VARCHAR" property="url" />
+    <result column="Level" jdbcType="INTEGER" property="level" />
+    <result column="Icon" jdbcType="VARCHAR" property="icon" />
+    <result column="IsHide" jdbcType="INTEGER" property="ishide" />
+    <result column="Description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  
+   <sql id="selectId">
+		Id,
+		Name,
+		ParentId,
+		(select r.Name from Resources r where r.Id = Resources.ParentId )
+		ParentName,
+		ResKey,
+		IsHide,
+		Type,
+		Url,
+		Level,
+		Icon,
+		Description
+	</sql>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from resources
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nblog.bean.Resources">
+    insert into resources (Id, Name, ParentId, 
+      ResKey, Type, Url, 
+      Level, Icon, IsHide, 
+      Description)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, 
+      #{reskey,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{level,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{ishide,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nblog.bean.Resources">
+    update resources
+    set Name = #{name,jdbcType=VARCHAR},
+      ParentId = #{parentid,jdbcType=INTEGER},
+      ResKey = #{reskey,jdbcType=VARCHAR},
+      Type = #{type,jdbcType=VARCHAR},
+      Url = #{url,jdbcType=VARCHAR},
+      Level = #{level,jdbcType=INTEGER},
+      Icon = #{icon,jdbcType=VARCHAR},
+      IsHide = #{ishide,jdbcType=INTEGER},
+      Description = #{description,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select Id, Name, ParentId, ResKey, Type, Url, Level, Icon, IsHide, Description
+    from resources
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select Id, Name, ParentId, ResKey, Type, Url, Level, Icon, IsHide, Description
+    from resources
+  </select>
+  <!-- 获取该用户的权限 -->
+  <select id="selectbyUserno" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+		<include refid="selectId" />
+		from Resources where id in
+		(
+			select ResId from
+				RoleResources where 1=1 and RoleId in
+				(
+					select RoleId from UserRole where 1=1 
+					<if test="UserNo != null and UserNo != '' and UserNo != 0">
+						and UserNo = #{userno,jdbcType=VARCHAR}
+					</if>
+					
+				 )
+		)
+		order by Level asc
+  </select>
+
+</mapper>

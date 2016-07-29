@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.nblog.annotation.TableSeg;
-import com.nblog.dao.BaseDao;
+import com.nblog.dao.BaseMapper;
 import com.nblog.variable.Constant;
 
 /**
@@ -14,7 +14,7 @@ import com.nblog.variable.Constant;
  */
 public class ConfigUtils {
 	
-	public void initTableField(BaseDao baseMapper) {
+	public void initTableField(BaseMapper baseMapper) {
 		// 记录总记录数
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {

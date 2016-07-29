@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nblog.dao.LoginMapper">
+  <resultMap id="BaseResultMap" type="com.nblog.bean.Login">
+    <id column="SystemNo" jdbcType="VARCHAR" property="systemno" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="LoginIP" jdbcType="VARCHAR" property="loginip" />
+    <result column="LoginBrowser" jdbcType="VARCHAR" property="loginbrowser" />
+    <result column="OfflineTime" jdbcType="CHAR" property="offlinetime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from login
+    where SystemNo = #{systemno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nblog.bean.Login">
+    insert into login (SystemNo, Name, LoginIP, 
+      LoginBrowser, OfflineTime)
+    values (#{systemno,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{loginip,jdbcType=VARCHAR}, 
+      #{loginbrowser,jdbcType=VARCHAR}, #{offlinetime,jdbcType=CHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nblog.bean.Login">
+    update login
+    set Name = #{name,jdbcType=VARCHAR},
+      LoginIP = #{loginip,jdbcType=VARCHAR},
+      LoginBrowser = #{loginbrowser,jdbcType=VARCHAR},
+      OfflineTime = #{offlinetime,jdbcType=CHAR}
+    where SystemNo = #{systemno,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select SystemNo, Name, LoginIP, LoginBrowser, OfflineTime
+    from login
+    where SystemNo = #{systemno,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select SystemNo, Name, LoginIP, LoginBrowser, OfflineTime
+    from login
+  </select>
+</mapper>

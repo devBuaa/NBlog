@@ -8,8 +8,8 @@
 
 		<commentGenerator>
 			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-			<property name="suppressAllComments" value="false" />
-			<property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳 -->
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="false" /> <!-- 是否生成注释代时间戳 -->
 		</commentGenerator>
 		<jdbcConnection connectionURL="jdbc:mysql://localhost:3306/mybatis"
 			driverClass="com.mysql.jdbc.Driver" password="root" userId="root" />
@@ -20,7 +20,7 @@
 		</javaTypeResolver>
 		<javaModelGenerator targetPackage="com.nblog.bean"
 			targetProject="NBlog\src" >
-		<property name="enableSubPackages" value="false"/>  
+			<property name="enableSubPackages" value="false"/>  
             <!-- 是否针对string类型的字段在set的时候进行trim调用 -->  
             <property name="trimStrings" value="true"/>  
         </javaModelGenerator>
@@ -53,6 +53,48 @@
             <!-- <ignoreColumn column="FRED" />   -->
             <!-- 指定列的java数据类型 -->  
             <!-- <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />  -->
+        </table>
+        <table schema="mybatis" tableName="role" domainObjectName="Role" 
+            enableInsert="true"  
+            enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"  
+            enableDeleteByPrimaryKey="true" enableSelectByExample="true"  
+            enableDeleteByExample="true" enableCountByExample="true"  
+            enableUpdateByExample="true">  
+        </table>
+        <table schema="mybatis" tableName="roleResources" domainObjectName="RoleResources" 
+            enableInsert="true"  
+            enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"  
+            enableDeleteByPrimaryKey="true" enableSelectByExample="true"  
+            enableDeleteByExample="true" enableCountByExample="true"  
+            enableUpdateByExample="true">  
+        </table>
+        <table schema="mybatis" tableName="user" domainObjectName="User" 
+            enableInsert="true"  
+            enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"  
+            enableDeleteByPrimaryKey="true" enableSelectByExample="true"  
+            enableDeleteByExample="true" enableCountByExample="true"  
+            enableUpdateByExample="true">  
+        </table> 
+        <table schema="mybatis" tableName="userRole" domainObjectName="UserRole" 
+            enableInsert="true"  
+            enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"  
+            enableDeleteByPrimaryKey="true" enableSelectByExample="true"  
+            enableDeleteByExample="true" enableCountByExample="true"  
+            enableUpdateByExample="true">  
+        </table>
+        <table schema="mybatis" tableName="Login" domainObjectName="Login" 
+            enableInsert="true"  
+            enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"  
+            enableDeleteByPrimaryKey="true" enableSelectByExample="true"  
+            enableDeleteByExample="true" enableCountByExample="true"  
+            enableUpdateByExample="true">  
+        </table>
+        <table schema="mybatis" tableName="UserPasswordChange" domainObjectName="UserPasswordChange" 
+            enableInsert="true"  
+            enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"  
+            enableDeleteByPrimaryKey="true" enableSelectByExample="true"  
+            enableDeleteByExample="true" enableCountByExample="true"  
+            enableUpdateByExample="true">  
         </table>
         
     </context>

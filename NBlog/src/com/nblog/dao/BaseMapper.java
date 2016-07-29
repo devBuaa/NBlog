@@ -9,7 +9,7 @@ import com.nblog.util.FormMap;
  * 已经实现民基本的 增,删,改,查接口,不需要重复写
  * 所有Dao都继承这个BaseDao
  */
-public interface BaseDao {
+public interface BaseMapper {
 	
 	/**
 	 * 初始化表字段

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nblog.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.nblog.bean.User">
+    <id column="UserNo" jdbcType="VARCHAR" property="userno" />
+    <result column="UserName" jdbcType="VARCHAR" property="username" />
+    <result column="Password" jdbcType="VARCHAR" property="password" />
+    <result column="CredentialsSalt" jdbcType="VARCHAR" property="credentialssalt" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="MobilePhone" jdbcType="CHAR" property="mobilephone" />
+    <result column="Address" jdbcType="VARCHAR" property="address" />
+    <result column="Career" jdbcType="VARCHAR" property="career" />
+    <result column="Industry" jdbcType="VARCHAR" property="industry" />
+    <result column="Locked" jdbcType="VARCHAR" property="locked" />
+    <result column="SignTime" jdbcType="CHAR" property="signtime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user
+    where UserNo = #{userno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nblog.bean.User">
+    insert into user (UserNo, UserName, Password, 
+      CredentialsSalt, Email, MobilePhone, 
+      Address, Career, Industry, 
+      Locked, SignTime)
+    values (#{userno,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{credentialssalt,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobilephone,jdbcType=CHAR}, 
+      #{address,jdbcType=VARCHAR}, #{career,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, 
+      #{locked,jdbcType=VARCHAR}, #{signtime,jdbcType=CHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nblog.bean.User">
+    update user
+    set UserName = #{username,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      CredentialsSalt = #{credentialssalt,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      MobilePhone = #{mobilephone,jdbcType=CHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      Career = #{career,jdbcType=VARCHAR},
+      Industry = #{industry,jdbcType=VARCHAR},
+      Locked = #{locked,jdbcType=VARCHAR},
+      SignTime = #{signtime,jdbcType=CHAR}
+    where UserNo = #{userno,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select UserNo, UserName, Password, CredentialsSalt, Email, MobilePhone, Address, 
+    Career, Industry, Locked, SignTime
+    from user
+    where UserNo = #{userno,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select UserNo, UserName, Password, CredentialsSalt, Email, MobilePhone, Address, 
+    Career, Industry, Locked, SignTime
+    from user
+  </select>
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select UserNo, UserName, Password, CredentialsSalt, Email, MobilePhone, Address, 
+    Career, Industry, Locked, SignTime
+    from user 
+    where UserName = #{username,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -5,13 +5,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.nblog.bean.User;
-import com.nblog.dao.UserDao;
+import com.nblog.dao.UserMapper;
 import com.nblog.service.UserService;
 @Service("userService")
 public class UserServiceImpl extends BaseServiceImpl implements UserService {
 	
 	@Resource
-	private UserDao userDao;
+	private UserMapper userMapper;
 
 	@Override
 	public User getUserById(int userId) {

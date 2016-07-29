@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nblog.dao.RoleResourcesMapper">
+  <resultMap id="BaseResultMap" type="com.nblog.bean.RoleResources">
+    <id column="RoleId" jdbcType="INTEGER" property="roleid" />
+    <id column="ResId" jdbcType="INTEGER" property="resid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from roleresources
+    where RoleId = #{roleid,jdbcType=INTEGER}
+      and ResId = #{resid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nblog.bean.RoleResources">
+    insert into roleresources (RoleId, ResId)
+    values (#{roleid,jdbcType=INTEGER}, #{resid,jdbcType=INTEGER})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select RoleId, ResId
+    from roleresources
+  </select>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nblog.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.nblog.bean.Role">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="State" jdbcType="VARCHAR" property="state" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="Flag" jdbcType="VARCHAR" property="flag" />
+    <result column="Description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from role
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nblog.bean.Role">
+    insert into role (Id, State, Name, 
+      Flag, Description)
+    values (#{id,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nblog.bean.Role">
+    update role
+    set State = #{state,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      Flag = #{flag,jdbcType=VARCHAR},
+      Description = #{description,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select Id, State, Name, Flag, Description
+    from role
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select Id, State, Name, Flag, Description
+    from role
+  </select>
+  
+</mapper>

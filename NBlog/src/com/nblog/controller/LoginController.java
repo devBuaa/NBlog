@@ -61,8 +61,8 @@ public class LoginController {
 	@Token(remove=true)
 	public ModelAndView register(@ModelAttribute User user){
 		
-		user.setUserNo(IDGenerator.getInstance().getID());
-		user.setSignTime(DateUtil.getTimestamp());
+		user.setUserno(IDGenerator.getInstance().getID());
+		user.setSigntime(DateUtil.getTimestamp());
 		PasswordHelper passwordHelper = new PasswordHelper();
 		passwordHelper.encryptPassword(user);
 		try {
@@ -123,6 +123,7 @@ public class LoginController {
 				request.setAttribute("error", "用户或密码不正确！");
 				return new ModelAndView("common/login");
 			}
+			
 			// 设置登陆信息 插入到表中
 			/*
 			 * User userLogin = new UserLoginFormMap(); Session session =
@@ -132,11 +133,12 @@ public class LoginController {
 			 * session.getHost()); userLoginMapper.addEntity(userLogin);
 			 */
 			request.removeAttribute("error");
+			return new ModelAndView("index");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("error", "登录异常，请联系管理员！");
 			return new ModelAndView("common/login");
 		}
-		return new ModelAndView("common/index");
+		
 	}
 }

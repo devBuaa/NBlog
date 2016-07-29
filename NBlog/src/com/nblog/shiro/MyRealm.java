@@ -2,7 +2,7 @@ package com.nblog.shiro;
 
 import java.util.List;
 
-import javax.inject.Inject;
+import javax.annotation.Resource;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -20,27 +20,24 @@ import org.apache.shiro.util.ByteSource;
 
 import com.nblog.bean.Resources;
 import com.nblog.bean.User;
-import com.nblog.dao.ResourcesDao;
-import com.nblog.dao.UserDao;
-import com.nblog.util.FormMap;
-import com.nblog.util.SqlUtil;
+import com.nblog.dao.ResourcesMapper;
+import com.nblog.dao.UserMapper;
 
 
 
 /**
  * 自定义Realm,进行数据源配置
  * 
- * @author nblog 2014-12-25
- * @Email: mmm333zzz520@163.com
- * @version 3.0v
+ * @author hsu
+ *
  */
 public class MyRealm extends AuthorizingRealm {
 
-	@Inject
-	private ResourcesDao resourcesDao;
+	@Resource
+	private ResourcesMapper resourcesMapper;
 
-	@Inject
-	private UserDao userDao;
+	@Resource
+	private UserMapper userMapper;
 
 	/**
 	 * 只有需要验证权限时才会调用, 授权查询回调函数, 进行鉴权但缓存中无用户的授权信息时调用.在配有缓存的情况下，只加载一次.
@@ -50,7 +47,7 @@ public class MyRealm extends AuthorizingRealm {
 		String loginName = SecurityUtils.getSubject().getPrincipal().toString();
 		if (loginName != null) {
 			String userNo = SecurityUtils.getSubject().getSession().getAttribute("userSessionId").toString();
-			List<Resources> rs = resourcesDao.findUserResources(userNo);
+			List<Resources> rs = resourcesMapper.selectbyUserno(userNo);
 			// 权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
 			SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 			// 用户的角色集合
@@ -59,7 +56,7 @@ public class MyRealm extends AuthorizingRealm {
 			// info.setRoles(user.getRolesName());
 			// 用户的角色对应的所有权限，如果只使用角色定义访问权限
 			for (Resources resources : rs) {
-				info.addStringPermission(resources.get("ResKey").toString());
+				info.addStringPermission(resources.getReskey().toString());
 			}
 
 			return info;
@@ -81,12 +78,10 @@ public class MyRealm extends AuthorizingRealm {
 		String username = (String) token.getPrincipal();
 
 		User user = new User();
-		user.setUserName(username);
-		List<FormMap<String, Object>> lists = userDao.findByWhere(SqlUtil.buildSelectAllMap(user));
-		if (lists.size()>0) {
-			User getUser = new User();
-			lists.get(0).transMap2Bean(getUser);
-			if ("2".equals(getUser.getLocked())) {
+		user.setUsername(username);
+		User usr = userMapper.selectByUsername(username);
+		if (usr!=null) {
+			if ("2".equals(usr.getLocked())) {
 				throw new LockedAccountException(); // 帐号锁定
 			}
 			// 从数据库查询出来的账号名和密码,与用户输入的账号和密码对比
@@ -94,14 +89,14 @@ public class MyRealm extends AuthorizingRealm {
 			// 然后会自动进入这个类进行认证
 			// 交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
 			SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(username, // 用户名
-					getUser.getPassword(), // 密码
-					ByteSource.Util.bytes(username + "" + getUser.getCredentialsSalt()),// salt=username+salt
+			        usr.getPassword(), // 密码
+					ByteSource.Util.bytes(username + "" + usr.getCredentialssalt()),// salt=username+salt
 					getName() // realm name
 			);
 			// 当验证都通过后，把用户信息放在session里
 			Session session = SecurityUtils.getSubject().getSession();
-			session.setAttribute("userSession", getUser);
-			session.setAttribute("userSessionId", getUser.getUserNo());
+			session.setAttribute("userSession", usr);
+			session.setAttribute("userSessionId", usr.getUserno());
 			return authenticationInfo;
 		} else {
 			throw new UnknownAccountException();// 没找到帐号

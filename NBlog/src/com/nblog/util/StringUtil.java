@@ -2,8 +2,6 @@ package com.nblog.util;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.XPath.Step;
-
 public class StringUtil {
 	public static final String DEFAULT_CHARSET = "UTF-8";
 
