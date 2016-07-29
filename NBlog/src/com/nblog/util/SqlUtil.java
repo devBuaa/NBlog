@@ -33,14 +33,6 @@ public class SqlUtil {
 		return insertMap;
 	}
 	
-	public static Map<String,Object> buildSelectAllMap(Object obj){
-		Map<String,Object> selectAllMap = new HashMap<String, Object>();
-		Class<?> clazz = obj.getClass();
-		selectAllMap.putAll(getTableNameMap(clazz));
-		selectAllMap.putAll(convertBeanToWhereMap(obj));
-		return selectAllMap;
-	}
-	
 	
 	/**
 	 * 得到表名对应的Map("tableName",tableName)
@@ -48,8 +40,8 @@ public class SqlUtil {
 	 * @return
 	 */
 	@SuppressWarnings({ "rawtypes" })
-	public static FormMap<String, Object> getTableNameMap(Class clazz){
-		FormMap<String, Object> map = new  FormMap<String, Object>();
+	public static HashMap<String, Object> getTableNameMap(Class clazz){
+	    HashMap<String, Object> map = new  HashMap<String, Object>();
 		String tableName=getTableName(clazz);
 		if(tableName!=null){
 			map.put("tableName", tableName);
@@ -74,19 +66,6 @@ public class SqlUtil {
 		return null;
 		
 	}
-	
-	/**
-	 * 得到所有字段名
-	 * @param clazz
-	 * @return
-	 */
-	@SuppressWarnings({ "rawtypes", "unchecked"})
-	public static FormMap<String, Object> getFields(Class clazz){
-		FormMap<String, Object> map=(FormMap<String, Object>) EhcacheUtils.get(getTableName(clazz));
-		return map;
-		
-	}
-	
 	
 	 /**
 	  * 将对象转成键值对Map
@@ -140,7 +119,7 @@ public class SqlUtil {
 	            BeanInfo beanInfo = Introspector.getBeanInfo(object.getClass());  
 	            PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();  
 	            for (PropertyDescriptor property : propertyDescriptors) {  
-	            	//表字段首字母统一大写
+	            	//表字段首字母大写
 	                String key = StringUtil.initCap(property.getName());  
 	                if (!key.equals("Class") && !key.equals("Empty")) {  
 	                    Method getter = property.getReadMethod();  
@@ -175,57 +154,5 @@ public class SqlUtil {
 	        }  
 	 }
 	
-	 /**
-	  * 将对象转成可以传入xml的where条件的Map对象
-	  * 格式：
-	  * 	K =  字段名，字段名，字段名...
-	  * 	V =  '值'，'值'，'值'...
-	 * @param object
-	 * @return
-	 */
-	public static Map<String, Object> convertBeanToWhereMap(Object object){
-		 if(object == null){  
-	            return null;  
-	     }
-		 Map<String, Object> map = new HashMap<String, Object>();  
-		 StringBuffer values=new StringBuffer();
-		 try {  
-	            BeanInfo beanInfo = Introspector.getBeanInfo(object.getClass());  
-	            PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();  
-	            for (PropertyDescriptor property : propertyDescriptors) {  
-	            	//表字段首字母统一大写
-	                String key = StringUtil.initCap(property.getName());  
-	                if (!key.equals("Class") && !key.equals("Empty")) {  
-	                    Method getter = property.getReadMethod();  
-	                    Object value = getter.invoke(object);
-	                    if(value instanceof String){
-	                    	if(StringUtil.isNotEmpty((String)value)){
-		                    	//一定需要加引号表示字符串
-		                    	values.append(key).append("=").append("'"+value+"'").append(" and ");
-		                    } 	   
-	                    }else if((value instanceof Integer)|| 
-	                    		  (value instanceof Double) || 
-	                    		  (value instanceof Float)  ||
-	                    		  (value instanceof Long)){
-	                    	if(StringUtil.isNotEmpty(value+"")){
-		                    	//非字符串不能加引号
-	                    		values.append(key).append("=").append(value).append(" and ");
-		                    } 	   
-	                    }
-	                                   
-	                }  
-	            }
-	            String string = values.toString();
-	            string = string.substring(0, string.length()-4);
-	            map.put("Condition",string);
-	            return map;
-	        } catch (Exception e) {  
-	        	LoggerManager.getLogger(SqlUtil.class).error("convert convertBeanToWhereMap Error : "+ e.getMessage() +"---"+e);  
-	        	return null;
-	        }  
-	 }
-	
-	
-	
-	
+	 
 }

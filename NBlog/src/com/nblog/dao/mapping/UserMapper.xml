@@ -59,4 +59,9 @@
     from user 
     where UserName = #{username,jdbcType=VARCHAR}
   </select>
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select UserNo, UserName, Password, CredentialsSalt, Email, MobilePhone, Address, 
+    Career, Industry, Locked, SignTime
+    from user
+  </select>
 </mapper>

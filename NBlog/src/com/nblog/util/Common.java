@@ -464,9 +464,9 @@ public class Common {
 		return pattern.matcher(str).matches();
 	}
 
-	public static FormMap<String, Object> toHashMap(Object parameterObject) {
+	public static HashMap<String, Object> toHashMap(Object parameterObject) {
 		@SuppressWarnings("unchecked")
-		FormMap<String, Object> froMmap = (FormMap<String, Object>) parameterObject;
+		HashMap<String, Object> froMmap = (HashMap<String, Object>) parameterObject;
 		try {
 			String name = parameterObject.getClass().getName();
 			Class<?> clazz = Class.forName(name);

@@ -1,16 +1,18 @@
 package com.nblog.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nblog.bean.User;
 import com.nblog.service.UserService;
+import com.nblog.util.Page;
 
 /**
  * 用户管理控制器
@@ -32,12 +34,12 @@ public class UserController {
 	
 	
 	@RequestMapping("/showUser")  
-	public ModelAndView getUser(HttpServletRequest request,HttpServletResponse response){
-		int userId = Integer.parseInt(request.getParameter("id"));  
-        User user = this.userService.getUserById(userId);  
-        Logger logger=Logger.getLogger(UserController.class);
-        logger.info(user.toString());  
-		return new ModelAndView("index", "user",user);
+	public ModelAndView getUsers(String pageNo,HttpServletRequest request,HttpServletResponse response){
+	    Page<User> page = new Page<User>();
+        page.setPageNo(Integer.parseInt(pageNo));
+        List<User> users = this.userService.getUserByPage(page);
+        page.setResults(users);
+		return new ModelAndView("index", "page",page);
 	}
 	
 	

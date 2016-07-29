@@ -71,6 +71,7 @@
 			<value>
 			/register = anon
 			/login = anon
+			/user/** = anon
 			/favicon.ico = anon
     		/admin_files/** = anon
     		/fonts/** = anon
