@@ -1,6 +1,6 @@
 package com.nblog.controller;
 
-import javax.inject.Inject;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,6 +9,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nblog.annotation.Token;
+import com.nblog.bean.Login;
 import com.nblog.bean.User;
 import com.nblog.service.BaseService;
 import com.nblog.util.DateUtil;
@@ -39,7 +41,7 @@ import com.nblog.util.StringUtil;
 @Controller
 public class LoginController {
 	
-	@Inject
+	@Resource
 	private BaseService baseService;
 	/**
 	 * 注册界面跳转
@@ -60,7 +62,7 @@ public class LoginController {
 	@RequestMapping(value="/register", method = RequestMethod.POST)  
 	@Token(remove=true)
 	public ModelAndView register(@ModelAttribute User user){
-		
+		  
 		user.setUserno(IDGenerator.getInstance().getID());
 		user.setSigntime(DateUtil.getTimestamp());
 		PasswordHelper passwordHelper = new PasswordHelper();
@@ -95,9 +97,10 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	@Token(remove=true)
-	public ModelAndView login(String UserName, String Password,HttpServletRequest request,HttpServletResponse response){
+	public ModelAndView login(String username, String password,HttpServletRequest request,HttpServletResponse response){
+	    
 		try {
-			if (StringUtil.isEmpty(UserName) || StringUtil.isEmpty(Password)) {
+			if (StringUtil.isEmpty(username) || StringUtil.isEmpty(password)) {
 				request.setAttribute("error", "用户名或密码不能为空！");
 				return new ModelAndView("common/login");
 			}
@@ -106,7 +109,7 @@ public class LoginController {
 			// 用户输入的账号和密码,,存到UsernamePasswordToken对象中..然后由shiro内部认证对比,
 			// 认证执行者交由ShiroDbRealm中doGetAuthenticationInfo处理
 			// 当以上认证成功后会向下执行,认证失败会抛出异常
-			UsernamePasswordToken token = new UsernamePasswordToken(UserName,Password);
+			UsernamePasswordToken token = new UsernamePasswordToken(username,password);
 			try {
 				user.login(token);
 			} catch (LockedAccountException lae) {
@@ -115,7 +118,7 @@ public class LoginController {
 				return new ModelAndView("common/login");
 			} catch (ExcessiveAttemptsException e) {
 				token.clear();
-				request.setAttribute("error", "账号：" + UserName
+				request.setAttribute("error", "账号：" + username
 						+ " 登录失败次数过多,锁定10分钟!");
 				return new ModelAndView("common/login");
 			} catch (AuthenticationException e) {
@@ -124,14 +127,14 @@ public class LoginController {
 				return new ModelAndView("common/login");
 			}
 			
-			// 设置登陆信息 插入到表中
-			/*
-			 * User userLogin = new UserLoginFormMap(); Session session =
-			 * SecurityUtils.getSubject().getSession(); userLogin.put("userId",
-			 * session.getAttribute("userSessionId"));
-			 * userLogin.put("accountName", username); userLogin.put("loginIP",
-			 * session.getHost()); userLoginMapper.addEntity(userLogin);
-			 */
+			// 设置登陆信息 插入到Login表中
+			Login login = new Login();
+			Session session = SecurityUtils.getSubject().getSession();
+			login.setName(username);
+			login.setLoginip(session.getHost());
+			login.setSystemno(IDGenerator.getInstance().getID());
+			baseService.insertBean(login);
+			
 			request.removeAttribute("error");
 			return new ModelAndView("index");
 		} catch (Exception e) {

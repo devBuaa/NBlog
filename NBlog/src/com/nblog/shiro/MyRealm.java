@@ -75,10 +75,8 @@ public class MyRealm extends AuthorizingRealm {
 	 * CredentialsMatcher使用盐加密传入的明文密码和此处的密文密码进行匹配。
 	 */
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+	    
 		String username = (String) token.getPrincipal();
-
-		User user = new User();
-		user.setUsername(username);
 		User usr = userMapper.selectByUsername(username);
 		if (usr!=null) {
 			if ("2".equals(usr.getLocked())) {
@@ -96,7 +94,7 @@ public class MyRealm extends AuthorizingRealm {
 			// 当验证都通过后，把用户信息放在session里
 			Session session = SecurityUtils.getSubject().getSession();
 			session.setAttribute("userSession", usr);
-			session.setAttribute("userSessionId", usr.getUserno());
+			session.setAttribute("usernameSession", usr.getUsername());
 			return authenticationInfo;
 		} else {
 			throw new UnknownAccountException();// 没找到帐号

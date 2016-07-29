@@ -27,14 +27,14 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
             if (annotation != null) {
                 boolean needSaveSession = annotation.save();
                 if (needSaveSession) {
-                    request.getSession(false).setAttribute("token", UUID.randomUUID().toString());
+                    request.getSession(true).setAttribute("token", UUID.randomUUID().toString());
                 }
                 boolean needRemoveSession = annotation.remove();
                 if (needRemoveSession) {
                     if (isRepeatSubmit(request)) {
                         return false;
                     }
-                    request.getSession(false).removeAttribute("token");
+                    request.getSession(true).removeAttribute("token");
                 }
             }
             return true;
@@ -44,7 +44,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
     }
     
     private boolean isRepeatSubmit(HttpServletRequest request) {
-        String serverToken = (String) request.getSession(false).getAttribute("token");
+        String serverToken = (String) request.getSession(true).getAttribute("token");
         if (serverToken == null) {
             return true;
         }

@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<div id="username_inputmiddle">
 				
-					<input type="text" name="UserName" id="url" value="用户名" onclick="this.value = ''">
+					<input type="text" name="username" id="url" value="用户名" onclick="this.value = ''">
 					<img id="url_user" src="<%=basePath %>images/mailicon.png" alt="">
 				
 				</div>
@@ -74,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div id="email_inputleft"></div>
 				<div id="email_inputmiddle">
 				
-					<input type="text" name="Email" id="url" value="邮箱" onclick="this.value = ''">
+					<input type="text" name="email" id="url" value="邮箱" onclick="this.value = ''">
 					<img id="url_email" src="<%=basePath %>images/mailicon.png" alt="">
 				
 				</div>
@@ -89,7 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<div id="password_inputmiddle">
 				
-					<input type="password" name="Password" id="url" value="Password" onclick="this.value = ''">
+					<input type="password" name="password" id="url" value="" onclick="this.value = ''">
 					<img id="url_password" src="<%=basePath %>images/passicon.png" alt="">
 				
 				</div>

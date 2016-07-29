@@ -5,6 +5,8 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.nblog.dao.BaseMapper;
 import com.nblog.service.BaseService;
@@ -17,6 +19,7 @@ public class BaseServiceImpl implements BaseService {
 	private BaseMapper baseMapper;
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED , rollbackFor = Exception.class)
 	public void insertBean(Object object) throws Exception{
 		// TODO Auto-generated method stub
 		Map<String, Object> insertMap = SqlUtil.buildInsertMap(object);

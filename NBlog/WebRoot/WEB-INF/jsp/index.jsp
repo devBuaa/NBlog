@@ -23,8 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
  	
- 		姓名：${user.name}
- 		年龄：${user.age}
+ 		登录成功
 
   
   </body>
