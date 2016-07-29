@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nblog.annotation.Token;
 import com.nblog.bean.User;
 import com.nblog.service.BaseService;
 import com.nblog.util.DateUtil;
@@ -46,7 +47,8 @@ public class LoginController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value="/register", method = RequestMethod.GET)  
+	@RequestMapping(value="/register", method = RequestMethod.GET)
+	@Token(save=true)
 	public ModelAndView registerForward(HttpServletRequest request,HttpServletResponse response){
 		return new ModelAndView("common/register");
 	}
@@ -56,6 +58,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value="/register", method = RequestMethod.POST)  
+	@Token(remove=true)
 	public ModelAndView register(@ModelAttribute User user){
 		
 		user.setUserNo(IDGenerator.getInstance().getID());
@@ -78,7 +81,8 @@ public class LoginController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value="/login", method = RequestMethod.GET)  
+	@RequestMapping(value="/login", method = RequestMethod.GET)
+	@Token(save=true)
 	public ModelAndView loginForward(HttpServletRequest request,HttpServletResponse response){
 		request.removeAttribute("error");
 		return new ModelAndView("common/login");
@@ -89,7 +93,8 @@ public class LoginController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "login", method = RequestMethod.POST)  
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	@Token(remove=true)
 	public ModelAndView login(String UserName, String Password,HttpServletRequest request,HttpServletResponse response){
 		try {
 			if (StringUtil.isEmpty(UserName) || StringUtil.isEmpty(Password)) {

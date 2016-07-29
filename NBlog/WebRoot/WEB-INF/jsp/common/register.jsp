@@ -97,6 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div id="password_inputright"></div>
 
 			</div>
+			<input type="hidden"  name="token"  value="${token}" />
 			
 
 			<div id="submit">
