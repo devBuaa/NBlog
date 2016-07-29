@@ -30,17 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script>
 
 
-	$(document).ready(function(){
- 
-	$("#submit1").hover(
-	function() {
-	$(this).animate({"opacity": "0"}, "slow");
-	},
-	function() {
-	$(this).animate({"opacity": "1"}, "slow");
-	});
- 	});
-
+	
 
 </script>
 	

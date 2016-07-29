@@ -56,8 +56,7 @@ public class LoginController {
 		return new ModelAndView("common/register");
 	}
 	/**注册
-	 * @param request
-	 * @param response
+	 * @param user
 	 * @return
 	 */
 	@RequestMapping(value="/register", method = RequestMethod.POST)  
