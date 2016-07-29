@@ -32,6 +32,8 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
                 boolean needRemoveSession = annotation.remove();
                 if (needRemoveSession) {
                     if (isRepeatSubmit(request)) {
+                        response.setCharacterEncoding("utf-8");
+                        response.getWriter().write("请勿重复提交");
                         return false;
                     }
                     request.getSession(true).removeAttribute("token");
@@ -42,6 +44,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
             return super.preHandle(request, response, handler);
         }
     }
+
     
     private boolean isRepeatSubmit(HttpServletRequest request) {
         String serverToken = (String) request.getSession(true).getAttribute("token");

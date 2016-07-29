@@ -11,6 +11,7 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,6 +71,8 @@ public class LoginController {
 		try {
 			baseService.insertBean(user);
 			return new ModelAndView("common/login");
+		}catch(DuplicateKeyException e){
+		    return new ModelAndView("common/register");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,7 +87,6 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value="/login", method = RequestMethod.GET)
-	@Token(save=true)
 	public ModelAndView loginForward(HttpServletRequest request,HttpServletResponse response){
 		request.removeAttribute("error");
 		return new ModelAndView("common/login");
@@ -96,7 +98,6 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	@Token(remove=true)
 	public ModelAndView login(String username, String password,HttpServletRequest request,HttpServletResponse response){
 	    
 		try {
@@ -126,7 +127,6 @@ public class LoginController {
 				request.setAttribute("error", "用户或密码不正确！");
 				return new ModelAndView("common/login");
 			}
-			
 			// 设置登陆信息 插入到Login表中
 			Login login = new Login();
 			Session session = SecurityUtils.getSubject().getSession();
