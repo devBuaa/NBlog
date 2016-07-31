@@ -114,7 +114,7 @@ public class LoginController {
 				user.login(token);
 			} catch (LockedAccountException lae) {
 				token.clear();
-				request.setAttribute("error", "用户已经被锁定不能登录，请与管理员联系！");
+				request.setAttribute("error", "用户已经被锁定不能登录！");
 				return new ModelAndView("common/login");
 			} catch (ExcessiveAttemptsException e) {
 				token.clear();
@@ -135,7 +135,7 @@ public class LoginController {
 			baseService.insertBean(login);
 			
 			request.removeAttribute("error");
-			return new ModelAndView("index");
+			return new ModelAndView("main");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("error", "登录异常，请联系管理员！");

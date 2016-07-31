@@ -61,7 +61,7 @@ body {
 			<ul class="nav navbar-nav navbar-right">
 				<li class="active"><a>游客，欢迎您 <span class="sr-only">(current)</span></a></li>
 				<li><a onclick="popBox();">登录</a></li>
-				<li><a href="register">注册</a></li>
+				<li><a href="<%=basePath%>register">注册</a></li>
 			</ul>
 		</div>
 
@@ -133,7 +133,7 @@ body {
 			</div>
 			<div class="login-content ">
 				<div class="form">
-					<form>
+					<form action="<%=basePath%>login" method="post">
 						<div class="form-group">
 							<div class="col-xs-12  ">
 								<div class="input-group">
@@ -160,18 +160,6 @@ body {
 									in</button>
 							</div>
 						</div>
-						<div class="form-group" id="errorMessage" style="display: none;">
-							<div class="col-xs-6">
-								<p class="text-center remove-margin">
-									<small style="color:#ff00ee">登陆失败：</small>
-								</p>
-							</div>
-							<div class="col-xs-6">
-								<p class="text-center remove-margin">
-									<small style="color:#ff00ee" id="errorInfo"></small>
-								</p>
-							</div>
-						</div>
 						<div class="form-group">
 							<div class="col-xs-6">
 								<p class="text-center remove-margin">
@@ -180,7 +168,7 @@ body {
 							</div>
 							<div class="col-xs-6">
 								<p class="text-center remove-margin">
-									<a href="javascript:void(0)"><small>Register</small></a>
+									<a href="<%=basePath%>register"><small>Register</small></a>
 								</p>
 							</div>
 						</div>
@@ -196,7 +184,6 @@ body {
 	<script type="text/javascript" src="<%=basePath%>js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>js/jquery.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>js/collapse.js"></script>
-	<script type="text/javascript" src="<%=basePath%>js/modal.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="<%=basePath%>js/ie10-viewport-bug-workaround.js"></script>
 	<script type="text/javascript">
@@ -211,31 +198,7 @@ body {
 		 $(".box").css({visibility:"hidden"});   
 	});
 	$(document).ready(function () {
-	$("form").submit(function () {
-            $.ajax({
-                	type: "POST",
-                	url: "<%=basePath%>login",
-					async : false,
-					data : {
-						username : $("input[name='username']").val(),
-						password : $("input[name='password']").val()
-					},
-					success : function(data) {
-						var code = data;
-						if (code==2000) {
-							window.location.href = "<%=basePath%>main";
-						} else {				
-							$(".errorInfo").val(code);
-							$(".errorMessage").css('display','block'); 
-						}
-					},
-					error : function() {
-						alert("用户名密码验证失败")
-					}
-
-				});
-
-			});
+	
 	});
 		});
 	</script>
