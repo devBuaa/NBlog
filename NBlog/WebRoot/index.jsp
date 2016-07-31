@@ -140,7 +140,7 @@ body {
 									<span class="input-group-addon"><span
 										class="glyphicon glyphicon-user"></span></span> <input type="text"
 										id="username" name="username" class="form-control"
-										placeholder="username" required autofocus>
+										placeholder="username" required>
 								</div>
 							</div>
 						</div>
@@ -148,9 +148,9 @@ body {
 							<div class="col-xs-12  ">
 								<div class="input-group">
 									<span class="input-group-addon"><span
-										class="glyphicon glyphicon-lock"></span></span> <input type="password"
-										id="password" name="password" class="form-control"
-										placeholder="password" required>
+										class="glyphicon glyphicon-lock"></span></span> <input
+										type="password" id="password" name="password"
+										class="form-control" placeholder="password" required>
 								</div>
 							</div>
 						</div>
@@ -184,22 +184,28 @@ body {
 	<script type="text/javascript" src="<%=basePath%>js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>js/jquery.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>js/collapse.js"></script>
+	<script type="text/javascript" src="<%=basePath%>js/keyAst.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="<%=basePath%>js/ie10-viewport-bug-workaround.js"></script>
 	<script type="text/javascript">
-	function popBox(){
-		 $("#mask").css({visibility:"visible"});
-		 $(".box").css({visibility:"visible"});      
-	}
-	
-   $(document).ready(function(){
-	$("#mask").mousedown(function(e){ 
-		 $("#mask").css({visibility:"hidden"});
-		 $(".box").css({visibility:"hidden"});   
-	});
-	$(document).ready(function () {
-	
-	});
+		function popBox() {
+			$("#mask").css({
+				visibility : "visible"
+			});
+			$(".box").css({
+				visibility : "visible"
+			});
+		}
+
+		$(document).ready(function() {
+			$("#mask").mousedown(function(e) {
+				$("#mask").css({
+					visibility : "hidden"
+				});
+				$(".box").css({
+					visibility : "hidden"
+				});
+			});
 		});
 	</script>
 </body>

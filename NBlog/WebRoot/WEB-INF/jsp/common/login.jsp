@@ -71,7 +71,7 @@
 									<span class="input-group-addon"><span
 										class="glyphicon glyphicon-user"></span></span> <input type="text"
 										id="username" name="username" class="form-control"
-										placeholder="username" required autofocus>
+										placeholder="username" required>
 								</div>
 							</div>
 						</div>
@@ -119,6 +119,7 @@
 	<script type="text/javascript" src="<%=basePath%>js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>js/jquery.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>js/collapse.js"></script>
+	<script type="text/javascript" src="<%=basePath%>js/keyAst.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="<%=basePath%>js/ie10-viewport-bug-workaround.js"></script>
 </body>
