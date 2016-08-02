@@ -56,7 +56,8 @@ CREATE TABLE RoleResources (
 
 Drop Table If Exists UserPasswordChange;
 Create Table UserPasswordChange
-	(Name varchar(64) Not Null,
+	(SystemNo varchar(32) PRIMARY KEY,
+	 Name varchar(64) Not Null,
 	 OldPassword varchar(64) Not Null,
 	 NewPassword varchar(64) Not Null,
 	 ChangeTime varchar(64) Not Null,

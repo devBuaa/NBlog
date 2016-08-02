@@ -1,0 +1,118 @@
+<#include "/macro.include"/>
+<#assign className = table.className>   
+<#assign classNameFirstLower = table.classNameFirstLower>   
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<#macro mapperEl value>${r"#{"}${value}}</#macro>
+<#macro namespace>${className}.</#macro>
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.nblog.dao.${className}Mapper">
+
+	<resultMap id="BaseResultMap" type="${basepackage}.bean.${className}">
+		<id column="${table.pkColumn.columnName}" jdbcType="${table.pkColumn.sqlTypeName}" property="${table.pkColumn.columnNameFirstLower}" />
+        <#list table.columns as column>
+        <result column="${column.sqlName}" jdbcType="${column.sqlTypeName}" property="${column.columnNameLower}"/>
+		</#list>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="<@namespace/>columns">
+	    
+		<#list table.columns as column>
+        	${column.sqlName}<#if column_has_next>,</#if>
+        </#list>
+	    
+	</sql>
+	
+	<delete id="deleteByPrimaryKey" parameterType="${table.pkColumn.javaType}">
+		DELETE FROM ${table.sqlName}
+			WHERE ${table.pkColumn.columnName} = <@mapperEl table.pkColumn.columnNameFirstLower/>
+	</delete>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="<@namespace/>insert" parameterType="${basepackage}.bean.${className}" useGeneratedKeys="true" keyProperty="${table.idColumn.columnNameFirstLower}">
+    
+        INSERT INTO ${table.sqlName} (
+        <#list table.columns as column>
+        	${column.sqlName} <#if column_has_next>,</#if>
+        </#list>
+        ) VALUES (
+        <#list table.columns as column>
+			<@mapperEl column.columnNameLower/> <#if column_has_next>,</#if>
+        </#list>        
+        )
+	</insert>
+	
+	<select id="selectByPrimaryKey" parameterType="${table.pkColumn.javaType}" resultMap="BaseResultMap">
+		SELECT <include refid="<@namespace/>columns" />
+		FROM ${table.sqlName}
+		WHERE ${table.pkColumn.columnName} = <@mapperEl table.pkColumn.columnNameFirstLower/>
+	</select>
+	
+	<select id="selectAll" resultMap="BaseResultMap">
+		SELECT <include refid="<@namespace/>columns" />
+		FROM ${table.sqlName}
+	</select>
+	
+	<#list table.columns as column>
+		<#if column.unique && !column.pk>
+			<select id="selectByUsername" parameterType="${column.javaType}" resultMap="BaseResultMap">
+				SELECT <include refid="<@namespace/>columns" />
+				FROM ${table.sqlName}
+				WHERE ${column.columnName} = <@mapperEl column.columnNameFirstLower/>
+			</select>
+		</#if>
+	</#list>
+	
+	<select id="selectByPage" resultMap="BaseResultMap">
+		SELECT <include refid="<@namespace/>columns" />
+		FROM ${table.sqlName}
+	</select>
+	
+	<update id="updateByPrimaryKey" parameterType="${basepackage}.bean.${className}">
+		UPDATE ${table.sqlName} SET
+	        <#list table.notPkColumns as column>
+	        ${column.sqlName} = <@mapperEl column.columnNameFirstLower/> <#if column_has_next>,</#if>
+	        </#list>
+        WHERE ${table.pkColumn.columnName} = <@mapperEl table.pkColumn.columnNameFirstLower/>
+	</update>
+	
+	<update id="updateByPrimaryKeys">   
+        UPDATE ${table.sqlName} SET
+	        <#list table.notPkColumns as column>
+	        ${column.sqlName} = <@mapperEl column.columnNameFirstLower/> <#if column_has_next>,</#if>
+	        </#list>
+        WHERE 
+        	<#list table.compositeIdColumns as column>
+	        ${column.sqlName} = <@mapperEl column.columnNameLower/> <#if column_has_next>,</#if>
+	        </#list>	            
+	</update>
+
+    <delete id="deleteByPrimaryKeys"> 
+        DELETE FROM ${table.sqlName} WHERE
+        <#list table.compositeIdColumns as column>
+        ${column.sqlName} = <@mapperEl 'id'/> <#if column_has_next>,</#if>
+		</#list>   
+    </delete>
+	
+	 <delete id="delete"> 
+        DELETE FROM ${table.sqlName} WHERE
+        <include refid="<@namespace/>where" />
+    </delete>
+	
+	<sql id="<@namespace/>where">
+		<where>	      				
+	        <#list table.columns as column>
+              <if test="${column.columnNameFirstLower} != null" >
+                        AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower/>  
+               </if>
+            </#list>    
+		</where>
+	</sql>
+		
+
+	
+</mapper>
+
