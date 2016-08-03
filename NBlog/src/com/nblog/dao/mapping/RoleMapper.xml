@@ -1,39 +1,118 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
 <mapper namespace="com.nblog.dao.RoleMapper">
-  <resultMap id="BaseResultMap" type="com.nblog.bean.Role">
-    <id column="Id" jdbcType="INTEGER" property="id" />
-    <result column="State" jdbcType="VARCHAR" property="state" />
-    <result column="Name" jdbcType="VARCHAR" property="name" />
-    <result column="Flag" jdbcType="VARCHAR" property="flag" />
-    <result column="Description" jdbcType="VARCHAR" property="description" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from role
-    where Id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.nblog.bean.Role">
-    insert into role (Id, State, Name, 
-      Flag, Description)
-    values (#{id,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{flag,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.nblog.bean.Role">
-    update role
-    set State = #{state,jdbcType=VARCHAR},
-      Name = #{name,jdbcType=VARCHAR},
-      Flag = #{flag,jdbcType=VARCHAR},
-      Description = #{description,jdbcType=VARCHAR}
-    where Id = #{id,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select Id, State, Name, Flag, Description
-    from role
-    where Id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select Id, State, Name, Flag, Description
-    from role
-  </select>
-  
+
+	<resultMap id="BaseResultMap" type="com.nblog.bean.Role">
+		
+		<id column="Id" jdbcType="INTEGER" property="id" />
+        <result column="State" jdbcType="INTEGER" property="state"/>
+        <result column="Name" jdbcType="INTEGER" property="name"/>
+        <result column="Flag" jdbcType="INTEGER" property="flag"/>
+        <result column="Description" jdbcType="INTEGER" property="description"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="Role_columns">
+	    
+        	Id,
+        	State,
+        	Name,
+        	Flag,
+        	Description
+	    
+	</sql>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		DELETE FROM Role
+			WHERE Id = #{id}
+	</delete>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="insert" parameterType="com.nblog.bean.Role" useGeneratedKeys="true" keyProperty="id">
+    
+        INSERT INTO Role (
+        	Id ,
+        	State ,
+        	Name ,
+        	Flag ,
+        	Description 
+        ) VALUES (
+			#{id} ,
+			#{state} ,
+			#{name} ,
+			#{flag} ,
+			#{description} 
+        )
+	</insert>
+	
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		SELECT <include refid="Role_columns" />
+		FROM Role
+		WHERE Id = #{id}
+	</select>
+	
+	<select id="selectAll" resultMap="BaseResultMap">
+		SELECT <include refid="Role_columns" />
+		FROM Role
+	</select>
+	
+	<select id="selectByPage" resultMap="BaseResultMap">
+		SELECT <include refid="Role_columns" />
+		FROM Role
+	</select>
+	
+	<update id="updateByPrimaryKey" parameterType="com.nblog.bean.Role">
+		UPDATE Role SET
+	        State = #{state} ,
+	        Name = #{name} ,
+	        Flag = #{flag} ,
+	        Description = #{description} 
+        WHERE Id = #{id}
+	</update>
+	
+	<update id="updateByPrimaryKeys">   
+        UPDATE Role SET
+	        State = #{state} ,
+	        Name = #{name} ,
+	        Flag = #{flag} ,
+	        Description = #{description} 
+        WHERE 
+	        Id = #{id} 
+	</update>
+
+    <delete id="deleteByPrimaryKeys"> 
+        DELETE FROM Role WHERE
+        Id = #{id} 
+    </delete>
+	
+	 <delete id="delete"> 
+        DELETE FROM Role WHERE
+        <include refid="Role_where" />
+    </delete>
+	
+	<sql id="Role_where">
+		<where>	      				
+              <if test="id != null" >
+                        AND Id = #{id}  
+               </if>
+              <if test="state != null" >
+                        AND State = #{state}  
+               </if>
+              <if test="name != null" >
+                        AND Name = #{name}  
+               </if>
+              <if test="flag != null" >
+                        AND Flag = #{flag}  
+               </if>
+              <if test="description != null" >
+                        AND Description = #{description}  
+               </if>
+		</where>
+	</sql>
+	
+	
 </mapper>
+

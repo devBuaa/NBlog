@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<div id="username_inputmiddle">
 				
-					<input type="text" name="username" id="url" value="用户名" onclick="this.value = ''">
+					<input type="text" name="userName" id="url" value="用户名" onclick="this.value = ''">
 					<img id="url_user" src="<%=basePath %>images/mailicon.png" alt="">
 				
 				</div>

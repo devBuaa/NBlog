@@ -4,7 +4,7 @@ package ${basepackage}.bean;
 
 import com.nblog.annotation.TableSeg;
 
-@TableSeg(tableName="${classNameLower}",id="${table.pkColumn.columnNameFirstLower}")
+@TableSeg(tableName="${className}",id="${table.pkColumn.columnNameFirstLower}")
 public class ${className}{
 	<#list table.columns as column>
 	private ${column.simpleJavaType} ${column.columnNameLower};
@@ -14,7 +14,7 @@ public class ${className}{
 	public String toString() {
 		return new StringBuilder()
 		<#list table.columns as column>
-			.append("${column.columnName} = "+${column.columnName}())
+			.append("${column.columnName} = "+${column.columnNameLower})
 			<#if column_has_next>.append(",")</#if>
 		</#list>
 			.toString();

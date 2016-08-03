@@ -2,45 +2,61 @@ package com.nblog.bean;
 
 import com.nblog.annotation.TableSeg;
 
-@TableSeg(tableName="User",id="")
-public class UserPasswordChange {
-    private String name;
+@TableSeg(tableName="UserPasswordChange",id="systemNo")
+public class UserPasswordChange{
+	private String systemNo;
+	private String name;
+	private String oldPassword;
+	private String newPassword;
+	private String changeTime;
+	public void setSystemNo(String systemNo) {
+		this.systemNo = systemNo;
+	}
+	
+	public String getSystemNo() {
+		return this.systemNo;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
+	}
+	
+	public String getOldPassword() {
+		return this.oldPassword;
+	}
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+	
+	public String getNewPassword() {
+		return this.newPassword;
+	}
+	public void setChangeTime(String changeTime) {
+		this.changeTime = changeTime;
+	}
+	
+	public String getChangeTime() {
+		return this.changeTime;
+	}
 
-    private String oldpassword;
-
-    private String newpassword;
-
-    private String changetime;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getOldpassword() {
-        return oldpassword;
-    }
-
-    public void setOldpassword(String oldpassword) {
-        this.oldpassword = oldpassword == null ? null : oldpassword.trim();
-    }
-
-    public String getNewpassword() {
-        return newpassword;
-    }
-
-    public void setNewpassword(String newpassword) {
-        this.newpassword = newpassword == null ? null : newpassword.trim();
-    }
-
-    public String getChangetime() {
-        return changetime;
-    }
-
-    public void setChangetime(String changetime) {
-        this.changetime = changetime == null ? null : changetime.trim();
-    }
+	public String toString() {
+		return new StringBuilder()
+			.append("SystemNo = "+systemNo)
+			.append(",")
+			.append("Name = "+name)
+			.append(",")
+			.append("OldPassword = "+oldPassword)
+			.append(",")
+			.append("NewPassword = "+newPassword)
+			.append(",")
+			.append("ChangeTime = "+changeTime)
+			
+			.toString();
+	}	
 }

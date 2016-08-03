@@ -1,74 +1,167 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
 <mapper namespace="com.nblog.dao.ResourcesMapper">
-  <resultMap id="BaseResultMap" type="com.nblog.bean.Resources">
-    <id column="Id" jdbcType="INTEGER" property="id" />
-    <result column="Name" jdbcType="VARCHAR" property="name" />
-    <result column="ParentId" jdbcType="INTEGER" property="parentid" />
-    <result column="ResKey" jdbcType="VARCHAR" property="reskey" />
-    <result column="Type" jdbcType="VARCHAR" property="type" />
-    <result column="Url" jdbcType="VARCHAR" property="url" />
-    <result column="Level" jdbcType="INTEGER" property="level" />
-    <result column="Icon" jdbcType="VARCHAR" property="icon" />
-    <result column="IsHide" jdbcType="INTEGER" property="ishide" />
-    <result column="Description" jdbcType="VARCHAR" property="description" />
-  </resultMap>
-  
-   <sql id="selectId">
-		Id,
-		Name,
-		ParentId,
-		(select r.Name from Resources r where r.Id = Resources.ParentId )
-		ParentName,
-		ResKey,
-		IsHide,
-		Type,
-		Url,
-		Level,
-		Icon,
-		Description
+
+	<resultMap id="BaseResultMap" type="com.nblog.bean.Resources">
+		
+		<id column="Id" jdbcType="INTEGER" property="id" />
+        <result column="Name" jdbcType="INTEGER" property="name"/>
+        <result column="ParentId" jdbcType="INTEGER" property="parentId"/>
+        <result column="ResKey" jdbcType="INTEGER" property="resKey"/>
+        <result column="Type" jdbcType="INTEGER" property="type"/>
+        <result column="Url" jdbcType="INTEGER" property="url"/>
+        <result column="Level" jdbcType="INTEGER" property="level"/>
+        <result column="Icon" jdbcType="INTEGER" property="icon"/>
+        <result column="IsHide" jdbcType="INTEGER" property="isHide"/>
+        <result column="Description" jdbcType="INTEGER" property="description"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="Resources_columns">
+	    
+        	Id,
+        	Name,
+        	ParentId,
+        	ResKey,
+        	Type,
+        	Url,
+        	Level,
+        	Icon,
+        	IsHide,
+        	Description
+	    
 	</sql>
-  
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from resources
-    where Id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.nblog.bean.Resources">
-    insert into resources (Id, Name, ParentId, 
-      ResKey, Type, Url, 
-      Level, Icon, IsHide, 
-      Description)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, 
-      #{reskey,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{level,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{ishide,jdbcType=INTEGER}, 
-      #{description,jdbcType=VARCHAR})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.nblog.bean.Resources">
-    update resources
-    set Name = #{name,jdbcType=VARCHAR},
-      ParentId = #{parentid,jdbcType=INTEGER},
-      ResKey = #{reskey,jdbcType=VARCHAR},
-      Type = #{type,jdbcType=VARCHAR},
-      Url = #{url,jdbcType=VARCHAR},
-      Level = #{level,jdbcType=INTEGER},
-      Icon = #{icon,jdbcType=VARCHAR},
-      IsHide = #{ishide,jdbcType=INTEGER},
-      Description = #{description,jdbcType=VARCHAR}
-    where Id = #{id,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select Id, Name, ParentId, ResKey, Type, Url, Level, Icon, IsHide, Description
-    from resources
-    where Id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select Id, Name, ParentId, ResKey, Type, Url, Level, Icon, IsHide, Description
-    from resources
-  </select>
-  <!-- 获取该用户的权限 -->
-  <select id="selectbyUserno" parameterType="java.lang.String" resultMap="BaseResultMap">
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		DELETE FROM Resources
+			WHERE Id = #{id}
+	</delete>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="insert" parameterType="com.nblog.bean.Resources" useGeneratedKeys="true" keyProperty="id">
+    
+        INSERT INTO Resources (
+        	Id ,
+        	Name ,
+        	ParentId ,
+        	ResKey ,
+        	Type ,
+        	Url ,
+        	Level ,
+        	Icon ,
+        	IsHide ,
+        	Description 
+        ) VALUES (
+			#{id} ,
+			#{name} ,
+			#{parentId} ,
+			#{resKey} ,
+			#{type} ,
+			#{url} ,
+			#{level} ,
+			#{icon} ,
+			#{isHide} ,
+			#{description} 
+        )
+	</insert>
+	
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		SELECT <include refid="Resources_columns" />
+		FROM Resources
+		WHERE Id = #{id}
+	</select>
+	
+	<select id="selectAll" resultMap="BaseResultMap">
+		SELECT <include refid="Resources_columns" />
+		FROM Resources
+	</select>
+	
+	<select id="selectByPage" resultMap="BaseResultMap">
+		SELECT <include refid="Resources_columns" />
+		FROM Resources
+	</select>
+	
+	<update id="updateByPrimaryKey" parameterType="com.nblog.bean.Resources">
+		UPDATE Resources SET
+	        Name = #{name} ,
+	        ParentId = #{parentId} ,
+	        ResKey = #{resKey} ,
+	        Type = #{type} ,
+	        Url = #{url} ,
+	        Level = #{level} ,
+	        Icon = #{icon} ,
+	        IsHide = #{isHide} ,
+	        Description = #{description} 
+        WHERE Id = #{id}
+	</update>
+	
+	<update id="updateByPrimaryKeys">   
+        UPDATE Resources SET
+	        Name = #{name} ,
+	        ParentId = #{parentId} ,
+	        ResKey = #{resKey} ,
+	        Type = #{type} ,
+	        Url = #{url} ,
+	        Level = #{level} ,
+	        Icon = #{icon} ,
+	        IsHide = #{isHide} ,
+	        Description = #{description} 
+        WHERE 
+	        Id = #{id} 
+	</update>
+
+    <delete id="deleteByPrimaryKeys"> 
+        DELETE FROM Resources WHERE
+        Id = #{id} 
+    </delete>
+	
+	 <delete id="delete"> 
+        DELETE FROM Resources WHERE
+        <include refid="Resources_where" />
+    </delete>
+	
+	<sql id="Resources_where">
+		<where>	      				
+              <if test="id != null" >
+                        AND Id = #{id}  
+               </if>
+              <if test="name != null" >
+                        AND Name = #{name}  
+               </if>
+              <if test="parentId != null" >
+                        AND ParentId = #{parentId}  
+               </if>
+              <if test="resKey != null" >
+                        AND ResKey = #{resKey}  
+               </if>
+              <if test="type != null" >
+                        AND Type = #{type}  
+               </if>
+              <if test="url != null" >
+                        AND Url = #{url}  
+               </if>
+              <if test="level != null" >
+                        AND Level = #{level}  
+               </if>
+              <if test="icon != null" >
+                        AND Icon = #{icon}  
+               </if>
+              <if test="isHide != null" >
+                        AND IsHide = #{isHide}  
+               </if>
+              <if test="description != null" >
+                        AND Description = #{description}  
+               </if>
+		</where>
+	</sql>
+	
+	  <!-- 获取该用户的权限 -->
+   <select id="selectByUserNo" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT
-		<include refid="selectId" />
+		<include refid="Resources_columns" />
 		from Resources where id in
 		(
 			select ResId from
@@ -82,6 +175,7 @@
 				 )
 		)
 		order by Level asc
-  </select>
-
+   </select>
+	
 </mapper>
+

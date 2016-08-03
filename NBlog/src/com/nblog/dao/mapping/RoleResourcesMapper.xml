@@ -1,21 +1,91 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
 <mapper namespace="com.nblog.dao.RoleResourcesMapper">
-  <resultMap id="BaseResultMap" type="com.nblog.bean.RoleResources">
-    <id column="RoleId" jdbcType="INTEGER" property="roleid" />
-    <id column="ResId" jdbcType="INTEGER" property="resid" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="map">
-    delete from roleresources
-    where RoleId = #{roleid,jdbcType=INTEGER}
-      and ResId = #{resid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.nblog.bean.RoleResources">
-    insert into roleresources (RoleId, ResId)
-    values (#{roleid,jdbcType=INTEGER}, #{resid,jdbcType=INTEGER})
-  </insert>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select RoleId, ResId
-    from roleresources
-  </select>
+
+	<resultMap id="BaseResultMap" type="com.nblog.bean.RoleResources">
+		
+		<id column="RoleId" jdbcType="INTEGER" property="roleId" />
+		<id column="ResId" jdbcType="INTEGER" property="resId" />
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="RoleResources_columns">
+	    
+        	RoleId,
+        	ResId
+	    
+	</sql>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		DELETE FROM RoleResources
+			WHERE RoleId = #{roleId}
+	</delete>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="insert" parameterType="com.nblog.bean.RoleResources" useGeneratedKeys="true" keyProperty="roleId">
+    
+        INSERT INTO RoleResources (
+        	RoleId ,
+        	ResId 
+        ) VALUES (
+			#{roleId} ,
+			#{resId} 
+        )
+	</insert>
+	
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		SELECT <include refid="RoleResources_columns" />
+		FROM RoleResources
+		WHERE RoleId = #{roleId}
+	</select>
+	
+	<select id="selectAll" resultMap="BaseResultMap">
+		SELECT <include refid="RoleResources_columns" />
+		FROM RoleResources
+	</select>
+	
+	<select id="selectByPage" resultMap="BaseResultMap">
+		SELECT <include refid="RoleResources_columns" />
+		FROM RoleResources
+	</select>
+	
+	<update id="updateByPrimaryKey" parameterType="com.nblog.bean.RoleResources">
+		UPDATE RoleResources SET
+        WHERE RoleId = #{roleId}
+	</update>
+	
+	<update id="updateByPrimaryKeys">   
+        UPDATE RoleResources SET
+        WHERE 
+	        RoleId = #{roleId} ,
+	        ResId = #{resId} 
+	</update>
+
+    <delete id="deleteByPrimaryKeys"> 
+        DELETE FROM RoleResources WHERE
+        RoleId = #{id} ,
+        ResId = #{id} 
+    </delete>
+	
+	 <delete id="delete"> 
+        DELETE FROM RoleResources WHERE
+        <include refid="RoleResources_where" />
+    </delete>
+	
+	<sql id="RoleResources_where">
+		<where>	      				
+              <if test="roleId != null" >
+                        AND RoleId = #{roleId}  
+               </if>
+              <if test="resId != null" >
+                        AND ResId = #{resId}  
+               </if>
+		</where>
+	</sql>
+	
+	
 </mapper>
+

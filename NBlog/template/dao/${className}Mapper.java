@@ -2,9 +2,9 @@
 <#assign classNameLower = className?uncap_first>   
 package ${basepackage}.dao;
 
-import java.util.*;
 import ${basepackage}.bean.${className};
 import java.util.List;
+import com.nblog.util.Page;
 /**
  * @author hsu
  * @version 1.0
@@ -22,7 +22,7 @@ public interface ${className}Mapper extends BaseMapper{
     int updateByPrimaryKey(${className} ${table.classNameFirstLower});	
     
     @SuppressWarnings("rawtypes")
-    List<User> selectByPage(Page page);
+    List<${className}> selectByPage(Page page);
 	
 	int deleteByPrimaryKeys(<#list table.compositeIdColumns as column>${column.simpleJavaType} ${column.columnNameFirstLower} <#if column_has_next>,</#if></#list>);
 	

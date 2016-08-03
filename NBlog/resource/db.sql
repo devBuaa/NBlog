@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS mybatis;
 CREATE Database mybatis;
 -------------正式表------------------
 Drop Table If Exists Role;

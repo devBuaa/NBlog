@@ -37,8 +37,8 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 		List<Resources> lists = resourcesMapper.selectAll();
 		for (Resources resources : lists) {
 			// 构成permission字符串
-			if (StringUtils.isNotEmpty(resources.getUrl()) && StringUtils.isNotEmpty(resources.getReskey())) {
-				String permission = "perms[" + resources.getReskey() + "]";
+			if (StringUtils.isNotEmpty(resources.getUrl()) && StringUtils.isNotEmpty(resources.getResKey())) {
+				String permission = "perms[" + resources.getResKey() + "]";
 				// 不对角色进行权限验证
 				// 如需要则 permission = "roles[" + resources.getResKey() + "]";
 				section.put(resources.getUrl(), permission);

@@ -5,15 +5,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <#macro mapperEl value>${r"#{"}${value}}</#macro>
-<#macro namespace>${className}.</#macro>
+<#macro namespace>${className}_</#macro>
 
 <!-- 不使用namespace的话sql搜索定位会比较方便 -->
 <mapper namespace="com.nblog.dao.${className}Mapper">
 
 	<resultMap id="BaseResultMap" type="${basepackage}.bean.${className}">
-		<id column="${table.pkColumn.columnName}" jdbcType="${table.pkColumn.sqlTypeName}" property="${table.pkColumn.columnNameFirstLower}" />
+		
         <#list table.columns as column>
+        <#if !column.pk>
+        <#if table.pkColumn.sqlType ==4>
+        <result column="${column.sqlName}" jdbcType="INTEGER" property="${column.columnNameLower}"/>
+        </#if>
+        <#if table.pkColumn.sqlType !=4>
         <result column="${column.sqlName}" jdbcType="${column.sqlTypeName}" property="${column.columnNameLower}"/>
+		</#if>
+		</#if>
+		<#if column.pk>
+		<#if column.sqlType ==4>
+		<id column="${column.columnName}" jdbcType="INTEGER" property="${column.columnNameFirstLower}" />
+		</#if>
+		<#if column.sqlType !=4>
+		<id column="${column.columnName}" jdbcType="${column.sqlTypeName}" property="${table.pkColumn.columnNameFirstLower}" />
+        </#if>
+		</#if>
 		</#list>
 	</resultMap>
 	
@@ -32,7 +47,7 @@
 	</delete>
 
 	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
-	<insert id="<@namespace/>insert" parameterType="${basepackage}.bean.${className}" useGeneratedKeys="true" keyProperty="${table.idColumn.columnNameFirstLower}">
+	<insert id="insert" parameterType="${basepackage}.bean.${className}" useGeneratedKeys="true" keyProperty="${table.idColumn.columnNameFirstLower}">
     
         INSERT INTO ${table.sqlName} (
         <#list table.columns as column>
@@ -55,16 +70,6 @@
 		SELECT <include refid="<@namespace/>columns" />
 		FROM ${table.sqlName}
 	</select>
-	
-	<#list table.columns as column>
-		<#if column.unique && !column.pk>
-			<select id="selectByUsername" parameterType="${column.javaType}" resultMap="BaseResultMap">
-				SELECT <include refid="<@namespace/>columns" />
-				FROM ${table.sqlName}
-				WHERE ${column.columnName} = <@mapperEl column.columnNameFirstLower/>
-			</select>
-		</#if>
-	</#list>
 	
 	<select id="selectByPage" resultMap="BaseResultMap">
 		SELECT <include refid="<@namespace/>columns" />
@@ -111,8 +116,16 @@
             </#list>    
 		</where>
 	</sql>
-		
-
+	
+	<#list table.columns as column>
+		<#if column.unique && !column.pk>
+	<select id="selectBy${column.columnName}" parameterType="${column.javaType}" resultMap="BaseResultMap">
+		SELECT <include refid="<@namespace/>columns" />
+		FROM ${table.sqlName}
+		WHERE ${column.columnName} = <@mapperEl column.columnNameFirstLower/>
+	</select>
+		</#if>
+	</#list>
 	
 </mapper>
 

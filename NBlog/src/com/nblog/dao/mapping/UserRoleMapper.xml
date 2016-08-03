@@ -1,22 +1,91 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
 <mapper namespace="com.nblog.dao.UserRoleMapper">
-  <resultMap id="BaseResultMap" type="com.nblog.bean.UserRole">
-    <id column="UserNo" jdbcType="VARCHAR" property="userno" />
-    <id column="RoleId" jdbcType="INTEGER" property="roleid" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="map">
-    delete from userrole
-    where UserNo = #{userno,jdbcType=VARCHAR}
-      and RoleId = #{roleid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.nblog.bean.UserRole">
-    insert into userrole (UserNo, RoleId)
-    values (#{userno,jdbcType=VARCHAR}, #{roleid,jdbcType=INTEGER})
-  </insert>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select UserNo, RoleId
-    from userrole
-  </select>
-  
+
+	<resultMap id="BaseResultMap" type="com.nblog.bean.UserRole">
+		
+		<id column="UserNo" jdbcType="VARCHAR" property="userNo" />
+		<id column="RoleId" jdbcType="INTEGER" property="roleId" />
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="UserRole_columns">
+	    
+        	UserNo,
+        	RoleId
+	    
+	</sql>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		DELETE FROM UserRole
+			WHERE UserNo = #{userNo}
+	</delete>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="insert" parameterType="com.nblog.bean.UserRole" useGeneratedKeys="true" keyProperty="userNo">
+    
+        INSERT INTO UserRole (
+        	UserNo ,
+        	RoleId 
+        ) VALUES (
+			#{userNo} ,
+			#{roleId} 
+        )
+	</insert>
+	
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT <include refid="UserRole_columns" />
+		FROM UserRole
+		WHERE UserNo = #{userNo}
+	</select>
+	
+	<select id="selectAll" resultMap="BaseResultMap">
+		SELECT <include refid="UserRole_columns" />
+		FROM UserRole
+	</select>
+	
+	<select id="selectByPage" resultMap="BaseResultMap">
+		SELECT <include refid="UserRole_columns" />
+		FROM UserRole
+	</select>
+	
+	<update id="updateByPrimaryKey" parameterType="com.nblog.bean.UserRole">
+		UPDATE UserRole SET
+        WHERE UserNo = #{userNo}
+	</update>
+	
+	<update id="updateByPrimaryKeys">   
+        UPDATE UserRole SET
+        WHERE 
+	        UserNo = #{userNo} ,
+	        RoleId = #{roleId} 
+	</update>
+
+    <delete id="deleteByPrimaryKeys"> 
+        DELETE FROM UserRole WHERE
+        UserNo = #{id} ,
+        RoleId = #{id} 
+    </delete>
+	
+	 <delete id="delete"> 
+        DELETE FROM UserRole WHERE
+        <include refid="UserRole_where" />
+    </delete>
+	
+	<sql id="UserRole_where">
+		<where>	      				
+              <if test="userNo != null" >
+                        AND UserNo = #{userNo}  
+               </if>
+              <if test="roleId != null" >
+                        AND RoleId = #{roleId}  
+               </if>
+		</where>
+	</sql>
+	
+	
 </mapper>
+

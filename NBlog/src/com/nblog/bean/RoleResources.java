@@ -2,25 +2,31 @@ package com.nblog.bean;
 
 import com.nblog.annotation.TableSeg;
 
-@TableSeg(tableName="RoleResources",id="roleid")
-public class RoleResources {
-    private Integer roleid;
+@TableSeg(tableName="RoleResources",id="roleId")
+public class RoleResources{
+	private Integer roleId;
+	private Integer resId;
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
+	
+	public Integer getRoleId() {
+		return this.roleId;
+	}
+	public void setResId(Integer resId) {
+		this.resId = resId;
+	}
+	
+	public Integer getResId() {
+		return this.resId;
+	}
 
-    private Integer resid;
-
-    public Integer getRoleid() {
-        return roleid;
-    }
-
-    public void setRoleid(Integer roleid) {
-        this.roleid = roleid;
-    }
-
-    public Integer getResid() {
-        return resid;
-    }
-
-    public void setResid(Integer resid) {
-        this.resid = resid;
-    }
+	public String toString() {
+		return new StringBuilder()
+			.append("RoleId = "+roleId)
+			.append(",")
+			.append("ResId = "+resId)
+			
+			.toString();
+	}	
 }

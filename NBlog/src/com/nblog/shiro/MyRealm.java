@@ -47,7 +47,7 @@ public class MyRealm extends AuthorizingRealm {
 		String loginName = SecurityUtils.getSubject().getPrincipal().toString();
 		if (loginName != null) {
 			String userNo = SecurityUtils.getSubject().getSession().getAttribute("userSessionId").toString();
-			List<Resources> rs = resourcesMapper.selectbyUserno(userNo);
+			List<Resources> rs = resourcesMapper.selectByUserNo(userNo);
 			// 权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
 			SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 			// 用户的角色集合
@@ -56,7 +56,7 @@ public class MyRealm extends AuthorizingRealm {
 			// info.setRoles(user.getRolesName());
 			// 用户的角色对应的所有权限，如果只使用角色定义访问权限
 			for (Resources resources : rs) {
-				info.addStringPermission(resources.getReskey().toString());
+				info.addStringPermission(resources.getResKey().toString());
 			}
 
 			return info;
@@ -77,7 +77,7 @@ public class MyRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 	    
 		String username = (String) token.getPrincipal();
-		User usr = userMapper.selectByUsername(username);
+		User usr = userMapper.selectByUserName(username);
 		if (usr!=null) {
 			if ("2".equals(usr.getLocked())) {
 				throw new LockedAccountException(); // 帐号锁定
@@ -88,13 +88,13 @@ public class MyRealm extends AuthorizingRealm {
 			// 交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
 			SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(username, // 用户名
 			        usr.getPassword(), // 密码
-					ByteSource.Util.bytes(username + "" + usr.getCredentialssalt()),// salt=username+salt
+					ByteSource.Util.bytes(username + "" + usr.getCredentialsSalt()),// salt=username+salt
 					getName() // realm name
 			);
 			// 当验证都通过后，把用户信息放在session里
 			Session session = SecurityUtils.getSubject().getSession();
 			session.setAttribute("userSession", usr);
-			session.setAttribute("usernameSession", usr.getUsername());
+			session.setAttribute("usernameSession", usr.getUserName());
 			return authenticationInfo;
 		} else {
 			throw new UnknownAccountException();// 没找到帐号

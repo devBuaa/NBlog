@@ -2,15 +2,33 @@ package com.nblog.dao;
 
 import com.nblog.bean.Login;
 import java.util.List;
-
+import com.nblog.util.Page;
+/**
+ * @author hsu
+ * @version 1.0
+ */
 public interface LoginMapper extends BaseMapper{
-    int deleteByPrimaryKey(String systemno);
+	
+	int deleteByPrimaryKey(String systemNo);
 
-    int insert(Login record);
+    int insert(Login login);
 
-    Login selectByPrimaryKey(String systemno);
+    Login selectByPrimaryKey(String systemNo);
 
     List<Login> selectAll();
 
-    int updateByPrimaryKey(Login record);
+    int updateByPrimaryKey(Login login);	
+    
+    @SuppressWarnings("rawtypes")
+    List<Login> selectByPage(Page page);
+	
+	int deleteByPrimaryKeys(String systemNo );
+	
+	int updateByPrimaryKeys(String systemNo );
+	
+	int delete(Login login);
+	
+	Login selectByWhere(Login login);
+	
+
 }

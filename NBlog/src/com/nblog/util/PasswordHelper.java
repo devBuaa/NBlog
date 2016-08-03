@@ -13,15 +13,15 @@ public class PasswordHelper {
 
 	public void encryptPassword(User user) {
 		String salt=randomNumberGenerator.nextBytes().toHex();
-		user.setCredentialssalt(salt);	
-		String newPassword = new SimpleHash(algorithmName, user.getPassword(), ByteSource.Util.bytes(user.getUsername()+salt), hashIterations).toHex();
+		user.setCredentialsSalt(salt);	
+		String newPassword = new SimpleHash(algorithmName, user.getPassword(), ByteSource.Util.bytes(user.getUserName()+salt), hashIterations).toHex();
 		user.setPassword(newPassword);
 	}
 	
 	public static void main(String[] args) {
 		PasswordHelper passwordHelper = new PasswordHelper();
 		User userFormMap = new User();
-		userFormMap.setUsername("xsx");
+		userFormMap.setUserName("xsx");
 		userFormMap.setPassword("123456");
 		passwordHelper.encryptPassword(userFormMap);
 		System.out.println(SqlUtil.convertBeanToMap(userFormMap));

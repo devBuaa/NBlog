@@ -3,104 +3,110 @@ package com.nblog.bean;
 import com.nblog.annotation.TableSeg;
 
 @TableSeg(tableName="Resources",id="id")
-public class Resources {
-    private Integer id;
+public class Resources{
+	private Integer id;
+	private String name;
+	private Integer parentId;
+	private String resKey;
+	private String type;
+	private String url;
+	private Integer level;
+	private String icon;
+	private Integer isHide;
+	private String description;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public Integer getId() {
+		return this.id;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
+	
+	public Integer getParentId() {
+		return this.parentId;
+	}
+	public void setResKey(String resKey) {
+		this.resKey = resKey;
+	}
+	
+	public String getResKey() {
+		return this.resKey;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	public String getType() {
+		return this.type;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	public String getUrl() {
+		return this.url;
+	}
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
+	
+	public Integer getLevel() {
+		return this.level;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+	
+	public String getIcon() {
+		return this.icon;
+	}
+	public void setIsHide(Integer isHide) {
+		this.isHide = isHide;
+	}
+	
+	public Integer getIsHide() {
+		return this.isHide;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getDescription() {
+		return this.description;
+	}
 
-    private String name;
-
-    private Integer parentid;
-
-    private String reskey;
-
-    private String type;
-
-    private String url;
-
-    private Integer level;
-
-    private String icon;
-
-    private Integer ishide;
-
-    private String description;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getParentid() {
-        return parentid;
-    }
-
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
-    }
-
-    public String getReskey() {
-        return reskey;
-    }
-
-    public void setReskey(String reskey) {
-        this.reskey = reskey == null ? null : reskey.trim();
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
-    }
-
-    public Integer getLevel() {
-        return level;
-    }
-
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon == null ? null : icon.trim();
-    }
-
-    public Integer getIshide() {
-        return ishide;
-    }
-
-    public void setIshide(Integer ishide) {
-        this.ishide = ishide;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
+	public String toString() {
+		return new StringBuilder()
+			.append("Id = "+id)
+			.append(",")
+			.append("Name = "+name)
+			.append(",")
+			.append("ParentId = "+parentId)
+			.append(",")
+			.append("ResKey = "+resKey)
+			.append(",")
+			.append("Type = "+type)
+			.append(",")
+			.append("Url = "+url)
+			.append(",")
+			.append("Level = "+level)
+			.append(",")
+			.append("Icon = "+icon)
+			.append(",")
+			.append("IsHide = "+isHide)
+			.append(",")
+			.append("Description = "+description)
+			
+			.toString();
+	}	
 }

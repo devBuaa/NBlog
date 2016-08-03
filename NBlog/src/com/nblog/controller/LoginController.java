@@ -63,8 +63,8 @@ public class LoginController {
 	@Token(remove=true)
 	public ModelAndView register(@ModelAttribute User user){
 		  
-		user.setUserno(IDGenerator.getInstance().getID());
-		user.setSigntime(DateUtil.getTimestamp());
+		user.setUserNo(IDGenerator.getInstance().getID());
+		user.setSignTime(DateUtil.getTimestamp());
 		PasswordHelper passwordHelper = new PasswordHelper();
 		passwordHelper.encryptPassword(user);
 		try {
@@ -130,8 +130,8 @@ public class LoginController {
 			Login login = new Login();
 			Session session = SecurityUtils.getSubject().getSession();
 			login.setName(username);
-			login.setLoginip(session.getHost());
-			login.setSystemno(IDGenerator.getInstance().getID());
+			login.setLoginIp(session.getHost());
+			login.setSystemNo(IDGenerator.getInstance().getID());
 			baseService.insertBean(login);
 			
 			request.removeAttribute("error");
