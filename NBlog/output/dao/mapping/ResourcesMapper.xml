@@ -137,24 +137,6 @@
 		</where>
 	</sql>
 	
-	<!-- 获取该用户的权限 -->
-   <select id="selectByUserNo" parameterType="java.lang.String" resultMap="BaseResultMap">
-    SELECT
-		<include refid="Resources_columns" />
-		from Resources where id in
-		(
-			select ResId from
-				RoleResources where 1=1 and RoleId in
-				(
-					select RoleId from UserRole where 1=1 
-					<if test="UserNo != null and UserNo != '' and UserNo != 0">
-						and UserNo = #{userno,jdbcType=VARCHAR}
-					</if>
-					
-				 )
-		)
-		order by Level asc
-   </select>
 	
 </mapper>
 
