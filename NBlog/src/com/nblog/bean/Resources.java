@@ -14,6 +14,7 @@ public class Resources{
 	private String icon;
 	private Integer isHide;
 	private String description;
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -87,26 +88,26 @@ public class Resources{
 
 	public String toString() {
 		return new StringBuilder()
-			.append("Id = "+id)
-			.append(",")
-			.append("Name = "+name)
-			.append(",")
-			.append("ParentId = "+parentId)
-			.append(",")
-			.append("ResKey = "+resKey)
-			.append(",")
-			.append("Type = "+type)
-			.append(",")
-			.append("Url = "+url)
-			.append(",")
-			.append("Level = "+level)
-			.append(",")
-			.append("Icon = "+icon)
-			.append(",")
-			.append("IsHide = "+isHide)
-			.append(",")
-			.append("Description = "+description)
-			
-			.toString();
+		    .append("Resources[")
+		    .append("Id = "+id)
+		    .append(",")
+		    .append("Name = "+name)
+		    .append(",")
+		    .append("ParentId = "+parentId)
+		    .append(",")
+		    .append("ResKey = "+resKey)
+		    .append(",")
+		    .append("Type = "+type)
+		    .append(",")
+		    .append("Url = "+url)
+		    .append(",")
+		    .append("Level = "+level)
+		    .append(",")
+		    .append("Icon = "+icon)
+		    .append(",")
+		    .append("IsHide = "+isHide)
+		    .append(",")
+		    .append("Description = "+description)
+		    .append("]").toString();
 	}	
 }

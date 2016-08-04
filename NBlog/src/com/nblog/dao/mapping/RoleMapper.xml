@@ -72,22 +72,6 @@
 	        Description = #{description} 
         WHERE Id = #{id}
 	</update>
-	
-	<update id="updateByPrimaryKeys">   
-        UPDATE Role SET
-	        State = #{state} ,
-	        Name = #{name} ,
-	        Flag = #{flag} ,
-	        Description = #{description} 
-        WHERE 
-	        Id = #{id} 
-	</update>
-
-    <delete id="deleteByPrimaryKeys"> 
-        DELETE FROM Role WHERE
-        Id = #{id} 
-    </delete>
-	
 	 <delete id="delete"> 
         DELETE FROM Role WHERE
         <include refid="Role_where" />

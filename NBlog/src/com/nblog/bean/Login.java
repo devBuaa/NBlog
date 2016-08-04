@@ -9,6 +9,7 @@ public class Login{
 	private String loginIp;
 	private String loginBrowser;
 	private String offlineTime;
+	
 	public void setSystemNo(String systemNo) {
 		this.systemNo = systemNo;
 	}
@@ -47,16 +48,16 @@ public class Login{
 
 	public String toString() {
 		return new StringBuilder()
-			.append("SystemNo = "+systemNo)
-			.append(",")
-			.append("Name = "+name)
-			.append(",")
-			.append("LoginIp = "+loginIp)
-			.append(",")
-			.append("LoginBrowser = "+loginBrowser)
-			.append(",")
-			.append("OfflineTime = "+offlineTime)
-			
-			.toString();
+		    .append("Login[")
+		    .append("SystemNo = "+systemNo)
+		    .append(",")
+		    .append("Name = "+name)
+		    .append(",")
+		    .append("LoginIp = "+loginIp)
+		    .append(",")
+		    .append("LoginBrowser = "+loginBrowser)
+		    .append(",")
+		    .append("OfflineTime = "+offlineTime)
+		    .append("]").toString();
 	}	
 }

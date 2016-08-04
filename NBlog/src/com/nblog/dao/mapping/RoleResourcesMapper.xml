@@ -56,7 +56,6 @@
 		UPDATE RoleResources SET
         WHERE RoleId = #{roleId}
 	</update>
-	
 	<update id="updateByPrimaryKeys">   
         UPDATE RoleResources SET
         WHERE 
@@ -69,7 +68,6 @@
         RoleId = #{id} ,
         ResId = #{id} 
     </delete>
-	
 	 <delete id="delete"> 
         DELETE FROM RoleResources WHERE
         <include refid="RoleResources_where" />

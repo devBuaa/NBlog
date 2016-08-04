@@ -102,28 +102,6 @@
 	        SignTime = #{signTime} 
         WHERE UserNo = #{userNo}
 	</update>
-	
-	<update id="updateByPrimaryKeys">   
-        UPDATE User SET
-	        UserName = #{userName} ,
-	        Password = #{password} ,
-	        CredentialsSalt = #{credentialsSalt} ,
-	        Email = #{email} ,
-	        MobilePhone = #{mobilePhone} ,
-	        Address = #{address} ,
-	        Career = #{career} ,
-	        Industry = #{industry} ,
-	        Locked = #{locked} ,
-	        SignTime = #{signTime} 
-        WHERE 
-	        UserNo = #{userNo} 
-	</update>
-
-    <delete id="deleteByPrimaryKeys"> 
-        DELETE FROM User WHERE
-        UserNo = #{id} 
-    </delete>
-	
 	 <delete id="delete"> 
         DELETE FROM User WHERE
         <include refid="User_where" />

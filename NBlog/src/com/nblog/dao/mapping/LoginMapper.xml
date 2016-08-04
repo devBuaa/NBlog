@@ -72,22 +72,6 @@
 	        OfflineTime = #{offlineTime} 
         WHERE SystemNo = #{systemNo}
 	</update>
-	
-	<update id="updateByPrimaryKeys">   
-        UPDATE Login SET
-	        Name = #{name} ,
-	        LoginIP = #{loginIp} ,
-	        LoginBrowser = #{loginBrowser} ,
-	        OfflineTime = #{offlineTime} 
-        WHERE 
-	        SystemNo = #{systemNo} 
-	</update>
-
-    <delete id="deleteByPrimaryKeys"> 
-        DELETE FROM Login WHERE
-        SystemNo = #{id} 
-    </delete>
-	
 	 <delete id="delete"> 
         DELETE FROM Login WHERE
         <include refid="Login_where" />

@@ -9,13 +9,17 @@ public class ${className}{
 	<#list table.columns as column>
 	private ${column.simpleJavaType} ${column.columnNameLower};
 	</#list>
+	
 <@generateJavaColumns/>
 
 	public String toString() {
 		return new StringBuilder()
 		    .append("${className}[")
 		<#list table.columns as column>
-		    .append("${column.columnName} = "+${column.columnNameLower})<#if column_has_next>.append(",")</#if>
+		    .append("${column.columnName} = "+${column.columnNameLower})
+		    <#if column_has_next>
+		    .append(",")
+		    </#if>
 		</#list>
 		    .append("]").toString();
 	}	

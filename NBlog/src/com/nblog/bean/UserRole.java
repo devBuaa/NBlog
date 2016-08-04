@@ -6,6 +6,7 @@ import com.nblog.annotation.TableSeg;
 public class UserRole{
 	private String userNo;
 	private Integer roleId;
+	
 	public void setUserNo(String userNo) {
 		this.userNo = userNo;
 	}
@@ -23,10 +24,10 @@ public class UserRole{
 
 	public String toString() {
 		return new StringBuilder()
-			.append("UserNo = "+userNo)
-			.append(",")
-			.append("RoleId = "+roleId)
-			
-			.toString();
+		    .append("UserRole[")
+		    .append("UserNo = "+userNo)
+		    .append(",")
+		    .append("RoleId = "+roleId)
+		    .append("]").toString();
 	}	
 }

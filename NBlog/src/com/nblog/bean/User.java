@@ -15,6 +15,7 @@ public class User{
 	private String industry;
 	private String locked;
 	private String signTime;
+	
 	public void setUserNo(String userNo) {
 		this.userNo = userNo;
 	}
@@ -95,28 +96,28 @@ public class User{
 
 	public String toString() {
 		return new StringBuilder()
-			.append("UserNo = "+userNo)
-			.append(",")
-			.append("UserName = "+userName)
-			.append(",")
-			.append("Password = "+password)
-			.append(",")
-			.append("CredentialsSalt = "+credentialsSalt)
-			.append(",")
-			.append("Email = "+email)
-			.append(",")
-			.append("MobilePhone = "+mobilePhone)
-			.append(",")
-			.append("Address = "+address)
-			.append(",")
-			.append("Career = "+career)
-			.append(",")
-			.append("Industry = "+industry)
-			.append(",")
-			.append("Locked = "+locked)
-			.append(",")
-			.append("SignTime = "+signTime)
-			
-			.toString();
+		    .append("User[")
+		    .append("UserNo = "+userNo)
+		    .append(",")
+		    .append("UserName = "+userName)
+		    .append(",")
+		    .append("Password = "+password)
+		    .append(",")
+		    .append("CredentialsSalt = "+credentialsSalt)
+		    .append(",")
+		    .append("Email = "+email)
+		    .append(",")
+		    .append("MobilePhone = "+mobilePhone)
+		    .append(",")
+		    .append("Address = "+address)
+		    .append(",")
+		    .append("Career = "+career)
+		    .append(",")
+		    .append("Industry = "+industry)
+		    .append(",")
+		    .append("Locked = "+locked)
+		    .append(",")
+		    .append("SignTime = "+signTime)
+		    .append("]").toString();
 	}	
 }

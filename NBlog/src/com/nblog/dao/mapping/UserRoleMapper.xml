@@ -56,7 +56,6 @@
 		UPDATE UserRole SET
         WHERE UserNo = #{userNo}
 	</update>
-	
 	<update id="updateByPrimaryKeys">   
         UPDATE UserRole SET
         WHERE 
@@ -69,7 +68,6 @@
         UserNo = #{id} ,
         RoleId = #{id} 
     </delete>
-	
 	 <delete id="delete"> 
         DELETE FROM UserRole WHERE
         <include refid="UserRole_where" />

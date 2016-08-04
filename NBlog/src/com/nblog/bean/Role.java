@@ -9,6 +9,7 @@ public class Role{
 	private String name;
 	private String flag;
 	private String description;
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -47,16 +48,16 @@ public class Role{
 
 	public String toString() {
 		return new StringBuilder()
-			.append("Id = "+id)
-			.append(",")
-			.append("State = "+state)
-			.append(",")
-			.append("Name = "+name)
-			.append(",")
-			.append("Flag = "+flag)
-			.append(",")
-			.append("Description = "+description)
-			
-			.toString();
+		    .append("Role[")
+		    .append("Id = "+id)
+		    .append(",")
+		    .append("State = "+state)
+		    .append(",")
+		    .append("Name = "+name)
+		    .append(",")
+		    .append("Flag = "+flag)
+		    .append(",")
+		    .append("Description = "+description)
+		    .append("]").toString();
 	}	
 }

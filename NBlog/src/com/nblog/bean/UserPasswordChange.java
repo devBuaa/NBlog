@@ -9,6 +9,7 @@ public class UserPasswordChange{
 	private String oldPassword;
 	private String newPassword;
 	private String changeTime;
+	
 	public void setSystemNo(String systemNo) {
 		this.systemNo = systemNo;
 	}
@@ -47,16 +48,16 @@ public class UserPasswordChange{
 
 	public String toString() {
 		return new StringBuilder()
-			.append("SystemNo = "+systemNo)
-			.append(",")
-			.append("Name = "+name)
-			.append(",")
-			.append("OldPassword = "+oldPassword)
-			.append(",")
-			.append("NewPassword = "+newPassword)
-			.append(",")
-			.append("ChangeTime = "+changeTime)
-			
-			.toString();
+		    .append("UserPasswordChange[")
+		    .append("SystemNo = "+systemNo)
+		    .append(",")
+		    .append("Name = "+name)
+		    .append(",")
+		    .append("OldPassword = "+oldPassword)
+		    .append(",")
+		    .append("NewPassword = "+newPassword)
+		    .append(",")
+		    .append("ChangeTime = "+changeTime)
+		    .append("]").toString();
 	}	
 }

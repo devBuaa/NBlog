@@ -125,6 +125,13 @@
 		WHERE ${column.columnName} = <@mapperEl column.columnNameFirstLower/>
 	</select>
 		</#if>
+		<#if column.indexed && !column.pk && !column.unique && !column.nullable>
+	<select id="selectBy${column.columnName}" parameterType="${column.javaType}" resultMap="BaseResultMap">
+		SELECT <include refid="<@namespace/>columns" />
+		FROM ${table.sqlName}
+		WHERE ${column.columnName} = <@mapperEl column.columnNameFirstLower/>
+	</select>
+		</#if>
 	</#list>
 	
 </mapper>
