@@ -23,11 +23,11 @@ public interface ${className}Mapper extends BaseMapper{
     
     @SuppressWarnings("rawtypes")
     List<${className}> selectByPage(Page page);
+    <#if table.compositeId>
+	int deleteByPrimaryKeys(<#list table.compositeIdColumns as column>${column.simpleJavaType} ${column.columnNameFirstLower}<#if column_has_next>,</#if></#list>);
 	
-	int deleteByPrimaryKeys(<#list table.compositeIdColumns as column>${column.simpleJavaType} ${column.columnNameFirstLower} <#if column_has_next>,</#if></#list>);
-	
-	int updateByPrimaryKeys(<#list table.compositeIdColumns as column>${column.simpleJavaType} ${column.columnNameFirstLower} <#if column_has_next>,</#if></#list>);
-	
+	int updateByPrimaryKeys(<#list table.compositeIdColumns as column>${column.simpleJavaType} ${column.columnNameFirstLower}<#if column_has_next>,</#if></#list>);
+	</#if>
 	int delete(${className} ${table.classNameFirstLower});
 	
 	${className} selectByWhere(${className} ${table.classNameFirstLower});

@@ -83,7 +83,7 @@
 	        </#list>
         WHERE ${table.pkColumn.columnName} = <@mapperEl table.pkColumn.columnNameFirstLower/>
 	</update>
-	
+	<#if table.compositeId>
 	<update id="updateByPrimaryKeys">   
         UPDATE ${table.sqlName} SET
 	        <#list table.notPkColumns as column>
@@ -101,7 +101,7 @@
         ${column.sqlName} = <@mapperEl 'id'/> <#if column_has_next>,</#if>
 		</#list>   
     </delete>
-	
+	</#if>
 	 <delete id="delete"> 
         DELETE FROM ${table.sqlName} WHERE
         <include refid="<@namespace/>where" />
