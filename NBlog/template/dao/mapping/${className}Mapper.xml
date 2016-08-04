@@ -14,10 +14,10 @@
 		
         <#list table.columns as column>
         <#if !column.pk>
-        <#if table.pkColumn.sqlType ==4>
+        <#if column.sqlType ==4>
         <result column="${column.sqlName}" jdbcType="INTEGER" property="${column.columnNameLower}"/>
         </#if>
-        <#if table.pkColumn.sqlType !=4>
+        <#if column.sqlType !=4>
         <result column="${column.sqlName}" jdbcType="${column.sqlTypeName}" property="${column.columnNameLower}"/>
 		</#if>
 		</#if>
