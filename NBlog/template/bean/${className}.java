@@ -13,11 +13,11 @@ public class ${className}{
 
 	public String toString() {
 		return new StringBuilder()
+		    .append("${className}[")
 		<#list table.columns as column>
-			.append("${column.columnName} = "+${column.columnNameLower})
-			<#if column_has_next>.append(",")</#if>
+		    .append("${column.columnName} = "+${column.columnNameLower})<#if column_has_next>.append(",")</#if>
 		</#list>
-			.toString();
+		    .append("]").toString();
 	}	
 }
 <#macro generateJavaColumns>
