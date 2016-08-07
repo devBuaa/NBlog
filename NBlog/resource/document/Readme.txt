@@ -1,3 +1,11 @@
+开发环境：
+MyEclipse/eclipse
+Jdk 1.7
+tomcat 7.0
+gradle
+Mysql 5.5+
+
+项目运行说明：
 1.用的数据库是MySQL，MySQL配置文件需设置表名区分大小写：lower_case_table_names = 0 
 2.执行resource下的db.sql即可。表结构设计不合理可以提.
 3.数据字典使用DB.xls，表创建完毕指定路径直接执行GenSqlFromExcel即可生成sql语句
