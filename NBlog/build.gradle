@@ -1,0 +1,58 @@
+import org.gradle.plugins.ide.eclipse.model.Facet
+
+apply plugin: 'maven'
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+
+
+sourceCompatibility = 1.7   // 设置 JDK 版本
+group = "com.nblog"
+def artifactId = "NBlog"
+version = "0.1.0-SNAPSHOT"
+webAppDirName = 'WebRoot'    // 设置 WebApp 根目录
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'resource'
+        }
+    }
+}
+
+// 设置 远程仓库地址（可以配置多个maven源）
+repositories {
+   	  mavenLocal() //本地仓库
+      mavenCentral() //maven默认远程仓库
+      maven { url "http://mirrors.ibiblio.org/pub/mirrors/maven2" }
+}
+
+
+// 设置依赖
+dependencies {
+    compile fileTree(dir: 'WebRoot/WEB-INF/lib', include:['*.jar'] )
+    //compile 'com.google.zxing:core:3.2.1'
+    //compile 'com.google.zxing:javase:3.2.1'
+}
+
+
+// 设置 Project Facets
+eclipse {
+    wtp {
+        facet {
+            facet name: 'jst.web', type: Facet.FacetType.fixed
+            facet name: 'wst.jsdt.web', type: Facet.FacetType.fixed
+            facet name: 'jst.java', type: Facet.FacetType.fixed
+            facet name: 'jst.web', version: '2.5'
+            facet name: 'jst.java', version: '1.7'
+            facet name: 'wst.jsdt.web', version: '1.0'
+        }
+    }
+}
+
+task listJars << {
+    configurations.compile.each { File file -> println file.name }
+}
