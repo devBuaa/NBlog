@@ -1,4 +1,4 @@
-package com.nblog.util;
+package com.eauth.util;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -23,7 +23,6 @@ public class JsonUtils {
 	 *@descript
 	 *@param s
 	 *@return
-	 *@author lijianning
 	 *@date 2015年6月15日
 	 *@version 1.0v
 	 */
@@ -84,7 +83,6 @@ public class JsonUtils {
      *@descript
      *@param obj
      *@return
-     *@author lijianning
      *@date 2015年6月15日
      *@version 1.0v
      */
@@ -125,7 +123,6 @@ public class JsonUtils {
     *@descript
     *@param bean
     *@return
-    *@author lijianning
     *@date 2015年6月15日
     *@version 1.0v
     */
@@ -163,7 +160,6 @@ public class JsonUtils {
      *@descript
      *@param list
      *@return
-     *@author lijianning
      *@date 2015年6月15日
      *@version 1.0v
      */
@@ -187,7 +183,6 @@ public class JsonUtils {
      *@descript
      *@param array
      *@return
-     *@author lijianning
      *@date 2015年6月15日
      *@version 1.0v
      */
@@ -211,7 +206,6 @@ public class JsonUtils {
     *@descript
     *@param map
     *@return
-    *@author lijianning
     *@date 2015年6月15日
     *@version 1.0v
     */
@@ -237,7 +231,6 @@ public class JsonUtils {
     *@descript
     *@param set
     *@return
-    *@author lijianning
     *@date 2015年6月15日
     *@version 1.0v
     */
@@ -260,7 +253,6 @@ public class JsonUtils {
      *@descript
      *@param jsonStr
      *@return
-     *@author lijianning
      *@date 2015年6月15日
      *@version 1.0v
      */
@@ -281,7 +273,6 @@ public class JsonUtils {
       *@descript
       *@param jsonStr
       *@return
-      *@author lijianning
       *@date 2015年6月15日
       *@version 1.0v
       */
@@ -302,6 +293,9 @@ public class JsonUtils {
 						list.add(parseJSONMap(JSON.toString()));
 					}
 					map.put(k.toString(), list);
+				} else if(v instanceof JSONObject){
+				    Map<String, Object> map2 = parseJSONMap(v.toString());
+				    map.put(k.toString(), map2);
 				} else {
 					map.put(k.toString(), v);
 				}
@@ -317,7 +311,6 @@ public class JsonUtils {
       *@descript
       *@param url
       *@return
-      *@author lijianning
       *@date 2015年6月15日
       *@version 1.0v
       */
@@ -343,7 +336,6 @@ public class JsonUtils {
       *@descript
       *@param url
       *@return
-      *@author lijianning
       *@date 2015年6月15日
       *@version 1.0v
       */
